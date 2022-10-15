@@ -17,6 +17,20 @@ struct RootView: View {
     let isExternal: Bool
     
     @Environment(\.verticalSizeClass) private var vSizeClass
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    
+    var elementSize: ElementSize {
+        #if targetEnvironment(macCatalyst)
+        return .large
+        #else
+        if (vSizeClass == .regular && hSizeClass == .regular) &&
+            system.screenShapeCase != .circle && system.screenShapeCase != .triangle {
+            return .regular
+        } else {
+            return .small
+        }
+        #endif
+    }
     
     @State var currentPage: Page
     @State var showingDebugControls = true
@@ -120,6 +134,7 @@ struct RootView: View {
         })
         #endif
         .environmentObject(system)
+        .environment(\.elementSize, elementSize)
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("navigate"))) { _ in
             if !self.isExternal {
                 self.currentPage = visiblePage

@@ -66,7 +66,7 @@ struct MusicPage: View {
                 .buttonStyle(GroupedButtonStyle(segmentPosition: .trailing))
             }
             HStack {
-                CircularProgressView(value: $music.volume)
+                CircularProgressView(did: 1, value: $music.volume)
                     .frame(maxWidth: 80, maxHeight: 80)
                     .padding()
                 Button {

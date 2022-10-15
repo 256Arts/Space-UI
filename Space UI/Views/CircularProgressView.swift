@@ -7,9 +7,15 @@
 //
 
 import SwiftUI
+import GameplayKit
 
 struct CircularProgressView<Inner: View>: View {
     
+    enum Design {
+        case continuous, dashed, asteresk
+    }
+    
+    let design: Design
     let inner: Inner
     
     @Binding var value: Double
@@ -18,13 +24,23 @@ struct CircularProgressView<Inner: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Circle()
-                    .stroke(Color(color: .primary, opacity: .low), style: StrokeStyle(lineWidth: actualLineWidth(size: geometry.size), dash: [(actualLineWidth(size: geometry.size))/3, (actualLineWidth(size: geometry.size))/3]))
-                    .rotationEffect(Angle(degrees: -90))
-                Circle()
-                    .trim(from: 0, to: self.value)
-                    .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: actualLineWidth(size: geometry.size), dash: [(actualLineWidth(size: geometry.size))/3, (actualLineWidth(size: geometry.size))/3]))
-                    .rotationEffect(Angle(degrees: -90))
+                if design == .asteresk {
+                    AsteriskShape(ticks: 64, innerRadiusFraction: 0.75)
+                        .stroke(Color(color: .primary, opacity: .low), style: strokeStyle(size: geometry.size))
+                        .rotationEffect(Angle(degrees: -90)) // Needed to match the ticks
+                    AsteriskShape(ticks: 64, innerRadiusFraction: 0.75)
+                        .trim(from: 0, to: self.value)
+                        .stroke(Color(color: .primary, opacity: .max), style: strokeStyle(size: geometry.size))
+                        .rotationEffect(Angle(degrees: -90))
+                } else {
+                    Circle()
+                        .stroke(Color(color: .primary, opacity: .low), style: strokeStyle(size: geometry.size))
+                        .rotationEffect(Angle(degrees: -90)) // Needed to match the dashes
+                    Circle()
+                        .trim(from: 0, to: self.value)
+                        .stroke(Color(color: .primary, opacity: .max), style: strokeStyle(size: geometry.size))
+                        .rotationEffect(Angle(degrees: -90))
+                }
                 self.inner
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: min(geometry.size.width, geometry.size.height) - (actualLineWidth(size: geometry.size) * 2), maxHeight: min(geometry.size.width, geometry.size.height) - (actualLineWidth(size: geometry.size) * 2))
@@ -36,10 +52,33 @@ struct CircularProgressView<Inner: View>: View {
         .aspectRatio(1, contentMode: .fit)
     }
     
-    @inlinable init(value: Binding<Double>, lineWidth: CGFloat? = nil, @ViewBuilder content: () -> Inner = { EmptyView() }) {
+    @inlinable init(did: Int, value: Binding<Double>, lineWidth: CGFloat? = nil, @ViewBuilder content: () -> Inner = { EmptyView() }) {
+        let random: GKRandom = {
+            let source = GKMersenneTwisterRandomSource(seed: system.seed + UInt64(did))
+            return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
+        }()
+        let designValues: [WeightedDesignElement<Design>] = [
+            .init(baseWeight: 1, design: .init(simplicity: 1), element: .continuous),
+            .init(baseWeight: 1, design: .init(simplicity: 0.3), element: .dashed),
+            .init(baseWeight: 2, design: .init(simplicity: 0.3), element: .asteresk)
+        ]
+        
+        self.design = random.nextWeightedElement(in: designValues, with: system.design)!
         self.inner = content()
         self._value = value
         self._lineWidth = State<CGFloat?>(initialValue: lineWidth)
+    }
+    
+    func strokeStyle(size: CGSize) -> StrokeStyle {
+        let lineWidth = actualLineWidth(size: size)
+        switch design {
+        case .dashed:
+            return StrokeStyle(lineWidth: lineWidth, dash: [lineWidth/3, lineWidth/3])
+        case .continuous:
+            return StrokeStyle(lineWidth: lineWidth, lineCap: system.lineCap)
+        case .asteresk:
+            return StrokeStyle(lineWidth: system.thinLineWidth, lineCap: system.lineCap)
+        }
     }
     
     func actualLineWidth(size: CGSize) -> CGFloat {
@@ -52,7 +91,7 @@ struct CircularProgressView_Previews: PreviewProvider {
     @State static var value: Double = 0.0
     
     static var previews: some View {
-        CircularProgressView(value: $value)
+        CircularProgressView(did: 0, value: $value)
             .onAppear(perform: {
                 self.value = 0.66
             })

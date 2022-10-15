@@ -11,11 +11,11 @@ import GameplayKit
 
 struct ShieldPage: View {
     
-    let word1 = Lorem.word(index: 1)
-    let word2 = Lorem.word(index: 2)
-    let word3 = Lorem.word(index: 3)
-    let word4 = Lorem.word(index: 4)
-    let word5 = Lorem.word(index: 5)
+    let word1 = Lorem.word(vid: 1)
+    let word2 = Lorem.word(vid: 2)
+    let word3 = Lorem.word(vid: 3)
+    let word4 = Lorem.word(vid: 4)
+    let word5 = Lorem.word(vid: 5)
     
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     
@@ -41,7 +41,7 @@ struct ShieldPage: View {
                 }
             , alignment: .top)
             .overlay(alignment: .topLeading) {
-                RandomWidget(index: 1)
+                RandomCircularWidget(did: 1, vid: 1)
                     .frame(width: 100, height: 100, alignment: .topLeading)
                     .offset(safeCornerOffsets.topLeading)
             }

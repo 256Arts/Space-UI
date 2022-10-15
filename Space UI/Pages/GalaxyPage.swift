@@ -33,11 +33,11 @@ struct GalaxyPage: View {
     @State var selectedID = 0
     @State var blackHoleAngle = Angle.zero
     @State var detailTexts = [
-        Lorem.word(index: 1),
-        Lorem.words(index: 2, count: 3),
-        Lorem.word(index: 3),
-        Lorem.word(index: 4),
-        Lorem.word(index: 5)
+        Lorem.word(vid: 1),
+        Lorem.words(vid: 2, count: 3),
+        Lorem.word(vid: 3),
+        Lorem.word(vid: 4),
+        Lorem.word(vid: 5)
     ]
     @State var progress1: Double = 0.0
     @State var progress2: Double = 0.0
@@ -111,11 +111,11 @@ struct GalaxyPage: View {
         AudioController.shared.play(.button)
         self.selectedID = id
         self.detailTexts = [
-            Lorem.word(index: 6),
-            Lorem.words(index: 7, count: 3),
-            Lorem.word(index: 8),
-            Lorem.word(index: 9),
-            Lorem.word(index: 10)
+            Lorem.word(vid: 6),
+            Lorem.words(vid: 7, count: 3),
+            Lorem.word(vid: 8),
+            Lorem.word(vid: 9),
+            Lorem.word(vid: 10)
         ]
         self.progress1 = Double.random(in: 0.1...1)
         self.progress2 = Double.random(in: 0.1...1)

@@ -78,6 +78,6 @@ struct ComsMessageView: View {
 
 struct ComsMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        ComsMessageView(messageContent: .init(index: 1))
+        ComsMessageView(messageContent: .init(vid: 1))
     }
 }

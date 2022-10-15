@@ -76,8 +76,8 @@ struct TicTacToePage: View {
             }
                 .frame(width: 300, height: 300, alignment: .center)
             AutoStack {
-                TextPair(index: 0, label: playerName, value: "\(playerWins)", largerFontSize: 32)
-                TextPair(index: 0, label: opponentName, value: "\(opponentWins)", largerFontSize: 32)
+                TextPair(did: 0, label: playerName, value: "\(playerWins)", largerFontSize: 32)
+                TextPair(did: 0, label: opponentName, value: "\(opponentWins)", largerFontSize: 32)
                 if playerWins >= 10 {
                     Text("Secret Code: \(jaydenCode)")
                 }

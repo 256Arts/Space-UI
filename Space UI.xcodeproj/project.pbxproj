@@ -144,8 +144,8 @@
 		1B46FFCE28C9727700EBD761 /* DesignPrinciples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46FFCC28C9727700EBD761 /* DesignPrinciples.swift */; };
 		1B46FFD128CBE20000EBD761 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46FFD028CBE20000EBD761 /* SystemColors.swift */; };
 		1B46FFD228CBE20000EBD761 /* SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46FFD028CBE20000EBD761 /* SystemColors.swift */; };
-		1B48992E257B2F2300F6B16E /* RandomWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48992D257B2F2300F6B16E /* RandomWidget.swift */; };
-		1B48992F257B2F2300F6B16E /* RandomWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48992D257B2F2300F6B16E /* RandomWidget.swift */; };
+		1B48992E257B2F2300F6B16E /* RandomCircularWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48992D257B2F2300F6B16E /* RandomCircularWidget.swift */; };
+		1B48992F257B2F2300F6B16E /* RandomCircularWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48992D257B2F2300F6B16E /* RandomCircularWidget.swift */; };
 		1B491180257D903100D32F2D /* AutoGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49117F257D903100D32F2D /* AutoGrid.swift */; };
 		1B491181257D903100D32F2D /* AutoGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49117F257D903100D32F2D /* AutoGrid.swift */; };
 		1B491189257DCD8F00D32F2D /* ShapeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B491188257DCD8F00D32F2D /* ShapeDirection.swift */; };
@@ -214,6 +214,14 @@
 		1BA8FD8F28ECEAD900234145 /* ShipOnPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8FD8E28ECEAD900234145 /* ShipOnPlanetView.swift */; };
 		1BAB616428EFDA5300BDA4A6 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616328EFDA5300BDA4A6 /* Section.swift */; };
 		1BAB616628EFDD0900BDA4A6 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616328EFDA5300BDA4A6 /* Section.swift */; };
+		1BAB616828F087A300BDA4A6 /* RandomWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616728F087A300BDA4A6 /* RandomWidget.swift */; };
+		1BAB616928F087A300BDA4A6 /* RandomWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616728F087A300BDA4A6 /* RandomWidget.swift */; };
+		1BAB616E28F09E0A00BDA4A6 /* ElementSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616D28F09E0A00BDA4A6 /* ElementSize.swift */; };
+		1BAB616F28F09E0A00BDA4A6 /* ElementSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB616D28F09E0A00BDA4A6 /* ElementSize.swift */; };
+		1BAB617128F0B88300BDA4A6 /* Knobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB617028F0B88300BDA4A6 /* Knobs.swift */; };
+		1BAB617228F0B88300BDA4A6 /* Knobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB617028F0B88300BDA4A6 /* Knobs.swift */; };
+		1BAB617428F0BB1700BDA4A6 /* WidgetCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB617328F0BB1700BDA4A6 /* WidgetCorners.swift */; };
+		1BAB617528F0BB1700BDA4A6 /* WidgetCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB617328F0BB1700BDA4A6 /* WidgetCorners.swift */; };
 		1BAE59D327ACB7DD00779DF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BAE59D227ACB7DD00779DF0 /* Settings.bundle */; };
 		1BB076CD2504489500459E7B /* LightsOutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB076CC2504489400459E7B /* LightsOutPage.swift */; };
 		1BD829F02892F38400AA5782 /* CircularStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD829EF2892F38400AA5782 /* CircularStack.swift */; };
@@ -375,7 +383,7 @@
 		1B46FFC928C83EE800EBD761 /* SafeCornerOffsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCornerOffsets.swift; sourceTree = "<group>"; };
 		1B46FFCC28C9727700EBD761 /* DesignPrinciples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignPrinciples.swift; sourceTree = "<group>"; };
 		1B46FFD028CBE20000EBD761 /* SystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColors.swift; sourceTree = "<group>"; };
-		1B48992D257B2F2300F6B16E /* RandomWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWidget.swift; sourceTree = "<group>"; };
+		1B48992D257B2F2300F6B16E /* RandomCircularWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCircularWidget.swift; sourceTree = "<group>"; };
 		1B49117F257D903100D32F2D /* AutoGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGrid.swift; sourceTree = "<group>"; };
 		1B491188257DCD8F00D32F2D /* ShapeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeDirection.swift; sourceTree = "<group>"; };
 		1B59D9C8239E04F000D1AB20 /* Space UI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Space UI.entitlements"; sourceTree = "<group>"; };
@@ -415,6 +423,10 @@
 		1BA4B27225737E82002413D8 /* FillAndBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillAndBorder.swift; sourceTree = "<group>"; };
 		1BA8FD8E28ECEAD900234145 /* ShipOnPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipOnPlanetView.swift; sourceTree = "<group>"; };
 		1BAB616328EFDA5300BDA4A6 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		1BAB616728F087A300BDA4A6 /* RandomWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWidget.swift; sourceTree = "<group>"; };
+		1BAB616D28F09E0A00BDA4A6 /* ElementSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSize.swift; sourceTree = "<group>"; };
+		1BAB617028F0B88300BDA4A6 /* Knobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knobs.swift; sourceTree = "<group>"; };
+		1BAB617328F0BB1700BDA4A6 /* WidgetCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCorners.swift; sourceTree = "<group>"; };
 		1BAE59D227ACB7DD00779DF0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1BB076CC2504489400459E7B /* LightsOutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsOutPage.swift; sourceTree = "<group>"; };
 		1BD829EF2892F38400AA5782 /* CircularStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularStack.swift; sourceTree = "<group>"; };
@@ -498,11 +510,15 @@
 			children = (
 				1B32943923AA9A4400CB91F6 /* DecorativePolygon.swift */,
 				1B43938223BD0F5E00660F96 /* DecorativeBoxesView.swift */,
+				1B43937623BAF5C300660F96 /* DecorativeStatusView.swift */,
+				1BAB617028F0B88300BDA4A6 /* Knobs.swift */,
 				1B43932723AEE10500660F96 /* Spirograph.swift */,
 				1BA169662550A6FA007EB7F3 /* MorseCodeLine.swift */,
 				1B32943723AA93EC00CB91F6 /* BinaryView.swift */,
 				1B43938823BD353F00660F96 /* CircularSegmentedView.swift */,
-				1B48992D257B2F2300F6B16E /* RandomWidget.swift */,
+				1B48992D257B2F2300F6B16E /* RandomCircularWidget.swift */,
+				1BAB616728F087A300BDA4A6 /* RandomWidget.swift */,
+				1BAB617328F0BB1700BDA4A6 /* WidgetCorners.swift */,
 			);
 			path = "Abstract Views";
 			sourceTree = "<group>";
@@ -514,6 +530,7 @@
 				1BE24F3D2347DB87008859FE /* SystemAppearance.swift */,
 				1B46FFD028CBE20000EBD761 /* SystemColors.swift */,
 				1B1C685423A7046300D610B1 /* Color.swift */,
+				1BAB616D28F09E0A00BDA4A6 /* ElementSize.swift */,
 				1BA4B27225737E82002413D8 /* FillAndBorder.swift */,
 				1BA1698A2551E773007EB7F3 /* Font.swift */,
 				1B491188257DCD8F00D32F2D /* ShapeDirection.swift */,
@@ -623,7 +640,6 @@
 				1B998D872499E642005EAA41 /* TutorialView.swift */,
 				1B02609324577E1C0083B6DA /* DebugControls.swift */,
 				1BAB616328EFDA5300BDA4A6 /* Section.swift */,
-				1B43937623BAF5C300660F96 /* DecorativeStatusView.swift */,
 				1B43931E23AC6FE900660F96 /* DoorView.swift */,
 				1B43931C23AC16B800660F96 /* LargePowerProgressView.swift */,
 				1B43932923B0710600660F96 /* ComsMessageView.swift */,
@@ -1008,6 +1024,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BAB617528F0BB1700BDA4A6 /* WidgetCorners.swift in Sources */,
 				1BAB616628EFDD0900BDA4A6 /* Section.swift in Sources */,
 				1B43935023B6F4CF00660F96 /* DoorView.swift in Sources */,
 				1B49118A257DCD8F00D32F2D /* ShapeDirection.swift in Sources */,
@@ -1036,8 +1053,9 @@
 				1B43935E23B6F77200660F96 /* SystemAppearance.swift in Sources */,
 				1BE684F023CE44A600CB4045 /* GridShape.swift in Sources */,
 				1B2464F424F0510600895B8D /* CircularText.swift in Sources */,
-				1B48992F257B2F2300F6B16E /* RandomWidget.swift in Sources */,
+				1B48992F257B2F2300F6B16E /* RandomCircularWidget.swift in Sources */,
 				1B43937B23BAFB2700660F96 /* Sphere.swift in Sources */,
+				1BAB616928F087A300BDA4A6 /* RandomWidget.swift in Sources */,
 				1B43935C23B6F4CF00660F96 /* Spirograph.swift in Sources */,
 				1BF3B53623D0EC0B00161780 /* MessagesState.swift in Sources */,
 				1B7FB7DA243054FF00CDCF40 /* HostingController.swift in Sources */,
@@ -1057,6 +1075,8 @@
 				1BDC2C9824305F340072D94B /* SeedPage.swift in Sources */,
 				1B8074FE2429B11B00414F6B /* VerticalScanBar.swift in Sources */,
 				1B3BF60828977F2000E87899 /* CircularStack.swift in Sources */,
+				1BAB616F28F09E0A00BDA4A6 /* ElementSize.swift in Sources */,
+				1BAB617228F0B88300BDA4A6 /* Knobs.swift in Sources */,
 				1B11D8F6241DEA4700587026 /* AudioVisualizer.swift in Sources */,
 				1B34DD79278D4843006D74D0 /* AlmostThereNumberText.swift in Sources */,
 				1B43935F23B6F77200660F96 /* Color.swift in Sources */,
@@ -1090,7 +1110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B48992E257B2F2300F6B16E /* RandomWidget.swift in Sources */,
+				1B48992E257B2F2300F6B16E /* RandomCircularWidget.swift in Sources */,
 				1B1C685F23A7172400D610B1 /* ComsPage.swift in Sources */,
 				1B8074FD2429B11B00414F6B /* VerticalScanBar.swift in Sources */,
 				1B43932E23B07BAA00660F96 /* AsteriskShape.swift in Sources */,
@@ -1108,6 +1128,7 @@
 				1B43938C23BD426900660F96 /* DecorativeRaysView.swift in Sources */,
 				1BE24F412347DB87008859FE /* Lorem.swift in Sources */,
 				1B998D8224995CD3005EAA41 /* SudokuPage.swift in Sources */,
+				1BAB616828F087A300BDA4A6 /* RandomWidget.swift in Sources */,
 				1BF3B53823D12E0700161780 /* GKRandom.swift in Sources */,
 				1B1C685323A6EA4800D610B1 /* Path.swift in Sources */,
 				1BD829F02892F38400AA5782 /* CircularStack.swift in Sources */,
@@ -1118,6 +1139,7 @@
 				1BAB616428EFDA5300BDA4A6 /* Section.swift in Sources */,
 				1BE24F2A2347DAE7008859FE /* SceneDelegate.swift in Sources */,
 				1B9665A82423131200377DC4 /* OrbitsView.swift in Sources */,
+				1BAB617428F0BB1700BDA4A6 /* WidgetCorners.swift in Sources */,
 				1B32943623AA8C8900CB91F6 /* NavigationButton.swift in Sources */,
 				1B34DD78278D4843006D74D0 /* AlmostThereNumberText.swift in Sources */,
 				1B43931A23ABFB4E00660F96 /* ScreenShape.swift in Sources */,
@@ -1178,6 +1200,7 @@
 				1BE24F2C2347DAE7008859FE /* LockScreenPage.swift in Sources */,
 				1B3C605C24E1FE7C009FB291 /* TargetState.swift in Sources */,
 				1B3C605F24E20657009FB291 /* NearbyShipsState.swift in Sources */,
+				1BAB616E28F09E0A00BDA4A6 /* ElementSize.swift in Sources */,
 				1BF3B53523D0EC0B00161780 /* MessagesState.swift in Sources */,
 				1B2307C923FB5D8800766D2E /* UserDefaults.swift in Sources */,
 				1BA1698B2551E773007EB7F3 /* Font.swift in Sources */,
@@ -1185,6 +1208,7 @@
 				1B1C685D23A7170800D610B1 /* TargetingPage.swift in Sources */,
 				1BE24F402347DB87008859FE /* SystemAppearance.swift in Sources */,
 				1B43932123AC747D00660F96 /* MusicController.swift in Sources */,
+				1BAB617128F0B88300BDA4A6 /* Knobs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

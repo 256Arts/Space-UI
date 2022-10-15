@@ -18,9 +18,21 @@ struct DecorativeBoxesView: View {
     
     let values: [Int]
     
+    @Environment(\.elementSize) private var elementSize
+    var columns: Int {
+        switch elementSize {
+        case .mini, .small:
+            return Int.random(in: 1...2)
+        case .regular:
+            return Int.random(in: 3...4)
+        case .large:
+            return Int.random(in: 5...6)
+        }
+    }
+    
     var body: some View {
         HStack(alignment: .top, spacing: 3) {
-            ForEach(values.indices, id: \.self) { x in
+            ForEach(0..<columns, id: \.self) { x in
                 VStack(spacing: 3) {
                     ForEach(0..<self.values[x], id: \.self) { _ in
                         RoundedRectangle(cornerRadius: system.cornerRadius(forLength: 8))
@@ -32,17 +44,8 @@ struct DecorativeBoxesView: View {
     }
     
     init() {
-        if Bool.random() {
-            values = [
-                Int.random(in: 1...3),
-                Int.random(in: 1...3)
-            ]
-        } else {
-            values = [
-                Int.random(in: 1...3),
-                Int.random(in: 1...3),
-                Int.random(in: 1...3)
-            ]
+        values = (0..<6).map { _ in
+            Int.random(in: 1...3)
         }
     }
     

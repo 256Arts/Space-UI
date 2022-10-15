@@ -27,9 +27,9 @@ struct MessageContent: Identifiable {
         self.style = style
     }
     
-    init(index: Int) {
-        sender = Lorem.word(index: index)
-        body = Lorem.words(index: index, count: Int.random(in: 2...3)).uppercased()
+    init(vid: Int) {
+        sender = Lorem.word(vid: vid)
+        body = Lorem.words(vid: vid, count: Int.random(in: 2...3)).uppercased()
         style = {
             switch Int.random(in: 0...44) {
             case 0, 1:
@@ -55,7 +55,7 @@ struct MessageContent: Identifiable {
 final class MessagesState: ObservableObject {
     
     @Published private var internalMessages: [MessageContent] = {
-        (0..<60).map({ MessageContent(index: $0) })
+        (0..<60).map({ MessageContent(vid: $0) })
     }()
     var messages: [MessageContent] {
         internalMessages

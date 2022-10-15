@@ -103,13 +103,6 @@ final class SystemAppearance: ObservableObject {
     var thickLineWidth: CGFloat {
         mediumLineWidth * 2
     }
-    var circularProgressWidgetIdealLength: CGFloat {
-        #if os(tvOS) || targetEnvironment(macCatalyst)
-        return 100
-        #else
-        return 64
-        #endif
-    }
     
     // Screen
     var screenShapeCase: ScreenShapeCase
@@ -125,13 +118,15 @@ final class SystemAppearance: ObservableObject {
     var topMorseCodeSegments: [MorseCodeLine.Segment]?
     var bottomMorseCodeSegments: [MorseCodeLine.Segment]?
     
-    // Fonts & Sounds
+    // Fonts
     private var defaultFontName: Font.Name
     var fontOverride = false
     var fontName: Font.Name? {
         fontOverride ? nil : defaultFontName
     }
     var defaultFontSize: CGFloat
+    
+    // Sounds
     var actionSoundResource: AudioController.Resource
     var buttonSoundResource: AudioController.Resource
     var alarmSoundResource: AudioController.Resource
@@ -162,6 +157,10 @@ final class SystemAppearance: ObservableObject {
             .init(baseWeight: 1, design: .init(simplicity: 0.6, sharpness: 0.5), element: .rectangle)
         ]
         screenShapeCase = random.nextWeightedElement(in: allScreenShapeCases, with: design)!
+        if let screenShapeOverrideString = UserDefaults.standard.string(forKey: UserDefaults.Key.screenShapeCaseOverride),
+            let screenShapeOverride = ScreenShapeCase(rawValue: screenShapeOverrideString) {
+            self.screenShapeCase = screenShapeOverride
+        }
         
         alignment = random.nextElement(in: [Alignment.vertical, .horizontal, .none])!
         
@@ -354,11 +353,6 @@ final class SystemAppearance: ObservableObject {
         actionSoundResource = random.nextBool() ? .action : .action2
         buttonSoundResource = random.nextElement(in: [AudioController.Resource.button, .button2, .button3])!
         alarmSoundResource = random.nextBool() ? .alarmLoop : .alarmHighLoop
-        
-        if let screenShapeOverrideString = UserDefaults.standard.string(forKey: UserDefaults.Key.screenShapeCaseOverride),
-            let screenShapeOverride = ScreenShapeCase(rawValue: screenShapeOverrideString) {
-            self.screenShapeCase = screenShapeOverride
-        }
         
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
             AudioController.shared.makeSoundsForSystem()

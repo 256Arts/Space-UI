@@ -29,8 +29,6 @@ struct LockScreenPage: View {
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     
     @State var topBottomRingsAngle = Angle.zero
-    @State var notificationShadowColor = Color(color: .primary, opacity: .medium)
-    @State var notificationOpacity = 1.0
     @State var tutorialIsShown = !UserDefaults.standard.bool(forKey: UserDefaults.Key.tutorialShown)
     
     var body: some View {
@@ -58,7 +56,7 @@ struct LockScreenPage: View {
             VStack {
                 HStack {
                     if brandNamePosition == .topCorner {
-                        TextPair(index: 0, label: shipManufacturer, value: shipName, largerFontSize: 28)
+                        TextPair(did: 0, label: shipManufacturer, value: shipName, largerFontSize: 28)
                             .offset(safeCornerOffsets.topLeading)
                     }
                     Spacer()
@@ -66,7 +64,7 @@ struct LockScreenPage: View {
                 Spacer()
                 HStack {
                     ForEach(0..<self.random.nextInt(in: 3...5)) { index in
-                        CircleIcon.image(index: index)
+                        CircleIcon.image(vid: index)
                             .foregroundColor(Color(color: .primary, opacity: .high))
                     }
                 }
@@ -90,29 +88,8 @@ struct LockScreenPage: View {
                 }
             }
         }
-        .overlay(alignment: .bottomLeading) {
-            if hasCircularSegmentedView {
-                RandomWidget(index: 6)
-                    .frame(maxWidth: 100, maxHeight: 100, alignment: .bottomLeading)
-                    .offset(safeCornerOffsets.bottomLeading)
-            }
-        }
-        .overlay(alignment: .bottomTrailing) {
-            HStack {
-                ForEach(0..<self.random.nextInt(in: 0...2)) { index in
-                    LargeIcon.image(index: index)
-                        .foregroundColor(Color(color: .primary, opacity: .max))
-                        .shadow(color: self.notificationShadowColor, radius: 10, x: 0, y: 0)
-                        .opacity(self.notificationOpacity)
-                }
-            }
-            .offset(safeCornerOffsets.bottomTrailing)
-        }
+        .widgetCorners(did: 27, topLeading: false, topTrailing: true, bottomLeading: true, bottomTrailing: true)
         .onAppear {
-            withAnimation(Animation.easeInOut(duration: 0.75).repeatForever(autoreverses: true)) {
-                self.notificationShadowColor = .clear
-                self.notificationOpacity = 0.5
-            }
             withAnimation(Animation.linear(duration: 100.0).repeatForever(autoreverses: false)) {
                 self.topBottomRingsAngle = Angle.degrees(360)
             }

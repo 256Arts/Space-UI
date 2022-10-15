@@ -39,14 +39,14 @@ struct OrbitsView: View {
                             .stroke(Color(color: .primary, opacity: .medium), lineWidth: 4)
                             .frame(width: orbit.size.width * geometry.size.width, height: orbit.size.height * geometry.size.height)
                             .zIndex(1)
-                            .overlay(
+                            .overlay {
                                 Ellipse()
                                     .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: 5, dash: [700, 500], dashPhase: self.phase))
-                            )
-                            .overlay(
+                            }
+                            .overlay {
                                 OrbitPlanetView()
                                     .offset(x: orbit.size.width/2 * geometry.size.width * cos(orbit.currentAngle), y: orbit.size.height/2 * geometry.size.height * sin(orbit.currentAngle))
-                            )
+                            }
                         Rectangle()
                             .stroke(Color(color: .secondary, opacity: .high), style: StrokeStyle(lineWidth: 1, lineCap: system.lineCap, dash: system.lineDash(lineWidth: 1)))
                             .frame(width: 1, height: geometry.size.height)
@@ -56,7 +56,7 @@ struct OrbitsView: View {
             .offset(x: -0.35 * geometry.size.width, y: 0)
             .position(x: geometry.size.width/2, y: geometry.size.height/2)
         }
-        .task {
+        .onAppear {
             withAnimation(Animation.linear(duration: 30).repeatForever(autoreverses: false)) {
                 self.phase = 1200
             }
@@ -81,22 +81,24 @@ struct OrbitsView: View {
 
 struct OrbitPlanetView: View {
     var body: some View {
-        Hexagon()
+        AutoShape(direction: .up)
             .frame(width: 30, height: 30)
             .foregroundColor(Color(color: .secondary, opacity: .max))
             .shadow(radius: 4)
-            .overlay(
-                Text(Lorem.word(index: 1))
+            .overlay(alignment: .bottomLeading) {
+                Text(Lorem.word(vid: 1))
                     .fixedSize()
+                    .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
                     .rotationEffect(Angle(degrees: 90), anchor: .bottomLeading)
                     .offset(x: 6, y: 10)
-            , alignment: .bottomLeading)
-            .overlay(
-                Text(Lorem.word(index: 2))
+            }
+            .overlay(alignment: .topLeading) {
+                Text(Lorem.word(vid: 2))
                     .foregroundColor(Color(color: .tertiary, opacity: .max))
                     .fixedSize()
+                    .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
                     .offset(x: 35, y: 0)
-            , alignment: .topLeading)
+            }
     }
 }
 

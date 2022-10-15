@@ -59,16 +59,20 @@ struct KeyboardView: View {
     @State var string = ""
     
     var body: some View {
-        VStack(spacing: 8) {
-            Text(self.string)
-                .font(Font.spaceFont(size: 22))
-                .truncationMode(.head)
-                .padding()
-                .frame(width: 362, height: 54)
-                .background(Color(color: .primary, opacity: .medium))
-                .cornerRadius(system.cornerRadius(forLength: keyHeight))
-                .padding()
-            HStack {
+        Grid(horizontalSpacing: 8, verticalSpacing: 8) {
+            GridRow {
+                Text(self.string)
+                    .font(Font.spaceFont(size: 22))
+                    .truncationMode(.head)
+                    .padding()
+                    .frame(idealWidth: .infinity, maxWidth: .infinity)
+                    .frame(height: keyHeight)
+                    .background(Color(color: .primary, opacity: .medium))
+                    .cornerRadius(system.cornerRadius(forLength: keyHeight))
+                    .gridCellColumns(5)
+                    .gridCellUnsizedAxes(.horizontal)
+            }
+            GridRow {
                 KeyboardKeyView(key: "A", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "B", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "C", height: keyHeight, string: $string)
@@ -83,14 +87,14 @@ struct KeyboardView: View {
                     for i in 1...Int.random(in: 1...3) {
                         Timer.scheduledTimer(withTimeInterval: TimeInterval(i*30), repeats: false) { (_) in
                             AudioController.shared.play(.message)
-                            ShipData.shared.messagesState.addMessage(MessageContent(index: Int.random(in: 0...9999)))
+                            ShipData.shared.messagesState.addMessage(MessageContent(vid: Int.random(in: 0...9999)))
                         }
                     }
                     self.string = ""
                 }, label: { Image(systemName: "dot.radiowaves.left.and.right") })
                 .buttonStyle(KeyboardButtonStyle(keyHeight: keyHeight, special: true, disabled: self.string.isEmpty || !ShipData.shared.powerState.comsHavePower))
             }
-            HStack {
+            GridRow {
                 KeyboardKeyView(key: "E", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "F", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "G", height: keyHeight, string: $string)
@@ -105,7 +109,7 @@ struct KeyboardView: View {
                 }, label: { Image(systemName: "backward.end") })
                 .buttonStyle(KeyboardButtonStyle(keyHeight: keyHeight, special: true, disabled: self.string.isEmpty))
             }
-            HStack {
+            GridRow {
                 KeyboardKeyView(key: "I", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "J", height: keyHeight, string: $string)
                 KeyboardKeyView(key: "K", height: keyHeight, string: $string)

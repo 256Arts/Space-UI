@@ -11,7 +11,7 @@ import GameplayKit
 
 struct NearbyShipsView: View {
     
-    let random: GKRandom
+    let did: Int
     let hasRays: Bool
     let textRingPreferedRadius: CGFloat?
     let rotateTextRing: Bool
@@ -42,7 +42,7 @@ struct NearbyShipsView: View {
                         .rotationEffect(self.textRingAngle)
                 }
                 if self.hasAsterisk {
-                    AsteriskShape(lineEnds: 30)
+                    AsteriskShape(ticks: 30)
                         .stroke(Color(color: .primary, opacity: .medium), lineWidth: 8)
                         .frame(width: 0.25 * min(geometry.size.width, geometry.size.height), height: 0.25 * min(geometry.size.width, geometry.size.height), alignment: .center)
                 }
@@ -51,7 +51,7 @@ struct NearbyShipsView: View {
                         .frame(width: decorativeRingFrameLengths(parentSize: geometry.size, ringIndex: index))
                 }
                 if self.hasAxisLines {
-                    AsteriskShape(lineEnds: self.axisLineEndCount)
+                    AsteriskShape(ticks: self.axisLineEndCount)
                         .stroke(Color(color: .primary, opacity: .high), lineWidth: system.thinLineWidth)
                 }
                 if self.hasTrianglePointers {
@@ -73,7 +73,7 @@ struct NearbyShipsView: View {
                     .frame(width: 200 + trianglePointerLength)
                 }
                 if self.hasRadarScan {
-                    RadarScanView(random: self.random)
+                    RadarScanView(did: did)
                         .blendMode(.lighten)
                 }
                 ShipData.shared.icon
@@ -103,8 +103,13 @@ struct NearbyShipsView: View {
         }
     }
     
-    init(random: GKRandom) {
-        self.random = random
+    init(did: Int) {
+        self.did = did
+        let random: GKRandom = {
+            let source = GKMersenneTwisterRandomSource(seed: system.seed + UInt64(did))
+            return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
+        }()
+        
         hasRays = random.nextBool(chance: 0.125)
         textRingPreferedRadius = random.nextBool(chance: 0.25) ? CGFloat(Int.random(in: 2...5)) * 50.0 : nil
         rotateTextRing = (textRingPreferedRadius != nil) && random.nextBool()
@@ -155,6 +160,6 @@ struct NearbyShipsView: View {
 
 struct NearbyShipsView_Previews: PreviewProvider {
     static var previews: some View {
-        NearbyShipsView(random: GKRandomDistribution())
+        NearbyShipsView(did: 0)
     }
 }

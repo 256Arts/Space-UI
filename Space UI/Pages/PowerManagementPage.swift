@@ -66,16 +66,7 @@ struct PowerManagementPage: View {
             }
             .position(x: geometry.size.width/2, y: geometry.size.height/2)
         }
-        .overlay(alignment: .topLeading) {
-            RandomWidget(index: 1)
-                .frame(maxWidth: 100, maxHeight: 100, alignment: .topLeading)
-                .offset(safeCornerOffsets.topLeading)
-        }
-        .overlay(alignment: .topTrailing) {
-            RandomWidget(index: 2)
-                .frame(maxWidth: 100, maxHeight: 100, alignment: .topTrailing)
-                .offset(safeCornerOffsets.topTrailing)
-        }
+        .widgetCorners(did: 34, topLeading: true, topTrailing: true, bottomLeading: true, bottomTrailing: true)
     }
 }
 

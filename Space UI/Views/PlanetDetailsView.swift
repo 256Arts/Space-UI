@@ -19,17 +19,17 @@ struct PlanetDetailsView: View {
     var body: some View {
         Section {
             VStack(alignment: .leading) {
-                TextPair(index: 0, label: "Name", value: self.details[0])
-                TextPair(index: 0, label: "Races", value: self.details[1])
-                TextPair(index: 0, label: "Leadership", value: self.details[2])
-                TextPair(index: 0, label: "Population", value: self.details[3])
-                TextPair(index: 0, label: "Currency", value: self.details[4])
+                TextPair(did: 0, label: "Name", value: self.details[0])
+                TextPair(did: 0, label: "Races", value: self.details[1])
+                TextPair(did: 0, label: "Leadership", value: self.details[2])
+                TextPair(did: 0, label: "Population", value: self.details[3])
+                TextPair(did: 0, label: "Currency", value: self.details[4])
                 HStack(alignment: .top) {
                     DecorativeBoxesView()
-                    CircularProgressView(value: self.$progress1, lineWidth: nil)
+                    CircularProgressView(did: 1, value: self.$progress1, lineWidth: nil)
                         .frame(width: 56, height: 56)
                     DecorativeBoxesView()
-                    CircularProgressView(value: self.$progress2, lineWidth: nil)
+                    CircularProgressView(did: 1, value: self.$progress2, lineWidth: nil)
                         .frame(width: 56, height: 56)
                 }
             }

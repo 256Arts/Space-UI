@@ -23,6 +23,7 @@ struct ComsPage: View {
                     Text("Squad")
                 }
             }
+            
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     ForEach(self.messagesState.messages) { message in
@@ -34,6 +35,7 @@ struct ComsPage: View {
             .padding(.vertical, -100)
             .fadeScrollEdges(length: 100)
             .frame(width: 375)
+            
             KeyboardView()
         }
     }

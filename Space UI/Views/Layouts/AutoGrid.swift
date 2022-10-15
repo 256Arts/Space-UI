@@ -60,7 +60,7 @@ struct AutoGrid: Layout {
         }
         if finiteSubviewSizes.isEmpty {
             // Default subview is square
-            return CGSize(width: 100, height: 100)
+            return CGSize(width: 96, height: 96)
         } else {
             let totalSize = finiteSubviewSizes.reduce(.zero, { CGSize(width: $0.width + $1.width, height: $0.width + $1.width) })
             return CGSize(width: totalSize.width / CGFloat(finiteSubviewSizes.count), height: totalSize.height / CGFloat(finiteSubviewSizes.count))

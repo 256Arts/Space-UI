@@ -63,12 +63,12 @@ struct ExternalDisplayPage: View {
                                     .foregroundColor(Color.clear)
                                     .frame(height: 40)
                                     .frame(idealWidth: .infinity, maxWidth: .infinity)
-                                    .overlay(Text(Lorem.words(index: 1, count: 2)))
+                                    .overlay(Text(Lorem.words(vid: 1, count: 2)))
                                 ForEach(0..<8) { index in
                                     HStack {
-                                        Text(Lorem.word(index: 30 + index))
+                                        Text(Lorem.word(vid: 30 + index))
                                         Spacer()
-                                        Text(Lorem.word(index: 38 + index))
+                                        Text(Lorem.word(vid: 38 + index))
                                     }
                                     .lineLimit(1)
                                 }
@@ -80,28 +80,28 @@ struct ExternalDisplayPage: View {
                         HStack(alignment: .top) {
                             VStack {
                                 BinaryView(value: 53)
-                                Text(Lorem.word(index: 4))
+                                Text(Lorem.word(vid: 4))
                             }
                             AutoGrid(spacing: 16, ignoreMaxSize: false) {
                                 ForEach(0..<4) { index in
-                                    CircleIcon.image(index: index)
+                                    CircleIcon.image(vid: index)
                                 }
                             }
                             VStack {
                                 BinaryView(value: 13)
-                                Text(Lorem.word(index: 99))
+                                Text(Lorem.word(vid: 99))
                             }
                             if self.hasLongNumericalSection {
                                 ViewThatFits {
                                     HStack(alignment: .top) {
                                         AutoGrid(spacing: 16, ignoreMaxSize: false) {
                                             ForEach(0..<4) { index in
-                                                CircleIcon.image(index: 4 + index)
+                                                CircleIcon.image(vid: 4 + index)
                                             }
                                         }
                                         VStack {
                                             BinaryView(value: 32)
-                                            Text(Lorem.word(index: 5))
+                                            Text(Lorem.word(vid: 5))
                                         }
                                     }
                                     EmptyView()
@@ -109,47 +109,35 @@ struct ExternalDisplayPage: View {
                             }
                         }
                         HStack {
-                            RandomWidget(index: 6)
+                            RandomCircularWidget(did: 6, vid: 6)
                                 .frame(width: 120, height: 100)
                             VStack {
                                 BinaryView(value: 23)
-                                Text(Lorem.word(index: 6))
+                                Text(Lorem.word(vid: 6))
                             }
-                            RandomWidget(index: 7)
+                            RandomCircularWidget(did: 7, vid: 7)
                                 .frame(width: 120, height: 100)
                         }
                         HStack(spacing: 16) {
-                            CircularProgressView(value: $progressPublisher1.value)
-                                .overlay {
-                                    Text(Lorem.word(index: 7))
-                                        .padding(16)
-                                }
-                            CircularProgressView(value: $progressPublisher2.value)
-                                .overlay {
-                                    Text(Lorem.word(index: 8))
-                                        .padding(16)
-                                }
-                            CircularProgressView(value: $progressPublisher3.value)
-                                .overlay {
-                                    Text(Lorem.word(index: 9))
-                                        .padding(16)
-                                }
-                            CircularProgressView(value: $progressPublisher4.value)
-                                .overlay {
-                                    Text(Lorem.word(index: 10))
-                                        .padding(16)
-                                }
+                            CircularProgressView(did: 1, value: $progressPublisher1.value) {
+                                Text(Lorem.word(vid: 7))
+                            }
+                            CircularProgressView(did: 1, value: $progressPublisher2.value) {
+                                Text(Lorem.word(vid: 8))
+                            }
+                            CircularProgressView(did: 1, value: $progressPublisher3.value) {
+                                Text(Lorem.word(vid: 9))
+                            }
+                            CircularProgressView(did: 1, value: $progressPublisher4.value) {
+                                Text(Lorem.word(vid: 10))
+                            }
                             if hasLongNumericalSection {
-                                CircularProgressView(value: $progressPublisher5.value)
-                                    .overlay {
-                                        Text(Lorem.word(index: 11))
-                                            .padding(16)
-                                    }
-                                CircularProgressView(value: $progressPublisher6.value)
-                                    .overlay {
-                                        Text(Lorem.word(index: 12))
-                                            .padding(16)
-                                    }
+                                CircularProgressView(did: 1, value: $progressPublisher5.value) {
+                                    Text(Lorem.word(vid: 11))
+                                }
+                                CircularProgressView(did: 1, value: $progressPublisher6.value) {
+                                    Text(Lorem.word(vid: 12))
+                                }
                             }
                         }
                         .aspectRatio(hasLongNumericalSection ? 6 : 4, contentMode: .fit)
@@ -161,12 +149,12 @@ struct ExternalDisplayPage: View {
                             .foregroundColor(Color.clear)
                             .frame(height: 40)
                             .frame(idealWidth: .infinity, maxWidth: .infinity)
-                            .overlay(Text(Lorem.words(index: 13, count: 2)))
+                            .overlay(Text(Lorem.words(vid: 13, count: 2)))
                         ForEach(0..<8) { index in
                             HStack {
-                                Text(Lorem.word(index: 14 + index))
+                                Text(Lorem.word(vid: 14 + index))
                                 Spacer()
-                                Text(Lorem.word(index: 22 + index))
+                                Text(Lorem.word(vid: 22 + index))
                             }
                             .lineLimit(1)
                         }

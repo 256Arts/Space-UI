@@ -38,25 +38,24 @@ struct ShipOnPlanetView: View {
                         .clipShape(Circle())
                     Sphere(vertical: self.planetLines(size: geometry.size), horizontal: self.planetLines(size: geometry.size))
                         .trim(from: 0.0, to: self.sphereAnimationProgress)
-                        .stroke(Color(color: .primary, opacity: .max), lineWidth: system.mediumLineWidth)
+                        .stroke(Color(color: .primary, opacity: .high), lineWidth: system.mediumLineWidth)
                         .rotationEffect(Angle(degrees: self.planetAngle))
                     ForEach(self.points.indices) { i in
                         HStack {
                             if self.pointIconsAreCircles {
-                                CircleIcon.image(index: 8)
+                                CircleIcon.image(vid: 8)
                                     .foregroundColor(Color(color: .tertiary, opacity: .max))
-                                    .shadow(color: Color(color: .primary, opacity: .min), radius: 8, x: 0, y: 0)
                             } else {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: system.cornerRadius(forLength: 24))
                                         .fill(Color(color: .tertiary, opacity: .max))
                                         .frame(width: 24, height: 24)
-                                    GeneralIcon.image(index: 9)
+                                    GeneralIcon.image(vid: 9)
                                         .foregroundColor(Color(color: .tertiary, opacity: .min))
                                 }
                             }
                             if self.pointsHaveLabels {
-                                Text(Lorem.word(index: 8))
+                                Text(Lorem.word(vid: 8))
                                     .frame(minWidth: 0, idealWidth: nil, maxWidth: 100)
                                     .fixedSize()
                                     .lineLimit(nil)
@@ -64,6 +63,7 @@ struct ShipOnPlanetView: View {
                                     .foregroundColor(Color(color: .tertiary, opacity: .max))
                             }
                         }
+                        .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
                         .offset(x: CGFloat(self.points[i].x * min(geometry.size.width, geometry.size.height/2)), y: CGFloat(self.points[i].y * min(geometry.size.width, geometry.size.height/2)))
                     }
                 }

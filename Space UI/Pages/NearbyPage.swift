@@ -11,40 +11,49 @@ import GameplayKit
 
 struct NearbyPage: View {
     
-    let random: GKRandom = {
-        let source = GKMersenneTwisterRandomSource(seed: system.seed)
-        return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
-    }()
-    
+    @Environment(\.verticalSizeClass) private var vSizeClass
+    @Environment(\.horizontalSizeClass) private var hSizeClass
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     
     var body: some View {
-        AutoStack {
-            NearbyShipsView(random: random)
-            AutoGrid(spacing: 16) {
-                NavigationButton(to: .powerManagement) {
-                    Text("Power")
+        if vSizeClass == .regular && hSizeClass == .regular {
+            NearbyShipsView(did: 0)
+                .overlay(alignment: .bottom) {
+                    HStack(spacing: 16) {
+                        NavigationButton(to: .powerManagement) {
+                            Text("Power")
+                        }
+                        NavigationButton(to: .coms) {
+                            Text("Coms")
+                        }
+                        NavigationButton(to: .targeting) {
+                            Text("Targeting")
+                        }
+                        NavigationButton(to: .planet) {
+                            Text("Planet")
+                        }
+                    }
                 }
-                NavigationButton(to: .coms) {
-                    Text("Coms")
-                }
-                NavigationButton(to: .targeting) {
-                    Text("Targeting")
-                }
-                NavigationButton(to: .planet) {
-                    Text("Planet")
+                .widgetCorners(did: 63, topLeading: true, topTrailing: true, bottomLeading: false, bottomTrailing: false)
+        } else {
+            AutoStack(spacing: -20) {
+                NearbyShipsView(did: 0)
+                AutoStack(spacing: 16) {
+                    NavigationButton(to: .powerManagement) {
+                        Text("Power")
+                    }
+                    NavigationButton(to: .coms) {
+                        Text("Coms")
+                    }
+                    NavigationButton(to: .targeting) {
+                        Text("Targeting")
+                    }
+                    NavigationButton(to: .planet) {
+                        Text("Planet")
+                    }
                 }
             }
-        }
-        .overlay(alignment: .topLeading) {
-            RandomWidget(index: 1)
-                .frame(maxWidth: 100, maxHeight: 100, alignment: .topLeading)
-                .offset(safeCornerOffsets.topLeading)
-        }
-        .overlay(alignment: .topTrailing) {
-            RandomWidget(index: 2)
-                .frame(maxWidth: 100, maxHeight: 100, alignment: .topTrailing)
-                .offset(safeCornerOffsets.topTrailing)
+            .widgetCorners(did: 63, topLeading: true, topTrailing: true, bottomLeading: true, bottomTrailing: true)
         }
     }
 }

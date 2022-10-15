@@ -76,16 +76,18 @@ struct BinaryView: View {
         }
     }
     
-    #if os(iOS)
-    @Environment(\.verticalSizeClass) private var vSizeClass
-    @Environment(\.horizontalSizeClass) private var hSizeClass
-    #endif
+    @Environment(\.elementSize) private var elementSize
     var maxDigits: Int {
-        #if os(tvOS) || targetEnvironment(macCatalyst)
-        return 6
-        #else
-        return (vSizeClass == .compact || hSizeClass == .compact) ? 4 : 5
-        #endif
+        switch elementSize {
+        case .mini:
+            return 3
+        case .small:
+            return 4
+        case .regular:
+            return 5
+        case .large:
+            return 6
+        }
     }
     
     // Styles

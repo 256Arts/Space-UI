@@ -83,7 +83,7 @@ struct TargetingPage: View {
             }
         }
         .overlay(alignment: .bottomLeading) {
-            CircularProgressView(value: shipData.powerState.weaponsHavePower ? .constant(1) : .constant(0), lineWidth: nil)
+            CircularProgressView(did: 1, value: shipData.powerState.weaponsHavePower ? .constant(1) : .constant(0), lineWidth: nil)
                 .frame(width: 100, height: 100)
                 .offset(safeCornerOffsets.bottomLeading)
         }

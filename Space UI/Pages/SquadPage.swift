@@ -48,6 +48,7 @@ struct SquadPage: View {
                 }
             }
         }
+        .widgetCorners(did: 72, topLeading: true, topTrailing: true, bottomLeading: true, bottomTrailing: true)
         .onAppear {
             withAnimation(Animation.easeInOut(duration: 1.5).repeatForever()) {
                 showingDeaths = 0

@@ -53,9 +53,9 @@ struct RadarScanView: View {
             }
     }
     
-    init(random: GKRandom) {
+    init(did: Int) {
         style = {
-            switch random.nextInt(upperBound: 10) {
+            switch did % 10 {
             case 0:
                 return .double
             case 1, 2:
@@ -70,6 +70,6 @@ struct RadarScanView: View {
 
 struct RadarScanView_Previews: PreviewProvider {
     static var previews: some View {
-        RadarScanView(random: GKRandomDistribution())
+        RadarScanView(did: 0)
     }
 }
