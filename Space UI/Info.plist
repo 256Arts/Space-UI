@@ -29,6 +29,8 @@
 		<string>_ji-spaceui._udp</string>
 		<string>_ji-spaceui._tcp</string>
 	</array>
+	<key>NSHomeKitUsageDescription</key>
+	<string>This allows you to sync colors with home lights.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>This allows you to sync UI style with nearby devices.</string>
 	<key>NSPrefersDisplaySafeAreaCompatibilityMode</key>

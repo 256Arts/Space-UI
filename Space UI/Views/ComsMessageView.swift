@@ -54,7 +54,7 @@ struct ComsMessageView: View {
                                 .frame(width: 16, height: 16, alignment: .leading)
                                 .foregroundColor(Color(color: .primary, opacity: .max))
                                 .overlay(AutoShape(direction: shapeDirection)
-                                    .stroke(Color(color: .primary, opacity: .min), lineWidth: system.mediumLineWidth)
+                                    .stroke(Color(color: .primary, opacity: .min), style: system.strokeStyle(.medium))
                                             .frame(width: 16, height: 16)
                                 )
                         }

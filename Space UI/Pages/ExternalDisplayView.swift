@@ -59,7 +59,7 @@ struct ExternalDisplayPage: View {
                         ViewThatFits {
                             VStack(spacing: 10) {
                                 RoundedRectangle(cornerRadius: system.cornerRadius(forLength: 40))
-                                    .stroke(Color(color: .primary, opacity: .max), lineWidth: system.mediumLineWidth)
+                                    .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.medium))
                                     .foregroundColor(Color.clear)
                                     .frame(height: 40)
                                     .frame(idealWidth: .infinity, maxWidth: .infinity)
@@ -145,7 +145,7 @@ struct ExternalDisplayPage: View {
                     .multilineTextAlignment(.center)
                     VStack(spacing: 10) {
                         RoundedRectangle(cornerRadius: system.cornerRadius(forLength: 40))
-                            .stroke(Color(color: .primary, opacity: .max), lineWidth: system.mediumLineWidth)
+                            .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.medium))
                             .foregroundColor(Color.clear)
                             .frame(height: 40)
                             .frame(idealWidth: .infinity, maxWidth: .infinity)

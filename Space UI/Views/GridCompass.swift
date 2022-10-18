@@ -15,7 +15,7 @@ struct GridCompass: View {
     var body: some View {
         ZStack {
             GridShape(rows: 4, columns: 4, hasOutsideBorders: false)
-                .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                 .rotationEffect(.degrees(anglePublisher.value))
                 .animation(.easeInOut(duration: 1), value: anglePublisher.value)
             
@@ -41,12 +41,12 @@ struct GridCompass: View {
                 .foregroundColor(Color(color: .primary, opacity: .max))
                 .frame(width: 30, height: 30)
             Triangle()
-                .stroke(Color(color: .primary, opacity: .min), lineWidth: system.thinLineWidth)
+                .stroke(Color(color: .primary, opacity: .min), style: system.strokeStyle(.thin))
                 .environment(\.shapeDirection, .up)
                 .frame(width: 30, height: 30)
             
             Circle()
-                .strokeBorder(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                .strokeBorder(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
         }
         .clipShape(Circle())
     }

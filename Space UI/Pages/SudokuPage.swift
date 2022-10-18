@@ -28,7 +28,7 @@ struct SudokuPage: View {
     var body: some View {
         ZStack {
             GridShape(rows: boardLength, columns: boardLength, outsideCornerRadius: system.cornerRadius(forLength: SudokuPage.buttonLength))
-                .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                 GridRow {
                     makeButton(coord: GridCoord(row: 0, column: 0))

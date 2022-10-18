@@ -133,7 +133,7 @@ struct BinaryView: View {
                     .overlay {
                         if char.colors.border != nil {
                             AutoShape(direction: char.shapeDirection)
-                                .strokeBorder(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                                .strokeBorder(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                                 .frame(width: characterLength, height: characterLength, alignment: .center)
                         }
                     }

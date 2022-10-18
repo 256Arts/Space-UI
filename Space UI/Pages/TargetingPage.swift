@@ -16,6 +16,10 @@ struct TargetingPage: View {
     @ObservedObject var shipData = ShipData.shared
     @ObservedObject var targetState = ShipData.shared.targetState
     
+    var strokeStyle: StrokeStyle {
+        system.strokeStyle(.medium)
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -36,7 +40,7 @@ struct TargetingPage: View {
                                     self.targetState.targetingSegment1.toggle()
                             }
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: system.mediumLineWidth, lineJoin: .round))
+                                .stroke(Color(color: .primary, opacity: .max), style: strokeStyle)
                         }
                         .rotationEffect(Angle(degrees: -27), anchor: .bottom)
                         ZStack {
@@ -46,7 +50,7 @@ struct TargetingPage: View {
                                     self.targetState.targetingSegment2.toggle()
                             }
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: system.mediumLineWidth, lineJoin: .round))
+                                .stroke(Color(color: .primary, opacity: .max), style: strokeStyle)
                         }
                         .rotationEffect(Angle(degrees: -9), anchor: .bottom)
                         ZStack {
@@ -56,7 +60,7 @@ struct TargetingPage: View {
                                     self.targetState.targetingSegment3.toggle()
                             }
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: system.mediumLineWidth, lineJoin: .round))
+                                .stroke(Color(color: .primary, opacity: .max), style: strokeStyle)
                         }
                         .rotationEffect(Angle(degrees: 9), anchor: .bottom)
                         ZStack {
@@ -66,7 +70,7 @@ struct TargetingPage: View {
                                     self.targetState.targetingSegment4.toggle()
                             }
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: system.mediumLineWidth, lineJoin: .round))
+                                .stroke(Color(color: .primary, opacity: .max), style: strokeStyle)
                         }
                         .rotationEffect(Angle(degrees: 27), anchor: .bottom)
                     }
@@ -89,18 +93,20 @@ struct TargetingPage: View {
         }
         .overlay(alignment: .bottomTrailing) {
             HStack {
-                Button(action: {
+                Button {
                     AudioController.shared.play(.action)
                     shipData.weaponsInLaserMode = true
-                }, label: {
+                } label: {
                     Text("Lasers")
-                }).buttonStyle(GroupedButtonStyle(segmentPosition: .leading, isSelected: shipData.weaponsInLaserMode))
-                Button(action: {
+                }
+                .buttonStyle(GroupedButtonStyle(segmentPosition: .leading, isSelected: shipData.weaponsInLaserMode))
+                Button {
                     AudioController.shared.play(.action)
                     shipData.weaponsInLaserMode = false
-                }, label: {
+                } label: {
                     Text("Missiles")
-                }).buttonStyle(GroupedButtonStyle(segmentPosition: .trailing, isSelected: !shipData.weaponsInLaserMode))
+                }
+                .buttonStyle(GroupedButtonStyle(segmentPosition: .trailing, isSelected: !shipData.weaponsInLaserMode))
             }
             .offset(safeCornerOffsets.bottomTrailing)
         }

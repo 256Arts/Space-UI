@@ -27,7 +27,7 @@ struct ShieldPage: View {
         AutoStack {
             ZStack {
                 Circle()
-                    .strokeBorder(LinearGradient(gradient: Gradient(colors: [Color(color: .tertiary, opacity: .max), Color(color: .primary, opacity: .min)]), startPoint: .top, endPoint: .bottom), lineWidth: system.thickLineWidth)
+                    .strokeBorder(LinearGradient(gradient: Gradient(colors: [Color(color: .tertiary, opacity: .max), Color(color: .primary, opacity: .min)]), startPoint: .top, endPoint: .bottom), style: system.strokeStyle(.thick))
                     .rotationEffect(Angle(degrees: self.shipData.shieldAngle))
                 ShipData.shared.icon
                     .resizable()
@@ -47,7 +47,7 @@ struct ShieldPage: View {
             }
             .overlay(alignment: .topTrailing) {
                 Spirograph(innerRadius: 42, outerRadius: 22, distance: self.atomDistance)
-                    .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                    .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                     .frame(width: 150, height: 150, alignment: .topTrailing)
                     .rotationEffect(Angle(degrees: self.atomAngle))
                     .overlay(Text(word2).fixedSize())

@@ -39,6 +39,9 @@ enum ScreenFilter {
 enum Alignment {
     case none, vertical, horizontal
 }
+enum LineWidth {
+    case thin, medium, thick
+}
 enum ScreenShapeCase: String, CaseIterable {
     case rectangle, capsule, circle, croppedCircle, verticalHexagon, horizontalHexagon, trapezoid, triangle
 }
@@ -166,11 +169,11 @@ final class SystemAppearance: ObservableObject {
         
         let allBasicShapes: [WeightedDesignElement<BasicShape>] = [
             .init(baseWeight: 1, design: .init(simplicity: 1.0, sharpness: 0.0), element: .circle),
-            .init(baseWeight: 1, design: .init(simplicity: 0.7, sharpness: 1.0), element: .triangle),
+            .init(baseWeight: 0.75, design: .init(simplicity: 0.7, sharpness: 1.0), element: .triangle),
             .init(baseWeight: 1, design: .init(simplicity: 0.6, sharpness: 0.5), element: .square),
             .init(baseWeight: 1, design: .init(simplicity: 0.4, sharpness: 0.3), element: .hexagon),
-            .init(baseWeight: 1, design: .init(simplicity: 0.1, sharpness: 0.7), element: .trapezoid),
-            .init(baseWeight: 1, design: .init(simplicity: 0.6, sharpness: 0.5), element: .diamond)
+            .init(baseWeight: 0.75, design: .init(simplicity: 0.1, sharpness: 0.7), element: .trapezoid),
+            .init(baseWeight: 0.75, design: .init(simplicity: 0.6, sharpness: 0.5), element: .diamond)
         ]
         basicShape = random.nextWeightedElement(in: allBasicShapes, with: design)!
         
@@ -368,6 +371,20 @@ final class SystemAppearance: ObservableObject {
         case .rounded:
             return length * roundedCornerFraction
         }
+    }
+    
+    func strokeStyle(_ lineWidth: LineWidth, lineJoin: CGLineCap = system.lineCap, dashed: Bool = false) -> StrokeStyle {
+        let lineWidthValue = {
+            switch lineWidth {
+            case .thin:
+                return self.mediumLineWidth / 2
+            case .medium:
+                return self.mediumLineWidth
+            case .thick:
+                return self.mediumLineWidth * 2
+            }
+        }()
+        return StrokeStyle(lineWidth: lineWidthValue, lineCap: lineCap, dash: dashed ? lineDash(lineWidth: lineWidthValue) : [])
     }
     
     func lineDash(lineWidth: CGFloat) -> [CGFloat] {

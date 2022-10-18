@@ -28,6 +28,10 @@ extension UserDefaults {
         static let externalDisplayOnRight = "externalDisplayOnRight"
         static let externalDisplayOnTop = "externalDisplayOnTop"
         static let externalDisplayOnBottom = "externalDisplayOnBottom"
+        
+        static let syncHomeLights = "syncHomeLights"
+        static let turnOnHomeLights = "turnOnHomeLights"
+        static let syncedHomeLights = "syncedHomeLights"
     }
     
     func register() {
@@ -45,7 +49,10 @@ extension UserDefaults {
             Key.externalDisplayOnLeft: false,
             Key.externalDisplayOnRight: false,
             Key.externalDisplayOnTop: false,
-            Key.externalDisplayOnBottom: false
+            Key.externalDisplayOnBottom: false,
+            
+            Key.syncHomeLights: false,
+            Key.turnOnHomeLights: false
         ])
         
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String

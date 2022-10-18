@@ -17,7 +17,7 @@ struct Compass: View {
             ZStack {
                 // Outer Circles
                 Circle()
-                    .stroke(Color(color: .primary, opacity: .high), lineWidth: system.thinLineWidth)
+                    .stroke(Color(color: .primary, opacity: .high), style: system.strokeStyle(.thin))
                 Circle()
                     .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: 20, dash: [2, 9], dashPhase: 1))
                 Circle()

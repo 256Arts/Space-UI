@@ -54,7 +54,7 @@ struct TicTacToePage: View {
             Spacer()
             ZStack {
                 GridShape(rows: 3, columns: 3, outsideCornerRadius: system.cornerRadius(forLength: 100))
-                    .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                    .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                 Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                     GridRow {
                         makeButton(coord: CellCoord(row: 0, column: 0))

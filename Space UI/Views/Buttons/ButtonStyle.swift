@@ -27,7 +27,7 @@ struct FlexButtonStyle: ButtonStyle {
             .overlay(
                 system.prefersButtonBorders ?
                 RoundedRectangle(cornerRadius: system.cornerRadius(forLength: system.flexButtonFrameHeight))
-                    .strokeBorder(Color(color: self.isSelected ? .tertiary : .primary, brightness: self.isDisabled ? .medium : .max), lineWidth: system.mediumLineWidth)
+                    .strokeBorder(Color(color: self.isSelected ? .tertiary : .primary, brightness: self.isDisabled ? .medium : .max), style: system.strokeStyle(.medium))
                 : nil
             )
             .opacity(configuration.isPressed ? 0.5 : 1.0)
@@ -55,7 +55,7 @@ struct ShapeButtonStyle: ButtonStyle {
             .overlay(
                 system.prefersButtonBorders ?
                 AutoShape(direction: shapeDirection)
-                    .strokeBorder(Color(color: self.isSelected ? .tertiary : .primary, brightness: self.isDisabled ? .medium : .max), lineWidth: system.mediumLineWidth)
+                    .strokeBorder(Color(color: self.isSelected ? .tertiary : .primary, brightness: self.isDisabled ? .medium : .max), style: system.strokeStyle(.medium))
                 : nil
             )
             .opacity(configuration.isPressed ? 0.5 : 1.0)

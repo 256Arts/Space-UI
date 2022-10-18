@@ -46,7 +46,7 @@ struct RandomCircularWidget: View {
                 .frame(minWidth: 32, idealWidth: idealWidgetLength, maxWidth: 96, minHeight: 32, idealHeight: idealWidgetLength, maxHeight: 96)
         case .decorativePolygon:
             DecorativePolygon(sides: 7)
-                .stroke(Color(color: .primary, opacity: system.colors.paletteStyle == .monochrome ? .low : .medium), lineWidth: system.thinLineWidth)
+                .stroke(Color(color: .primary, opacity: system.colors.paletteStyle == .monochrome ? .low : .medium), style: system.strokeStyle(.thin))
                 .frame(minWidth: 32, idealWidth: idealWidgetLength, maxWidth: 96, minHeight: 32, idealHeight: idealWidgetLength, maxHeight: 96)
                 .overlay {
                     if elementSize != .mini {
@@ -55,7 +55,7 @@ struct RandomCircularWidget: View {
                 }
         case .spirograph:
             Spirograph(innerRadius: 21, outerRadius: idealWidgetLength / 2, distance: 31)
-                .stroke(Color(color: .primary, opacity: system.colors.paletteStyle == .monochrome ? .low : .medium), lineWidth: system.thinLineWidth)
+                .stroke(Color(color: .primary, opacity: system.colors.paletteStyle == .monochrome ? .low : .medium), style: system.strokeStyle(.thin))
                 .frame(minWidth: 32, idealWidth: idealWidgetLength, maxWidth: 96, minHeight: 32, idealHeight: idealWidgetLength, maxHeight: 96)
                 .overlay {
                     if elementSize != .mini {

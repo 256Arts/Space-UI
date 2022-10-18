@@ -43,7 +43,7 @@ struct NearbyShipsView: View {
                 }
                 if self.hasAsterisk {
                     AsteriskShape(ticks: 30)
-                        .stroke(Color(color: .primary, opacity: .medium), lineWidth: 8)
+                        .stroke(Color(color: .primary, opacity: .medium), style: system.strokeStyle(.thick))
                         .frame(width: 0.25 * min(geometry.size.width, geometry.size.height), height: 0.25 * min(geometry.size.width, geometry.size.height), alignment: .center)
                 }
                 ForEach(self.animatedRings.indices) { index in
@@ -52,7 +52,7 @@ struct NearbyShipsView: View {
                 }
                 if self.hasAxisLines {
                     AsteriskShape(ticks: self.axisLineEndCount)
-                        .stroke(Color(color: .primary, opacity: .high), lineWidth: system.thinLineWidth)
+                        .stroke(Color(color: .primary, opacity: .high), style: system.strokeStyle(.thin))
                 }
                 if self.hasTrianglePointers {
                     CircularStack {
@@ -64,7 +64,7 @@ struct NearbyShipsView: View {
                                     .rotationEffect(CircularStack.subviewRotationAngles(stepCount: trianglePointerCount)[index])
                             } else {
                                 Triangle(overrideDirection: .down)
-                                    .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                                    .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                                     .frame(width: self.trianglePointerLength, height: self.trianglePointerLength, alignment: .center)
                                     .rotationEffect(CircularStack.subviewRotationAngles(stepCount: trianglePointerCount)[index])
                             }

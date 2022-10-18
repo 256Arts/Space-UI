@@ -46,7 +46,7 @@ struct KeyboardButtonStyle: ButtonStyle {
         .clipShape(KeyboardButtonShape())
         .overlay(
             KeyboardButtonShape()
-            .strokeBorder(Color(color: special ? .tertiary : .primary, opacity: disabled ? .medium : .max), lineWidth: system.thinLineWidth)
+            .strokeBorder(Color(color: special ? .tertiary : .primary, opacity: disabled ? .medium : .max), style: system.strokeStyle(.thin))
         )
         .opacity(configuration.isPressed ? 0.5 : 1.0)
     }

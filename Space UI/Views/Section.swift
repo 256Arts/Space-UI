@@ -24,7 +24,7 @@ struct Section<Content: View>: View {
         .overlay {
             if system.prefersBorders {
                 RoundedRectangle(cornerRadius: system.cornerStyle == .sharp ? 0 : 24)
-                    .strokeBorder(Color(color: .primary, opacity: .high), style: StrokeStyle(lineWidth: system.mediumLineWidth, lineCap: system.lineCap, dash: system.lineDash(lineWidth: system.mediumLineWidth)))
+                    .strokeBorder(Color(color: .primary, opacity: .high), style: system.strokeStyle(.medium, dashed: true))
             }
         }
     }

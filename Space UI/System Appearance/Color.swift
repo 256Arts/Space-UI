@@ -10,27 +10,8 @@ import SwiftUI
 
 extension Color {
     
-    init(color: SystemColor, opacity: Opacity) {
-        let opacityMultiplier: CGFloat = {
-            switch opacity {
-            case .min:
-                return 0.0
-            case .low:
-                return 0.33
-            case .medium:
-                return 0.55
-            case .high:
-                return 0.77
-            case .max:
-                return 1.0
-            }
-        }()
-        let actualOpacity = system.screenMinBrightness + (opacityMultiplier * (1.0 - system.screenMinBrightness))
-        self.init(color: color, opacity: CGFloat(actualOpacity))
-    }
-    
     /// Avoid using this
-    init(color: SystemColor, opacity: CGFloat) {
+    init(color: SystemColor, brightness: CGFloat = 1.0, opacity: CGFloat = 1.0) {
         let hue: CGFloat
         let saturation: CGFloat
         switch color {
@@ -47,10 +28,10 @@ extension Color {
             hue = system.colors.dangerHue
             saturation = system.colors.dangerSaturation
         }
-        self.init(displayP3Hue: hue, saturation: saturation, brightness: 1.0, opacity: opacity)
+        self.init(displayP3Hue: hue, saturation: saturation, brightness: brightness, opacity: opacity)
     }
     
-    init(color: SystemColor, brightness: Opacity) {
+    init(color: SystemColor, brightness: Opacity = .max, opacity: Opacity = .max) {
         let hue: CGFloat
         let saturation: CGFloat
         switch color {
@@ -72,17 +53,31 @@ extension Color {
             case .min:
                 return 0.0
             case .low:
-                return 0.33
+                return 0.25
             case .medium:
-                return 0.55
+                return 0.5
             case .high:
-                return 0.77
+                return 0.75
+            case .max:
+                return 1.0
+            }
+        }()
+        let opacityValue: CGFloat = {
+            switch opacity {
+            case .min:
+                return 0.2
+            case .low:
+                return 0.4
+            case .medium:
+                return 0.6
+            case .high:
+                return 0.8
             case .max:
                 return 1.0
             }
         }()
         let actualBrightness = system.screenMinBrightness + (brightnessMultiplier * (1.0 - system.screenMinBrightness))
-        self.init(displayP3Hue: hue, saturation: saturation, brightness: CGFloat(actualBrightness), opacity: 1.0)
+        self.init(displayP3Hue: hue, saturation: saturation, brightness: actualBrightness, opacity: opacityValue)
     }
     
     init(displayP3Hue hue: CGFloat, saturation: CGFloat, brightness: CGFloat, opacity: CGFloat) {

@@ -23,10 +23,10 @@ struct ShipOnPlanetView: View {
             VStack(spacing: 0) {
                 ZStack(alignment: .bottom) {
                     Ellipse()
-                        .stroke(Color(color: .primary, opacity: .max), lineWidth: system.mediumLineWidth)
+                        .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.medium))
                         .frame(width: geometry.size.height/4, height: geometry.size.height/2, alignment: .center)
                     Ellipse()
-                        .stroke(Color(color: .primary, opacity: .max), lineWidth: system.mediumLineWidth)
+                        .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.medium))
                         .frame(width: geometry.size.height/8, height: geometry.size.height/4, alignment: .center)
                     ShipData.shared.icon
                         .aspectRatio(contentMode: .fit)
@@ -38,7 +38,7 @@ struct ShipOnPlanetView: View {
                         .clipShape(Circle())
                     Sphere(vertical: self.planetLines(size: geometry.size), horizontal: self.planetLines(size: geometry.size))
                         .trim(from: 0.0, to: self.sphereAnimationProgress)
-                        .stroke(Color(color: .primary, opacity: .high), lineWidth: system.mediumLineWidth)
+                        .stroke(Color(color: .primary, opacity: .high), style: system.strokeStyle(.medium))
                         .rotationEffect(Angle(degrees: self.planetAngle))
                     ForEach(self.points.indices) { i in
                         HStack {

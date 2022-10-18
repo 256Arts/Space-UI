@@ -73,11 +73,11 @@ struct CircularProgressView<Inner: View>: View {
         let lineWidth = actualLineWidth(size: size)
         switch design {
         case .dashed:
-            return StrokeStyle(lineWidth: lineWidth, dash: [lineWidth/3, lineWidth/3])
+            return StrokeStyle(lineWidth: lineWidth, lineCap: system.lineCap, dash: [lineWidth/3, lineWidth/3])
         case .continuous:
             return StrokeStyle(lineWidth: lineWidth, lineCap: system.lineCap)
         case .asteresk:
-            return StrokeStyle(lineWidth: system.thinLineWidth, lineCap: system.lineCap)
+            return system.strokeStyle(.thin)
         }
     }
     

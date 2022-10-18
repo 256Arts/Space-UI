@@ -28,7 +28,7 @@ struct UnlabeledKeypadPage: View {
                 .foregroundColor(incorrectCodeEntered ? Color(color: .danger, opacity: .max) : nil)
             ZStack {
                 GridShape(rows: 3, columns: 3, outsideCornerRadius: system.cornerRadius(forLength: cellLength))
-                    .stroke(Color(color: .primary, opacity: .max), lineWidth: system.thinLineWidth)
+                    .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thin))
                 Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                     GridRow {
                         makeButton(char: "a")

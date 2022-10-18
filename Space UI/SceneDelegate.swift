@@ -20,6 +20,10 @@ var debugShowingExternalDisplay = false
 #endif
 
 func replaceRootView() {
+    if UserDefaults.standard.bool(forKey: UserDefaults.Key.syncHomeLights) {
+        HomeStore.shared.updateLights()
+    }
+    
     rootHostingController = HostingController(rootView: RootView(isExternal: false, currentPage: visiblePage, systemAppearance: system))
     rootHostingController?.overrideUserInterfaceStyle = .dark
     rootHostingController?.view.backgroundColor = .black
@@ -52,6 +56,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1600, height: 900)
             windowScene.sizeRestrictions?.maximumSize = CGSize(width: 9999, height: 9999)
+            
+            if UserDefaults.standard.bool(forKey: UserDefaults.Key.syncHomeLights) {
+                HomeStore.shared.updateLights()
+            }
             
             let window = UIWindow(windowScene: windowScene)
             rootHostingController = HostingController(rootView: rootView)
