@@ -43,9 +43,9 @@ struct CircularProgressView<Inner: View>: View {
                 }
                 self.inner
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: min(geometry.size.width, geometry.size.height) - (actualLineWidth(size: geometry.size) * 2), maxHeight: min(geometry.size.width, geometry.size.height) - (actualLineWidth(size: geometry.size) * 2))
+                    .padding(actualLineWidth(size: geometry.size) / 2)
             }
-            .padding((self.lineWidth ?? geometry.size.width/8) / 2)
+            .padding(actualLineWidth(size: geometry.size) / 2)
             .position(x: geometry.size.width/2, y: geometry.size.height/2)
         }
         .animation(Animation.easeOut(duration: 0.5), value: value)

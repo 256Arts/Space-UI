@@ -8,17 +8,11 @@
 
 import SwiftUI
 
-extension ScreenShapeCase: Identifiable {
-    var id: Self { self }
-}
-
 struct SeedPage: View {
     
-    let allScreenShapeCases: [ScreenShapeCase] = [
-        .circle, // This is actually used to remove the override
-        .rectangle, .verticalHexagon, .horizontalHexagon, .trapezoid, .capsule
-    ]
-    
+    var screenShapeOverride: ScreenShapeType? {
+        ScreenShapeType(rawValue: screenShapeOverrideValue)
+    }
     var isLocked: Bool {
         !peerSessionController.mcSession.connectedPeers.isEmpty && !PeerSessionController.shared.isHost
     }
@@ -42,71 +36,66 @@ struct SeedPage: View {
     }
     
     @State var seedCopy = String(system.seed)
-    @State var screenShapeCaseOverride: ScreenShapeCase? = ScreenShapeCase(rawValue: UserDefaults.standard.string(forKey: UserDefaults.Key.screenShapeCaseOverride) ?? "")
     
+    @AppStorage(UserDefaults.Key.screenShapeOverride) private var screenShapeOverrideValue = ""
     @ObservedObject var peerSessionController = PeerSessionController.shared
     
     @Namespace var mainNamespace
     
     var body: some View {
         NavigationStack {
-            Form {
-                SwiftUI.Section {
-                    TextField("Seed", text: self.$seedCopy, onCommit: {
-                        self.saveSeed()
-                    })
+            HStack {
+                Image(systemName: "switch.2")
+                    .font(.system(size: 400))
+                    .foregroundColor(.secondary)
+                    .frame(width: 1000)
+                Form {
+                    SwiftUI.Section {
+                        TextField("Seed", text: self.$seedCopy, onCommit: {
+                            self.saveSeed()
+                        })
                         .keyboardType(.numberPad)
                         .disabled(isLocked)
-                    Button(action: {
-                        AudioController.shared.play(.action)
-                        self.seedCopy = String(arc4random())
-                        self.saveSeed()
-                    }, label: { Label("Randomize", systemImage: "arrow.2.circlepath") })
+                        
+                        Button {
+                            AudioController.shared.play(.action)
+                            self.seedCopy = String(arc4random())
+                            self.saveSeed()
+                        } label: {
+                            Label("Randomize", systemImage: "arrow.2.circlepath")
+                        }
                         .disabled(isLocked)
                         .prefersDefaultFocus(in: mainNamespace)
-                } header: {
-                    Text("Seed")
-                }
-                Picker("Screen Shape", selection: Binding(get: {
-                    screenShapeCaseOverride ?? .circle
-                }, set: { newValue in
-                    if newValue == .circle {
-                        screenShapeCaseOverride = nil
-                    } else {
-                        screenShapeCaseOverride = newValue
+                    } header: {
+                        Text("Seed")
                     }
-                })) {
-                    ForEach(allScreenShapeCases) { shapeCase in
-                        Group {
-                            switch shapeCase {
-                            case .rectangle:
-                                Image(systemName: "rectangle.fill")
-                            case .verticalHexagon:
-                                Image(systemName: "hexagon.fill")
-                            case .horizontalHexagon:
-                                Image(systemName: "hexagon.fill")
-                                    .rotationEffect(.degrees(90))
-                            case .trapezoid:
-                                Image(systemName: "triangle.fill")
-                            case .capsule:
-                                Image(systemName: "capsule.fill")
-                            default:
-                                Image(systemName: "questionmark.circle")
-                            }
+                    
+                    Picker(selection: $screenShapeOverrideValue) {
+                        Text("Automatic")
+                            .tag("")
+                        ForEach(ScreenShapeType.allCases) { shapeCase in
+                            Text(shapeCase.name)
+                                .tag(shapeCase.rawValue)
                         }
-                            .tag(shapeCase)
+                    } label: {
+                        Label("Screen Shape", systemImage: "rectangle.dashed")
                     }
-                }
-                Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
-                    Label("Open Settings", systemImage: "gear")
-                }
-                HStack {
-                    Text("Sync Over Network")
-                    Spacer()
-                    Text(syncOverNetworkBody)
-                        .foregroundColor(.secondary)
+                    LabeledContent {
+                        Text(syncOverNetworkBody)
+                    } label: {
+                        Label("Sync Displays", systemImage: "display.2")
+                    }
+                    NavigationLink {
+                        HomesList()
+                    } label: {
+                        Label("Sync Lights", systemImage: "lightbulb")
+                    }
+                    Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
+                        Label("Open Settings", systemImage: "gear")
+                    }
                 }
             }
+            .navigationTitle("Quick Settings")
         }
         .font(.body)
         .foregroundColor(.primary)
@@ -125,12 +114,14 @@ struct SeedPage: View {
     }
     
     func saveScreenShape() {
-        if let shapeCase = self.screenShapeCaseOverride {
-            system.screenShapeCase = shapeCase
-            UserDefaults.standard.set(shapeCase.rawValue, forKey: UserDefaults.Key.screenShapeCaseOverride)
+        if let screenShapeType = self.screenShapeOverride {
+            UserDefaults.standard.set(screenShapeType.rawValue, forKey: UserDefaults.Key.screenShapeOverride)
         } else {
-            UserDefaults.standard.removeObject(forKey: UserDefaults.Key.screenShapeCaseOverride)
+            UserDefaults.standard.removeObject(forKey: UserDefaults.Key.screenShapeOverride)
         }
+        
+        ScreenShape.pathCache.removeAll()
+        system.reloadRootView()
     }
     
 }

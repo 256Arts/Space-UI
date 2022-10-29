@@ -19,7 +19,7 @@ extension UserDefaults {
         static let randomEmergencies = "randomEmergencies"
         static let seed = "seed"
         static let displayOrientation = "displayOrientation"
-        static let screenShapeCaseOverride = "screenShapeCaseOverride"
+        static let screenShapeOverride = "screenShapeOverride"
         static let tutorialShown = "tutorialShown"
         static let canHostSession = "canHostSession"
         static let canJoinSession = "canJoinSession"

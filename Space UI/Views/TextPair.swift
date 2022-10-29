@@ -21,8 +21,20 @@ struct TextPair: View {
     var value: String
     var largerFontSize: CGFloat = system.defaultFontSize
     
+    @Environment(\.multilineTextAlignment) private var multilineTextAlignment
+    var stackAlignment: HorizontalAlignment {
+        switch multilineTextAlignment {
+        case .leading:
+            return .leading
+        case .center:
+            return .center
+        case .trailing:
+            return .trailing
+        }
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: stackAlignment) {
             Text(label)
                 .font(Font.spaceFont(size: largerFontSize * 0.8))
                 .foregroundColor(monochrome ? Color(color: .primary, opacity: .medium) : Color(color: .primary, opacity: .max))

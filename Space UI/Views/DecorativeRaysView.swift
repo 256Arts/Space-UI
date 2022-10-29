@@ -13,7 +13,7 @@ import SwiftUI
 
 struct DecorativeRaysView: View {
     
-    let cycleCount = Int.random(in: 1...4)
+    let cycleCount: Int
     let linePortion = 1.0 / CGFloat(Int.random(in: 2...4))
     
     var dash: [CGFloat] {
@@ -35,6 +35,10 @@ struct DecorativeRaysView: View {
                 .frame(width: min(geometry.size.width, geometry.size.height)/2, height: min(geometry.size.width, geometry.size.height)/2)
                 .position(x: geometry.size.width/2, y: geometry.size.height/2)
         }
+    }
+    
+    init(cycleCount: Int? = nil) {
+        self.cycleCount = cycleCount ?? Int.random(in: 1...4)
     }
     
 }

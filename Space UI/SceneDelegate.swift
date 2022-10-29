@@ -32,7 +32,7 @@ func replaceRootView() {
     iwindow?.tintColor = tintColor
     
     if let exWindow = externalWindow {
-        exWindow.rootViewController = HostingController(rootView: RootView(isExternal: true, currentPage: .externalDisplay, systemAppearance: system))
+        exWindow.rootViewController = HostingController(rootView: RootView(isExternal: true, currentPage: system.screen.externalDisplayPage, systemAppearance: system))
         exWindow.rootViewController?.overrideUserInterfaceStyle = .dark
         exWindow.rootViewController?.view.backgroundColor = .black
         exWindow.tintColor = tintColor
@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isExternalDisplay = (session.role == .windowExternalDisplayNonInteractive)
 
         // Create the SwiftUI view that provides the window contents.
-        let rootView = RootView(isExternal: isExternalDisplay, currentPage: isExternalDisplay ? .externalDisplay : visiblePage, systemAppearance: system)
+        let rootView = RootView(isExternal: isExternalDisplay, currentPage: isExternalDisplay ? system.screen.externalDisplayPage : visiblePage, systemAppearance: system)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

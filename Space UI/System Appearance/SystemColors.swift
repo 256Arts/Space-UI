@@ -8,9 +8,24 @@
 
 import GameplayKit
 
+enum SystemColor {
+    case primary, secondary, tertiary, danger
+}
+enum Opacity {
+    case min, low, medium, high, max
+}
+enum PaletteStyle {
+    case colorful, monochrome, limited
+}
+
 final class SystemColors {
     
     let paletteStyle: PaletteStyle
+    
+    let dangerHue: CGFloat = 0.0
+    let dangerSaturation: CGFloat = 1.0
+    let primaryHueNormal: CGFloat
+    let primarySaturationNormal: CGFloat
     var primaryHue: CGFloat {
         ShipData.shared.isInEmergency ? dangerHue : primaryHueNormal
     }
@@ -21,10 +36,6 @@ final class SystemColors {
     var secondarySaturation: CGFloat = 0.0
     var tertiaryHue: CGFloat
     var tertiarySaturation: CGFloat = 1.0
-    let dangerHue: CGFloat = 0.0
-    let dangerSaturation: CGFloat = 1.0
-    let primaryHueNormal: CGFloat
-    let primarySaturationNormal: CGFloat
     
     init(random: GKRandom) {
         let allPaletteStyles: [WeightedElement<PaletteStyle>] = [

@@ -8,10 +8,11 @@
 
 import SwiftUI
 
-var visiblePage = Page.externalDisplay
+var visiblePage = system.screen.externalDisplayPage
 
 enum Page {
-    case externalDisplay, lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, music
+    case lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, music
+    case extOrbits, extCircularProgressLeft, extCircularProgressRight
 }
 
 struct RootView: View {
@@ -42,7 +43,16 @@ struct RootView: View {
     
     var body: some View {
         ScreenView {
-            ExternalDisplayView()
+            switch visiblePage {
+            case .extCircularProgressLeft:
+                CircularProgressExtPageLeft()
+            case .extCircularProgressRight:
+                CircularProgressExtPageLeft()
+                    .scaleEffect(x: -1, y: 1)
+            default:
+                OrbitsExtPage()
+            }
+            
         }
         .sheet(isPresented: self.$showSeedView) {
             SeedPage()
@@ -61,6 +71,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(currentPage: .externalDisplay, systemAppearance: system)
+        RootView(currentPage: system.screen.externalDisplayPage, systemAppearance: system)
     }
 }

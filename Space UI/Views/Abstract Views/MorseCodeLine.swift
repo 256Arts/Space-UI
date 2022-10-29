@@ -25,6 +25,38 @@ struct MorseCodeLine: View {
         }
     }
     
+    static func generateMorseCodeSegments(width: CGFloat, cornerStyle: CornerStyle) -> [MorseCodeLine.Segment] {
+        let useColorShades = Bool.random()
+        let shades: [Opacity] = [.low, .medium, .high, .max]
+        var nodeLengths: [CGFloat] = [20, 20, 20, 40, 80, 120].filter { $0 < width }
+        if cornerStyle != .circular {
+            nodeLengths.append(10)
+        }
+        let spaceLengths: [CGFloat] = [20, 40, 80, 120, 160, 200].filter { $0 < width }
+        
+        var segs = [MorseCodeLine.Segment]()
+        var sum: CGFloat = 0.0
+        while sum < width {
+            let opacity = useColorShades ? shades.randomElement()! : Opacity.max
+            let systemColor: SystemColor = {
+                switch Int.random(in: 0..<4) {
+                case 0:
+                    return .secondary
+                case 1:
+                    return .tertiary
+                default:
+                    return .primary
+                }
+            }()
+            let nl = MorseCodeLine.Segment(length: nodeLengths.randomElement()!, systemColor: systemColor, opacity: opacity)
+            let sl = MorseCodeLine.Segment(length: spaceLengths.randomElement()!, systemColor: nil, opacity: .min)
+            segs.append(nl)
+            segs.append(sl)
+            sum += nl.length + sl.length
+        }
+        return segs
+    }
+    
     let height: CGFloat = 20.0
     let segments: [Segment]
     
@@ -54,6 +86,13 @@ struct MorseCodeLine: View {
         .frame(height: height)
     }
     
+    init(segments: [Segment]) {
+        self.segments = segments
+    }
+    init(vid: Int) {
+        self.segments = MorseCodeLine.generateMorseCodeSegments(width: 500, cornerStyle: system.cornerStyle)
+    }
+    
     func reduceSegments(forWidth width: CGFloat) -> [Segment] {
         var reducedSegments = [Segment]()
         var totalLength: CGFloat = 0.0
@@ -72,6 +111,6 @@ struct MorseCodeLine: View {
 
 struct MorseCodeLine_Previews: PreviewProvider {
     static var previews: some View {
-        MorseCodeLine(segments: system.topMorseCodeSegments ?? [])
+        MorseCodeLine(segments: system.screen.topMorseCodeSegments ?? [])
     }
 }

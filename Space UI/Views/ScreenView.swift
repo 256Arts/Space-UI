@@ -15,11 +15,12 @@ struct ScreenView<Content: View>: View {
     
     let maxMaskOffset: CGFloat = 100.0
     let maskLines: Image? = {
-        guard system.screenFilter == .hLines || system.screenFilter == .vLines, !UIAccessibility.isReduceMotionEnabled else { return nil }
+        guard system.screen.filter == .hLines || system.screen.filter == .vLines, !UIAccessibility.isReduceMotionEnabled else { return nil }
+        
         let lineWidth: CGFloat = 4.0
         let imageRect = CGRect(origin: .zero, size: CGSize(width: lineWidth * 2.0, height: lineWidth * 2.0))
         let lineFilter = CIFilter.lineScreen()
-        lineFilter.angle = system.screenFilter == .hLines ? .pi/2.0 : 0.0
+        lineFilter.angle = system.screen.filter == .hLines ? .pi/2.0 : 0.0
         lineFilter.width = Float(lineWidth)
         lineFilter.sharpness = 0.0
         lineFilter.inputImage = CIImage(color: .white).cropped(to: imageRect)
@@ -43,9 +44,13 @@ struct ScreenView<Content: View>: View {
     
     @State var maskOffset: CGSize = CGSize(width: 100.0 / 2.0, height: 100.0 / 2.0)
     
+    var screenStrokeStyle: StrokeStyle? {
+        system.prefersBorders ? StrokeStyle(lineWidth: system.thickLineWidth, lineCap: system.lineCap, dash: system.lineDash(lineWidth: system.thickLineWidth)) : nil
+    }
+    
     var body: some View {
         GeometryReader { geometry in
-            self.content
+            content
 //                #if DEBUG
 //                .overlay {
 //                    Rectangle()
@@ -54,75 +59,77 @@ struct ScreenView<Content: View>: View {
 //                .overlay(alignment: .topLeading) {
 //                    Color.white
 //                        .frame(width: 5, height: 5)
-//                        .offset(system.safeCornerOffsets(screenSize: geometry.size).topLeading)
+//                        .offset(system.screen.safeCornerOffsets(screenSize: geometry.size).topLeading)
 //                }
 //                .overlay(alignment: .topTrailing) {
 //                    Color.white
 //                        .frame(width: 5, height: 5)
-//                        .offset(system.safeCornerOffsets(screenSize: geometry.size).topTrailing)
+//                        .offset(system.screen.safeCornerOffsets(screenSize: geometry.size).topTrailing)
 //                }
 //                .overlay(alignment: .bottomLeading) {
 //                    Color.white
 //                        .frame(width: 5, height: 5)
-//                        .offset(system.safeCornerOffsets(screenSize: geometry.size).bottomLeading)
+//                        .offset(system.screen.safeCornerOffsets(screenSize: geometry.size).bottomLeading)
 //                }
 //                .overlay(alignment: .bottomTrailing) {
 //                    Color.white
 //                        .frame(width: 5, height: 5)
-//                        .offset(system.safeCornerOffsets(screenSize: geometry.size).bottomTrailing)
+//                        .offset(system.screen.safeCornerOffsets(screenSize: geometry.size).bottomTrailing)
 //                }
 //                #endif
-                .padding(system.mainContentInsets(screenSize: geometry.size))
+                .padding(system.screen.mainContentInsets(screenSize: geometry.size))
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .background {
-                    LinearGradient(gradient: Gradient(colors: system.backgroundStyle == .color ? [Color(color: .primary, opacity: .min)] : (system.backgroundStyle == .gradientDown ? [
-                        Color(color: .primary, opacity: system.screenMinBrightness+0.05),
-                        Color(color: .primary, opacity: max(0, system.screenMinBrightness-0.05))
-                    ] : [
-                        Color(color: .primary, opacity: max(0, system.screenMinBrightness-0.05)),
-                        Color(color: .primary, opacity: system.screenMinBrightness+0.05)
-                    ])), startPoint: .top, endPoint: .bottom)
+                    if system.screen.backgroundStyle == .color {
+                        Color(color: .primary, opacity: .min)
+                    } else {
+                        LinearGradient(gradient: Gradient(colors: (system.screen.backgroundStyle == .gradientDown ? [
+                            Color(color: .primary, opacity: system.screen.minBrightness+0.05),
+                            Color(color: .primary, opacity: max(0, system.screen.minBrightness-0.05))
+                        ] : [
+                            Color(color: .primary, opacity: max(0, system.screen.minBrightness-0.05)),
+                            Color(color: .primary, opacity: system.screen.minBrightness+0.05)
+                        ])), startPoint: .top, endPoint: .bottom)
+                    }
                 }
-                .clipShape(ScreenShape(screenShapeCase: system.actualScreenShapeCase(screenSize: geometry.size)))
+                .clipShape(ScreenShape(screenShapeType: system.screen.actualScreenShapeType(screenSize: geometry.size)))
                 .overlay {
-                    if let style = system.screenStrokeStyle {
-                        ScreenShape(screenShapeCase: system.actualScreenShapeCase(screenSize: geometry.size))
+                    if let style = screenStrokeStyle {
+                        ScreenShape(screenShapeType: system.screen.actualScreenShapeType(screenSize: geometry.size))
                             .strokeBorder(Color(color: .primary, opacity: .max), style: style)
                             .padding(system.borderInsetAmount)
                     }
                 }
                 .mask {
-                    ZStack {
-                        if let maskLines = maskLines {
-                            maskLines
-                                .resizable(resizingMode: .tile)
-                                .frame(width: geometry.size.width + maxMaskOffset, height: geometry.size.height + maxMaskOffset)
-                                .offset(maskOffset)
-                        } else {
-                            Color.black
-                        }
+                    if let maskLines = maskLines {
+                        maskLines
+                            .resizable(resizingMode: .tile)
+                            .frame(width: geometry.size.width + maxMaskOffset, height: geometry.size.height + maxMaskOffset)
+                            .offset(maskOffset)
+                    } else {
+                        Color.black
                     }
                 }
                 .overlay(alignment: .top) {
-                    if let cutoutFrame = system.cutoutFrame(screenSize: geometry.size, forTop: true), regularHSizeClass {
+                    if let cutoutFrame = system.screen.cutoutFrame(screenSize: geometry.size, forTop: true), regularHSizeClass {
                         DecorativeStatusView(data: ShipData.shared.topStatusState)
                             .frame(width: cutoutFrame.size.width, height: cutoutFrame.size.height)
-                            .offset(x: cutoutFrame.origin.x, y: 0)
+                            .offset(x: cutoutFrame.origin.x)
                     }
                 }
                 .overlay(alignment: .bottom) {
-                    if let cutoutFrame = system.cutoutFrame(screenSize: geometry.size, forTop: false) {
+                    if let cutoutFrame = system.screen.cutoutFrame(screenSize: geometry.size, forTop: false) {
                         DecorativeStatusView(data: ShipData.shared.bottomStatusState)
                             .frame(width: cutoutFrame.size.width, height: cutoutFrame.size.height)
-                            .offset(x: cutoutFrame.origin.x, y: 0)
+                            .offset(x: cutoutFrame.origin.x)
                     }
                 }
-                .position(x: geometry.size.width/2, y: geometry.size.height/2)
+//                .position(x: geometry.size.width/2, y: geometry.size.height/2)
                 .onAppear {
-                    guard system.screenFilter == .hLines || system.screenFilter == .vLines, !reducedMotion else { return }
+                    guard system.screen.filter == .hLines || system.screen.filter == .vLines, !reducedMotion else { return }
                     
                     maskOffset = CGSize(width: maxMaskOffset / 2.0, height: maxMaskOffset / 2.0)
-                    if system.screenFilter == .hLines {
+                    if system.screen.filter == .hLines {
                         withAnimation(Animation.linear(duration: 10).repeatForever(autoreverses: false)) {
                             maskOffset.height -= maxMaskOffset
                         }
@@ -132,7 +139,7 @@ struct ScreenView<Content: View>: View {
                         }
                     }
                 }
-                .environment(\.safeCornerOffsets, system.safeCornerOffsets(screenSize: geometry.size))
+                .environment(\.safeCornerOffsets, system.screen.safeCornerOffsets(screenSize: geometry.size))
         }
     }
     

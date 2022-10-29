@@ -9,7 +9,8 @@
 import SwiftUI
 
 enum Page {
-    case externalDisplay, lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, squad, music, sudokuPuzzle, lightsOutPuzzle, unlabeledKeypadPuzzle
+    case lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, squad, music, sudokuPuzzle, lightsOutPuzzle, unlabeledKeypadPuzzle
+    case extOrbits, extCircularProgressLeft, extCircularProgressRight
 }
 
 struct RootView: View {
@@ -24,7 +25,7 @@ struct RootView: View {
         return .large
         #else
         if (vSizeClass == .regular && hSizeClass == .regular) &&
-            system.screenShapeCase != .circle && system.screenShapeCase != .triangle {
+            system.screen.screenShapeType != .circle && system.screen.screenShapeType != .triangle {
             return .regular
         } else {
             return .small
@@ -38,14 +39,19 @@ struct RootView: View {
     
     var body: some View {
         VStack {
-            if vSizeClass == .regular, let segs = system.topMorseCodeSegments {
+            if vSizeClass == .regular, let segs = system.screen.topMorseCodeSegments {
                 MorseCodeLine(segments: segs)
                     .padding(.horizontal, 20)
             }
             ScreenView {
                 switch currentPage {
-                case .externalDisplay:
-                    ExternalDisplayPage()
+                case .extOrbits:
+                    OrbitsExtPage()
+                case .extCircularProgressLeft:
+                    CircularProgressExtPageLeft()
+                case .extCircularProgressRight:
+                    CircularProgressExtPageLeft()
+                        .scaleEffect(x: -1, y: 1)
                 case .lockScreen:
                     LockScreenPage()
                 case .seed:
@@ -78,12 +84,12 @@ struct RootView: View {
                     UnlabeledKeypadPage()
                 }
             }
-            if vSizeClass == .regular, let segs = system.bottomMorseCodeSegments {
+            if vSizeClass == .regular, let segs = system.screen.bottomMorseCodeSegments {
                 MorseCodeLine(segments: segs)
                     .padding(.horizontal, 20)
             }
         }
-        .ignoresSafeArea(edges: system.edgesIgnoringSafeAreaForScreenShape(screenSize: UIScreen.main.bounds.size, traitCollection: UIScreen.main.traitCollection))
+        .ignoresSafeArea(edges: system.screen.edgesIgnoringSafeAreaForScreenShape(screenSize: UIScreen.main.bounds.size, traitCollection: UIScreen.main.traitCollection))
         
         #if DEBUG
         .overlay(alignment: .leading) {

@@ -1,5 +1,5 @@
 //
-//  ExternalDisplayPage.swift
+//  OrbitsExtPage.swift
 //  Space UI
 //
 //  Created by Jayden Irwin on 2019-12-15.
@@ -14,17 +14,15 @@ struct AutoCompass: View {
     let useGridCompassStyle: Bool
     
     var body: some View {
-        Group {
-            if self.useGridCompassStyle {
-                GridCompass()
-            } else {
-                Compass()
-            }
+        if self.useGridCompassStyle {
+            GridCompass()
+        } else {
+            Compass()
         }
     }
 }
 
-struct ExternalDisplayPage: View {
+struct OrbitsExtPage: View {
     
     let has2textLists = Bool.random()
     let hasLongNumericalSection = Bool.random()
@@ -46,6 +44,7 @@ struct ExternalDisplayPage: View {
             OrbitsView()
                 .overlay(alignment: .topLeading) {
                     TextPair(label: "Realtime", value: "Orbits", largerFontSize: 50)
+                        .multilineTextAlignment(.leading)
                         .offset(safeCornerOffsets.topLeading)
                 }
                 .overlay(alignment: .topTrailing) {
@@ -53,7 +52,7 @@ struct ExternalDisplayPage: View {
                         .frame(width: 150, height: 150)
                         .offset(safeCornerOffsets.topTrailing)
                 }
-            if system.screenShapeCase != .verticalHexagon {
+            if system.screen.screenShapeType != .verticalHexagon {
                 HStack {
                     if self.has2textLists {
                         ViewThatFits {
@@ -90,22 +89,6 @@ struct ExternalDisplayPage: View {
                             VStack {
                                 BinaryView(value: 13)
                                 Text(Lorem.word(vid: 99))
-                            }
-                            if self.hasLongNumericalSection {
-                                ViewThatFits {
-                                    HStack(alignment: .top) {
-                                        AutoGrid(spacing: 16, ignoreMaxSize: false) {
-                                            ForEach(0..<4) { index in
-                                                CircleIcon.image(vid: 4 + index)
-                                            }
-                                        }
-                                        VStack {
-                                            BinaryView(value: 32)
-                                            Text(Lorem.word(vid: 5))
-                                        }
-                                    }
-                                    EmptyView()
-                                }
                             }
                         }
                         HStack {
@@ -177,8 +160,8 @@ struct ExternalDisplayPage: View {
     }
 }
 
-struct ExternalDisplayPage_Previews: PreviewProvider {
+struct OrbitsExtPage_Previews: PreviewProvider {
     static var previews: some View {
-        ExternalDisplayPage()
+        OrbitsExtPage()
     }
 }

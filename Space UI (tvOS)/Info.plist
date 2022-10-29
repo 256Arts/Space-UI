@@ -27,6 +27,8 @@
 		<string>_hws-kb._udp</string>
 		<string>_hws-kb._tcp</string>
 	</array>
+	<key>NSHomeKitUsageDescription</key>
+	<string>This allows you to sync colors with home lights.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>This allows you to sync UI with nearby devices.</string>
 	<key>UIAppFonts</key>

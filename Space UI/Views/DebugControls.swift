@@ -12,53 +12,53 @@ import SwiftUI
 struct DebugControls: View {
     var body: some View {
         VStack {
-            Button(action: {
+            Button {
                 system.fontOverride.toggle()
                 DispatchQueue.main.async {
                     replaceRootView()
                 }
-            }, label: {
+            } label: {
                 Image(systemName: "textformat")
-            })
+            }
                 .buttonStyle(FlexButtonStyle())
-            Button(action: {
+            Button {
                 if ShipData.shared.isInEmergency {
                     ShipData.shared.endEmergency()
                 } else {
                     ShipData.shared.beginEmergency()
                 }
-            }, label: {
+            } label: {
                 Image(systemName: "exclamationmark.triangle")
-            })
+            }
                 .buttonStyle(FlexButtonStyle())
-            Button(action: {
+            Button {
                 system = SystemAppearance(seed: UInt64(arc4random()))
                 DispatchQueue.main.async {
                     if debugShowingExternalDisplay {
                         visiblePage = savedPage
                     } else {
                         savedPage = visiblePage
-                        visiblePage = .externalDisplay
+                        visiblePage = system.screen.externalDisplayPage
                     }
                     replaceRootView()
                     debugShowingExternalDisplay.toggle()
                 }
-            }, label: {
+            } label: {
                 #if targetEnvironment(macCatalyst)
                 Image(systemName: debugShowingExternalDisplay ? "tv" : "desktopcomputer")
                 #else
                 Image(systemName: debugShowingExternalDisplay ? "tv" : "iphone")
                 #endif
-            })
+            }
                 .buttonStyle(FlexButtonStyle())
-            Button(action: {
+            Button {
                 system = SystemAppearance(seed: UInt64(arc4random()))
                 DispatchQueue.main.async {
                     replaceRootView()
                 }
-            }, label: {
+            } label: {
                 Image(systemName: "arrow.2.circlepath")
-            })
+            }
                 .buttonStyle(FlexButtonStyle())
         }
         .font(Font.system(size: 18, weight: .semibold, design: .rounded))

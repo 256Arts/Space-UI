@@ -33,6 +33,7 @@ struct PlanetDetailsView: View {
                         .frame(width: 56, height: 56)
                 }
             }
+            .multilineTextAlignment(.leading)
             .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .leading)
             .padding()
         }

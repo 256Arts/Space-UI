@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SeedPage: View {
     
-    @AppStorage(UserDefaults.Key.screenShapeCaseOverride) private var screenShapeCaseOverrideValue = ""
+    @AppStorage(UserDefaults.Key.screenShapeOverride) private var screenShapeOverrideValue = ""
     @AppStorage(UserDefaults.Key.externalDisplayOnTop) private var externalDisplayOnTop = false
     @AppStorage(UserDefaults.Key.externalDisplayOnBottom) private var externalDisplayOnBottom = false
     @AppStorage(UserDefaults.Key.externalDisplayOnLeft) private var externalDisplayOnLeft = false
@@ -19,9 +19,6 @@ struct SeedPage: View {
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     @Environment(\.shapeDirection) private var shapeDirection: ShapeDirection
     
-    var screenShapeCaseOverride: ScreenShapeCase? {
-        ScreenShapeCase(rawValue: screenShapeCaseOverrideValue)
-    }
     var isLocked: Bool {
         !peerSessionController.mcSession.connectedPeers.isEmpty && !PeerSessionController.shared.isHost
     }
@@ -128,19 +125,21 @@ struct SeedPage: View {
                         showingScreenShapePicker = true
                     } label: {
                         HStack {
-                            Text(ScreenShapeCase(rawValue: screenShapeCaseOverrideValue)?.name ?? "Automatic")
+                            Text(ScreenShapeType(rawValue: screenShapeOverrideValue)?.name ?? "Automatic")
                             Image(systemName: "chevron.up.chevron.down")
                         }
                     }
                     .buttonStyle(FlexButtonStyle())
                     .popover(isPresented: $showingScreenShapePicker) {
-                        Picker("Screen Shape", selection: $screenShapeCaseOverrideValue) {
+                        Picker(selection: $screenShapeOverrideValue) {
                             Text("Automatic")
                                 .tag("")
-                            ForEach(ScreenShapeCase.allCases) { shapeCase in
+                            ForEach(ScreenShapeType.allCases) { shapeCase in
                                 Text(shapeCase.name)
                                     .tag(shapeCase.rawValue)
                             }
+                        } label: {
+                            Label("Screen Shape", systemImage: "rectangle.dashed")
                         }
                         .pickerStyle(.inline)
                     }
@@ -270,6 +269,26 @@ struct SeedPage: View {
             .foregroundColor(.primary)
         }
         .font(Font.system(size: 18, weight: .semibold, design: .rounded))
+        .onChange(of: screenShapeOverrideValue) { _ in
+            ScreenShape.pathCache.removeAll()
+            system.reloadRootView()
+        }
+        .onChange(of: externalDisplayOnTop) { _ in
+            ScreenShape.pathCache.removeAll()
+            system.reloadRootView()
+        }
+        .onChange(of: externalDisplayOnBottom) { _ in
+            ScreenShape.pathCache.removeAll()
+            system.reloadRootView()
+        }
+        .onChange(of: externalDisplayOnLeft) { _ in
+            ScreenShape.pathCache.removeAll()
+            system.reloadRootView()
+        }
+        .onChange(of: externalDisplayOnRight) { _ in
+            ScreenShape.pathCache.removeAll()
+            system.reloadRootView()
+        }
     }
     
     func saveSeed() {
@@ -291,22 +310,4 @@ struct SeedView_Previews: PreviewProvider {
     static var previews: some View {
         SeedPage()
     }
-}
-
-extension ScreenShapeCase: Identifiable {
-    
-    var id: Self { self }
-    var name: String {
-        switch self {
-        case .croppedCircle:
-            return "Cropped Circle"
-        case .verticalHexagon:
-            return "Hexagon (V)"
-        case .horizontalHexagon:
-            return "Hexagon (H)"
-        default:
-            return rawValue.capitalized
-        }
-    }
-    
 }

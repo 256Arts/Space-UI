@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Trapezoid: Shape {
     
-    @Environment(\.shapeDirection) var direction: ShapeDirection // Directions NOT implemented yet
+    @Environment(\.shapeDirection) var direction: ShapeDirection
     
     let overrideDirection: ShapeDirection?
     

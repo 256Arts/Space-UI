@@ -57,6 +57,7 @@ struct LockScreenPage: View {
                 HStack {
                     if brandNamePosition == .topCorner {
                         TextPair(did: 0, label: shipManufacturer, value: shipName, largerFontSize: 28)
+                            .multilineTextAlignment(.leading)
                             .offset(safeCornerOffsets.topLeading)
                     }
                     Spacer()

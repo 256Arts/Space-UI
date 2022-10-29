@@ -10,13 +10,27 @@ import SwiftUI
 
 struct ScreenShape: InsettableShape {
     
+    struct LayoutConfig: Hashable {
+        let rect: CGRect
+        let insetAmount: CGFloat
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(rect.origin.x)
+            hasher.combine(rect.origin.y)
+            hasher.combine(rect.size.width)
+            hasher.combine(rect.size.height)
+            hasher.combine(insetAmount)
+        }
+    }
+    
     static let cutoutHeight: CGFloat = 50.0
+    static var pathCache: [LayoutConfig: Path] = [:]
     
     static func screenTrapezoidOrHexagonCornerOffset(screenSize: CGSize) -> CGFloat {
         max(44, screenSize.width/8)
     }
     
-    var screenShapeCase: ScreenShapeCase
+    var screenShapeType: ScreenShapeType
     var insetAmount: CGFloat = 0.0
     
     func cutoutPoints(style: CutoutStyle, length: CGFloat, cutoutHeight: CGFloat) -> [CGPoint] {
@@ -119,7 +133,7 @@ struct ScreenShape: InsettableShape {
         point.x -= topTrailingLengthAfterCutout
         path.addLine(to: point)
         
-        let topCutoutStyle = system.topCutoutStyle(screenSize: screenSize, availableWidth: replacableWidth, insetAmount: insetAmount)
+        let topCutoutStyle = system.screen.topCutoutStyle(screenSize: screenSize, availableWidth: replacableWidth, insetAmount: insetAmount)
         let topCutoutPoints = cutoutPoints(style: topCutoutStyle, length: cutoutContentWidth + totalTransitionWidth, cutoutHeight: cutoutHeight).map({
             CGPoint(x: point.x - $0.x, y: point.y + $0.y)
         })
@@ -164,9 +178,13 @@ struct ScreenShape: InsettableShape {
     // MARK: - Path
     
     func path(in rect: CGRect) -> Path {
+        if let path = Self.pathCache[LayoutConfig(rect: rect, insetAmount: insetAmount)] {
+            return path
+        }
+        
         let insetRect = rect.insetBy(dx: insetAmount, dy: insetAmount)
         
-        switch screenShapeCase {
+        switch screenShapeType {
         case .circle:
             return Circle().path(in: insetRect)
         case .triangle:
@@ -179,8 +197,8 @@ struct ScreenShape: InsettableShape {
             let regularRadius = system.cornerRadius(forLength: min(rect.width, rect.height))
             if regularRadius.isZero {
                 return 0.0
-            } else if screenShapeCase == .capsule {
-                return system.cornerRadius(forLength: min(insetRect.width, insetRect.height))
+            } else if screenShapeType == .capsule {
+                return system.cornerRadius(forLength: min(insetRect.width, insetRect.height), cornerStyle: .circular)
             } else if system.cornerStyle == .circular {
                 // Use rounded corner style instead
                 return system.cornerRadius(forLength: min(rect.width, rect.height), cornerStyle: .rounded) - insetAmount * 2.0
@@ -193,7 +211,7 @@ struct ScreenShape: InsettableShape {
         
         // Straight width that could be replaced by a cutout
         let replacableWidth: CGFloat = {
-            switch screenShapeCase {
+            switch screenShapeType {
             case .croppedCircle:
                 return insetRect.width - screenTrapezoidOrHexagonCornerOffset*2.0
             case .horizontalHexagon:
@@ -215,7 +233,7 @@ struct ScreenShape: InsettableShape {
         
         // Straight height that could be replaced by a cutout
         let replacableHeight: CGFloat = {
-            if screenShapeCase == .croppedCircle {
+            if screenShapeType == .croppedCircle {
                 return insetRect.height - screenTrapezoidOrHexagonCornerOffset*2.0
             } else {
                 return insetRect.height - cornerRadius*2.0
@@ -225,7 +243,7 @@ struct ScreenShape: InsettableShape {
         let cutoutHeight = ScreenShape.cutoutHeight
         
         let totalTransitionWidth: CGFloat = {
-            switch system.generalCutoutStyle {
+            switch system.screen.generalCutoutStyle {
             case .angle45:
                 return cutoutHeight * 2.0
             case .roundedAngle45:
@@ -254,7 +272,7 @@ struct ScreenShape: InsettableShape {
         let bottomTrailingLengthAfterCutout: CGFloat
         
         if 200 < totalLengthAroundCutout {
-            switch system.getTopCutoutPosition(screenSize: rect.size) {
+            switch system.screen.getTopCutoutPosition(screenSize: rect.size) {
             case .leading:
                 topLeadingLengthBeforeCutout = totalLengthAroundCutout * 0.333333
                 topTrailingLengthAfterCutout = totalLengthAroundCutout * 0.666666
@@ -265,7 +283,7 @@ struct ScreenShape: InsettableShape {
                 topLeadingLengthBeforeCutout = totalLengthAroundCutout/2
                 topTrailingLengthAfterCutout = totalLengthAroundCutout/2
             }
-            switch system.bottomCutoutPosition {
+            switch system.screen.bottomCutoutPosition {
             case .leading:
                 bottomLeadingLengthBeforeCutout = totalLengthAroundCutout * 0.333333
                 bottomTrailingLengthAfterCutout = totalLengthAroundCutout * 0.666666
@@ -284,10 +302,10 @@ struct ScreenShape: InsettableShape {
         }
         
         // MARK: Return
-        return Path { path in
+        let path = Path { path in
             // Start at bottom left and go counter-clockwise
             let startXOffset: CGFloat = {
-                switch screenShapeCase {
+                switch screenShapeType {
                 case .croppedCircle:
                     if insetRect.width < insetRect.height {
                         return 0
@@ -314,7 +332,7 @@ struct ScreenShape: InsettableShape {
             path.move(to: point)
             
             let horizontalStraightLengthIsZero: Bool = {
-                switch screenShapeCase {
+                switch screenShapeType {
                 case .verticalHexagon:
                     return true
                 case .croppedCircle, .capsule:
@@ -329,7 +347,8 @@ struct ScreenShape: InsettableShape {
                 path.addLine(to: point)
                 
                 // MARK: Bottom Cutout
-                let bottomCutoutStyle = system.bottomCutoutStyle(screenSize: rect.size, availableWidth: replacableWidth, insetAmount: insetAmount)
+                
+                let bottomCutoutStyle = system.screen.bottomCutoutStyle(screenSize: rect.size, availableWidth: replacableWidth, insetAmount: insetAmount)
                 let bottomCutoutPoints = cutoutPoints(style: bottomCutoutStyle, length: cutoutContentWidth + totalTransitionWidth, cutoutHeight: cutoutHeight).map({
                     CGPoint(x: point.x + $0.x, y: point.y - $0.y)
                 })
@@ -372,11 +391,11 @@ struct ScreenShape: InsettableShape {
             }
             
             // MARK: Right + Top + Left Sides
-            switch screenShapeCase {
+            switch screenShapeType {
             case .verticalHexagon, .horizontalHexagon:
                 // Rotate the rect so we only have to draw horizontal hexagon paths
                 let modifiedInsetRect: CGRect = {
-                    if screenShapeCase == .verticalHexagon {
+                    if screenShapeType == .verticalHexagon {
                         return CGRect(x: insetRect.origin.y, y: insetRect.origin.x, width: insetRect.height, height: insetRect.width)
                     } else {
                         return insetRect
@@ -453,7 +472,7 @@ struct ScreenShape: InsettableShape {
                     points.append(sharpPoint5)
                 }
                 
-                if screenShapeCase == .verticalHexagon {
+                if screenShapeType == .verticalHexagon {
                     points = points.map({ CGPoint(x: $0.y, y: $0.x) }) // Rotate 90
                     path.move(to: points.last!)
                 }
@@ -464,7 +483,7 @@ struct ScreenShape: InsettableShape {
                         path.addArc(tangent1End: points.removeFirst(), tangent2End: points.removeFirst(), radius: cornerRadius)
                     }
                 }
-                if screenShapeCase == .horizontalHexagon {
+                if screenShapeType == .horizontalHexagon {
                     addTopCutout(path: &path, point: &point, screenSize: rect.size, replacableWidth: replacableWidth, topTrailingLengthAfterCutout: topTrailingLengthAfterCutout, cutoutContentWidth: cutoutContentWidth, totalTransitionWidth: totalTransitionWidth, cutoutHeight: cutoutHeight, topLeadingLengthBeforeCutout: topLeadingLengthBeforeCutout)
                 }
                 for _ in 0..<3 {
@@ -482,30 +501,48 @@ struct ScreenShape: InsettableShape {
                     points = Array(flipped[0..<flipped.count/2].reversed()) + Array(flipped[flipped.count/2..<flipped.count].reversed())
                 }
                 
-                for i in 0..<2 {
-                    if i == 0, !cornerRadius.isZero {
-                        points.removeFirst()
-                    } else {
-                        path.addLine(to: points.removeFirst())
-                    }
-                    if !cornerRadius.isZero {
-                        path.addArc(tangent1End: points.removeFirst(), tangent2End: points.removeFirst(), radius: cornerRadius)
+                // Right side
+                if system.screen.connectedEdges.contains(.right) {
+                    points.removeFirst(cornerRadius.isZero ? 1 : 5)
+                    path.addLine(to: CGPoint(x: insetRect.maxX, y: insetRect.maxY))
+                    path.addLine(to: CGPoint(x: insetRect.maxX, y: insetRect.minY))
+                    path.addLine(to: points.removeFirst())
+                } else {
+                    for i in 0..<2 {
+                        if i == 0, !cornerRadius.isZero {
+                            points.removeFirst()
+                        } else {
+                            path.addLine(to: points.removeFirst())
+                        }
+                        if !cornerRadius.isZero {
+                            path.addArc(tangent1End: points.removeFirst(), tangent2End: points.removeFirst(), radius: cornerRadius)
+                        }
                     }
                 }
                 if system.shapeDirection == .down {
+                    // Add line towards middle, ensuring the right side path ends on the same point that it would if the shape direction was up.
                     point = path.currentPoint!
                     point.x -= screenTrapezoidOrHexagonCornerOffset
                     path.addLine(to: point)
                 }
                 addTopCutout(path: &path, point: &point, screenSize: rect.size, replacableWidth: replacableWidth, topTrailingLengthAfterCutout: topTrailingLengthAfterCutout, cutoutContentWidth: cutoutContentWidth, totalTransitionWidth: totalTransitionWidth, cutoutHeight: cutoutHeight, topLeadingLengthBeforeCutout: topLeadingLengthBeforeCutout)
-                for i in 0..<2 {
-                    if i == 0, !cornerRadius.isZero {
-                        points.removeFirst()
-                    } else {
-                        path.addLine(to: points.removeFirst())
-                    }
-                    if !cornerRadius.isZero {
-                        path.addArc(tangent1End: points.removeFirst(), tangent2End: points.removeFirst(), radius: cornerRadius)
+                
+                // Left side
+                if system.screen.connectedEdges.contains(.left) {
+                    points.removeFirst(cornerRadius.isZero ? 1 : 5)
+                    path.addLine(to: CGPoint(x: insetRect.minX, y: insetRect.minY))
+                    path.addLine(to: CGPoint(x: insetRect.minX, y: insetRect.maxY))
+                    path.addLine(to: points.removeFirst())
+                } else {
+                    for i in 0..<2 {
+                        if i == 0, !cornerRadius.isZero {
+                            points.removeFirst()
+                        } else {
+                            path.addLine(to: points.removeFirst())
+                        }
+                        if !cornerRadius.isZero {
+                            path.addArc(tangent1End: points.removeFirst(), tangent2End: points.removeFirst(), radius: cornerRadius)
+                        }
                     }
                 }
             case .croppedCircle:
@@ -548,28 +585,56 @@ struct ScreenShape: InsettableShape {
                     path.addLine(to: point)
                 }
             default:
-                point.y -= cornerRadius
-                path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: .pi/2), delta: Angle(radians: -Double.pi/2.0))
-                point.x += cornerRadius
+                if !system.screen.connectedCorners.contains(.bottomRight) {
+                    point.y -= cornerRadius
+                    path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: .pi/2), delta: Angle(radians: -Double.pi/2.0))
+                    point = path.currentPoint!
+                } else {
+                    point.x += cornerRadius
+                    path.addLine(to: point)
+                    point.y -= cornerRadius
+                }
                 point.y -= replacableHeight
                 path.addLine(to: point)
-                point.x -= cornerRadius
-                path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle.zero, delta: Angle(radians: -.pi/2.0))
-                point = path.currentPoint!
+                if !system.screen.connectedCorners.contains(.topRight) {
+                    point.x -= cornerRadius
+                    path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle.zero, delta: Angle(radians: -.pi/2.0))
+                    point = path.currentPoint!
+                } else {
+                    point.y -= cornerRadius
+                    path.addLine(to: point)
+                    point.x -= cornerRadius
+                    path.addLine(to: point)
+                }
                 addTopCutout(path: &path, point: &point, screenSize: rect.size, replacableWidth: replacableWidth, topTrailingLengthAfterCutout: topTrailingLengthAfterCutout, cutoutContentWidth: cutoutContentWidth, totalTransitionWidth: totalTransitionWidth, cutoutHeight: cutoutHeight, topLeadingLengthBeforeCutout: topLeadingLengthBeforeCutout)
                 path.addLine(to: point)
-                point.y += cornerRadius
-                path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: -.pi/2), delta: Angle(radians: -.pi/2.0))
-                point.x -= cornerRadius
+                if !system.screen.connectedCorners.contains(.topLeft) {
+                    point.y += cornerRadius
+                    path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: -.pi/2), delta: Angle(radians: -.pi/2.0))
+                    point = path.currentPoint!
+                } else {
+                    point.x -= cornerRadius
+                    path.addLine(to: point)
+                    point.y += cornerRadius
+                }
                 point.y += replacableHeight
                 path.addLine(to: point)
-                point = path.currentPoint!
-                point.x += cornerRadius
-                path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: -(.pi/2) - .pi/2.0), delta: Angle(radians: -Double.pi/2.0))
+                if !system.screen.connectedCorners.contains(.bottomLeft) {
+                    point.x += cornerRadius
+                    path.addRelativeArc(center: point, radius: cornerRadius, startAngle: Angle(radians: -(.pi/2) - .pi/2.0), delta: Angle(radians: -Double.pi/2.0))
+                } else {
+                    point.y += cornerRadius
+                    path.addLine(to: point)
+                    point.x += cornerRadius
+                }
             }
             
             path.closeSubpath()
         }
+        
+        Self.pathCache[LayoutConfig(rect: rect, insetAmount: insetAmount)] = path
+        
+        return path
     }
     
     func inset(by amount: CGFloat) -> some InsettableShape {

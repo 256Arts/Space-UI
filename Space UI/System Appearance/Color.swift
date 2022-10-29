@@ -76,7 +76,7 @@ extension Color {
                 return 1.0
             }
         }()
-        let actualBrightness = system.screenMinBrightness + (brightnessMultiplier * (1.0 - system.screenMinBrightness))
+        let actualBrightness = system.screen.minBrightness + (brightnessMultiplier * (1.0 - system.screen.minBrightness))
         self.init(displayP3Hue: hue, saturation: saturation, brightness: actualBrightness, opacity: opacityValue)
     }
     
