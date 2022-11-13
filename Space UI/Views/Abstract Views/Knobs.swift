@@ -40,7 +40,7 @@ struct Knobs: View {
                             .foregroundColor(Color(color: .primary, brightness: .medium))
                     } else {
                         Circle()
-                            .foregroundColor(Color(color: .primary, brightness: .low))
+                            .foregroundColor(Color(color: .primary, brightness: .min))
                     }
                     Capsule()
                         .foregroundColor(Color(color: .secondary, brightness: .max))

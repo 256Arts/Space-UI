@@ -31,6 +31,7 @@ struct RandomCircularWidget: View {
     @State var widgetType: WidgetType
     @State var label: String
     @StateObject private var progress = DoubleGenerator(averageFrequency: 8)
+    @State private var spirographDistance: CGFloat = 26
     
     var body: some View {
         switch widgetType {
@@ -54,12 +55,17 @@ struct RandomCircularWidget: View {
                     }
                 }
         case .spirograph:
-            Spirograph(innerRadius: 21, outerRadius: idealWidgetLength / 2, distance: 31)
+            Spirograph(innerRadius: 32, outerRadius: 22, distance: spirographDistance)
                 .stroke(Color(color: .primary, opacity: system.colors.paletteStyle == .monochrome ? .low : .medium), style: system.strokeStyle(.thin))
                 .frame(minWidth: 32, idealWidth: idealWidgetLength, maxWidth: 96, minHeight: 32, idealHeight: idealWidgetLength, maxHeight: 96)
                 .overlay {
                     if elementSize != .mini {
                         Text(label).multilineTextAlignment(.center).padding(16)
+                    }
+                }
+                .onAppear {
+                    withAnimation(Animation.easeInOut(duration: 8.0).repeatForever(autoreverses: true)) {
+                        self.spirographDistance = 34
                     }
                 }
         }

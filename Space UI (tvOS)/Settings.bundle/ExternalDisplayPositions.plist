@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>External Screen On Left</string>
+			<string>External Display On Left</string>
 			<key>Key</key>
 			<string>externalDisplayOnLeft</string>
 			<key>DefaultValue</key>
@@ -20,7 +20,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>External Screen On Right</string>
+			<string>External Display On Right</string>
 			<key>Key</key>
 			<string>externalDisplayOnRight</string>
 			<key>DefaultValue</key>
@@ -30,7 +30,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>External Screen On Top</string>
+			<string>External Display On Top</string>
 			<key>Key</key>
 			<string>externalDisplayOnTop</string>
 			<key>DefaultValue</key>
@@ -40,7 +40,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>External Screen On Bottom</string>
+			<string>External Display On Bottom</string>
 			<key>Key</key>
 			<string>externalDisplayOnBottom</string>
 			<key>DefaultValue</key>

@@ -11,7 +11,7 @@ import GameplayKit
 
 struct PowerManagementPage: View {
     
-    let model: String = {
+    var model: String {
         let seedInt = Int(system.seed)
         let alphaNum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         let numberOfDigits = Int.numberOfDigits(for: seedInt, inBase: alphaNum.count)
@@ -22,8 +22,9 @@ struct PowerManagementPage: View {
             alphaNumRepresentation.append(alphaNum[index])
         }
         return alphaNumRepresentation
-    }()
+    }
     
+    @EnvironmentObject private var system: SystemAppearance
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     
     var body: some View {
@@ -70,7 +71,7 @@ struct PowerManagementPage: View {
     }
 }
 
-struct PowerManagementView_Previews: PreviewProvider {
+struct PowerManagementPage_Previews: PreviewProvider {
     static var previews: some View {
         PowerManagementPage()
     }

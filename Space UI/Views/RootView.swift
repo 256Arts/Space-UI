@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum Page {
-    case lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, squad, music, sudokuPuzzle, lightsOutPuzzle, unlabeledKeypadPuzzle
+    case lockScreen, settings, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, squad, music, sudokuPuzzle, lightsOutPuzzle, unlabeledKeypadPuzzle
     case extOrbits, extCircularProgressLeft, extCircularProgressRight
 }
 
@@ -20,7 +20,7 @@ struct RootView: View {
     @Environment(\.verticalSizeClass) private var vSizeClass
     @Environment(\.horizontalSizeClass) private var hSizeClass
     
-    var elementSize: ElementSize {
+    private var elementSize: ElementSize {
         #if targetEnvironment(macCatalyst)
         return .large
         #else
@@ -34,8 +34,8 @@ struct RootView: View {
     }
     
     @State var currentPage: Page
-    @State var showingDebugControls = true
-    @ObservedObject var systemAppearance: SystemAppearance
+    @State private var showingDebugControls = true
+    @ObservedObject private var systemAppearance: SystemAppearance = system
     
     var body: some View {
         VStack {
@@ -54,8 +54,8 @@ struct RootView: View {
                         .scaleEffect(x: -1, y: 1)
                 case .lockScreen:
                     LockScreenPage()
-                case .seed:
-                    SeedPage()
+                case .settings:
+                    AppSettingsPage()
                 case .powerManagement:
                     PowerManagementPage()
                 case .targeting:
@@ -97,6 +97,7 @@ struct RootView: View {
                 DebugControls()
                     .padding()
                     .transition(.move(edge: .leading))
+                    .environment(\.colorScheme, system.colors.useLightAppearance ? .light : .dark)
                     .onAppear() {
                         Timer.scheduledTimer(withTimeInterval: 60.0, repeats: false) { (_) in // Animation with delay will prevent taps
                             withAnimation {
@@ -135,11 +136,11 @@ struct RootView: View {
         }
         #else
         .onTapGesture(count: 2, perform: {
-            visiblePage = .seed
+            visiblePage = .settings
             NotificationCenter.default.post(name: NSNotification.Name("navigate"), object: nil)
         })
         #endif
-        .environmentObject(system)
+        .environmentObject(systemAppearance)
         .environment(\.elementSize, elementSize)
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("navigate"))) { _ in
             if !self.isExternal {
@@ -151,6 +152,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(isExternal: false, currentPage: .lockScreen, systemAppearance: system)
+        RootView(isExternal: false, currentPage: .lockScreen)
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 import SceneKit
 import SceneKit.ModelIO
 
-// Note: Need to use SceneKit still, because RealityKit is not supported by tvOS 15
+// Note: Need to use SceneKit still, because RealityKit is not supported by tvOS 16
 
 struct SceneKitView: UIViewRepresentable {
     

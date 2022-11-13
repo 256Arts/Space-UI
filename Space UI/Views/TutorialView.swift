@@ -12,9 +12,9 @@ struct TutorialView: View {
     
     var howToViewSeed: String {
         #if targetEnvironment(macCatalyst)
-        "Go to \"View Seed\" in the View menu to modify the seed."
+        "Go to \"Show Settings\" in the View menu to modify the seed."
         #else
-        "Double tap on any screen to modify the seed."
+        "Double tap on any screen to view settings, and modify the seed."
         #endif
     }
     

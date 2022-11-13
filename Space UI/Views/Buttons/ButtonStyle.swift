@@ -16,13 +16,15 @@ struct FlexButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .lineLimit(1)
-            .accentColor(Color(color: .secondary, opacity: .max))
-            .foregroundColor(Color(color: .secondary, opacity: .max))
+            .accentColor(system.buttonTextColor)
+            .foregroundColor(system.buttonTextColor)
             .multilineTextAlignment(.center)
             .padding(12)
             .frame(height: system.flexButtonFrameHeight)
             .frame(minWidth: system.flexButtonFrameHeight)
-            .background(self.isDisabled ? .clear : (self.isSelected ? Color(color: .tertiary, brightness: .medium) : Color(color: .primary, brightness: .low)))
+            .background {
+                system.buttonBackgroundColor(isDisabled: isDisabled, isSelected: isSelected)
+            }
             .cornerRadius(system.cornerRadius(forLength: system.flexButtonFrameHeight))
             .overlay(
                 system.prefersButtonBorders ?
@@ -45,12 +47,14 @@ struct ShapeButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .lineLimit(1)
-            .accentColor(Color(color: .secondary, opacity: .max))
-            .foregroundColor(Color(color: .secondary, opacity: .max))
+            .accentColor(system.buttonTextColor)
+            .foregroundColor(system.buttonTextColor)
             .multilineTextAlignment(.center)
             .padding(buttonTextPadding())
             .frame(width: system.shapeButtonFrameWidth, height: system.shapeButtonFrameHeight)
-            .background(self.isDisabled ? .clear : (self.isSelected ? Color(color: .tertiary, brightness: .medium) : Color(color: .primary, brightness: .low)))
+            .background {
+                system.buttonBackgroundColor(isDisabled: isDisabled, isSelected: isSelected)
+            }
             .clipShape(AutoShape(direction: shapeDirection))
             .overlay(
                 system.prefersButtonBorders ?

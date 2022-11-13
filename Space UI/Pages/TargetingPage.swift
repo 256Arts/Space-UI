@@ -35,7 +35,7 @@ struct TargetingPage: View {
                     ZStack {
                         ZStack {
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment1 ? .medium : .low))
+                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment1 ? .medium : .min))
                                 .onTapGesture {
                                     self.targetState.targetingSegment1.toggle()
                             }
@@ -45,7 +45,7 @@ struct TargetingPage: View {
                         .rotationEffect(Angle(degrees: -27), anchor: .bottom)
                         ZStack {
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment2 ? .medium : .low))
+                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment2 ? .medium : .min))
                                 .onTapGesture {
                                     self.targetState.targetingSegment2.toggle()
                             }
@@ -55,7 +55,7 @@ struct TargetingPage: View {
                         .rotationEffect(Angle(degrees: -9), anchor: .bottom)
                         ZStack {
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment3 ? .medium : .low))
+                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment3 ? .medium : .min))
                                 .onTapGesture {
                                     self.targetState.targetingSegment3.toggle()
                             }
@@ -65,7 +65,7 @@ struct TargetingPage: View {
                         .rotationEffect(Angle(degrees: 9), anchor: .bottom)
                         ZStack {
                             PieSlice(deltaAngle: .pi/10, hasRadialLines: true)
-                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment4 ? .medium : .low))
+                                .fill(Color(color: .primary, opacity: self.targetState.targetingSegment4 ? .medium : .min))
                                 .onTapGesture {
                                     self.targetState.targetingSegment4.toggle()
                             }
@@ -118,7 +118,7 @@ struct TargetingPage: View {
     }
 }
 
-struct TargetingView_Previews: PreviewProvider {
+struct TargetingPage_Previews: PreviewProvider {
     static var previews: some View {
         TargetingPage()
     }

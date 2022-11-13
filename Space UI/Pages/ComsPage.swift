@@ -41,7 +41,7 @@ struct ComsPage: View {
     }
 }
 
-struct ComsView_Previews: PreviewProvider {
+struct ComsPage_Previews: PreviewProvider {
     static var previews: some View {
         ComsPage()
     }

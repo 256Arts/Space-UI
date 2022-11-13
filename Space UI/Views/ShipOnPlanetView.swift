@@ -63,7 +63,7 @@ struct ShipOnPlanetView: View {
                                     .foregroundColor(Color(color: .tertiary, opacity: .max))
                             }
                         }
-                        .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
+                        .shadow(color: Color.screenBackground, radius: 8, x: 0, y: 0)
                         .offset(x: CGFloat(self.points[i].x * min(geometry.size.width, geometry.size.height/2)), y: CGFloat(self.points[i].y * min(geometry.size.width, geometry.size.height/2)))
                     }
                 }

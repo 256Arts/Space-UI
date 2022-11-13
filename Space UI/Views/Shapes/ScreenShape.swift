@@ -24,10 +24,12 @@ struct ScreenShape: InsettableShape {
     }
     
     static let cutoutHeight: CGFloat = 50.0
+    static let hardwareCornerRadius: CGFloat = 44.0
+    static let hardwareFaceIDWidth: CGFloat = 200.0
     static var pathCache: [LayoutConfig: Path] = [:]
     
-    static func screenTrapezoidOrHexagonCornerOffset(screenSize: CGSize) -> CGFloat {
-        max(44, screenSize.width/8)
+    static func screenTrapezoidOrHexagonCornerOffset(screenSize: CGSize, insetAmount: CGFloat = 0.0) -> CGFloat {
+        max(Self.hardwareCornerRadius, screenSize.width/8) - insetAmount/2
     }
     
     var screenShapeType: ScreenShapeType
@@ -203,11 +205,10 @@ struct ScreenShape: InsettableShape {
                 // Use rounded corner style instead
                 return system.cornerRadius(forLength: min(rect.width, rect.height), cornerStyle: .rounded) - insetAmount * 2.0
             } else {
-                // Min 44 for hardware corner radius
-                return max(44.0, (regularRadius / 2.0)) - insetAmount * 2.0
+                return max(Self.hardwareCornerRadius, (regularRadius / 2.0)) - insetAmount * 2.0
             }
         }()
-        let screenTrapezoidOrHexagonCornerOffset = Self.screenTrapezoidOrHexagonCornerOffset(screenSize: rect.size)
+        let screenTrapezoidOrHexagonCornerOffset = Self.screenTrapezoidOrHexagonCornerOffset(screenSize: rect.size, insetAmount: insetAmount)
         
         // Straight width that could be replaced by a cutout
         let replacableWidth: CGFloat = {
@@ -261,9 +262,8 @@ struct ScreenShape: InsettableShape {
             }
         }()
         let maxCutoutContentWidth = replacableWidth - totalTransitionWidth
-        let absoluteMaxCutoutContentWidth = 600.0 + insetAmount*2.0
-        let iPhoneNotchWidth: CGFloat = 200.0
-        let preferedCutoutContentWidth = max(rect.width*0.35 + insetAmount*2.0, iPhoneNotchWidth)
+        let absoluteMaxCutoutContentWidth = 600.0 + insetAmount
+        let preferedCutoutContentWidth = max(rect.width*0.35, Self.hardwareFaceIDWidth) + insetAmount
         let cutoutContentWidth = min(preferedCutoutContentWidth, maxCutoutContentWidth, absoluteMaxCutoutContentWidth)
         let totalLengthAroundCutout = (replacableWidth - cutoutContentWidth - totalTransitionWidth)
         let topLeadingLengthBeforeCutout: CGFloat

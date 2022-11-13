@@ -61,7 +61,6 @@ final class ScreenAppearance {
         overrideScreenShapeType ?? seedScreenShapeType
     }
     
-    var minBrightness: CGFloat
     var filter: ScreenFilter
     var backgroundStyle: BackgroundStyle
     var generalCutoutStyle: CutoutStyle
@@ -82,6 +81,8 @@ final class ScreenAppearance {
     }
     
     var connectedEdges: [UIRectEdge] {
+        guard screenShapeType.canConnectToAdjacent else { return [] }
+        
         var edges: [UIRectEdge] = []
         if UserDefaults.standard.bool(forKey: UserDefaults.Key.externalDisplayOnTop) {
             edges.append(.top)
@@ -99,6 +100,8 @@ final class ScreenAppearance {
     }
     
     var connectedCorners: [UIRectCorner] {
+        guard screenShapeType.canConnectToAdjacent else { return [] }
+        
         var corners: [UIRectCorner] = []
         if connectedEdges.contains(.top) || connectedEdges.contains(.left) {
             corners.append(.topLeft)
@@ -116,6 +119,8 @@ final class ScreenAppearance {
     }
     
     var externalDisplayPage: Page {
+        guard screenShapeType.canConnectToAdjacent else { return .extOrbits }
+        
         if connectedEdges.contains(.right), !connectedEdges.contains(.left) {
             return .extCircularProgressLeft
         } else if connectedEdges.contains(.left), !connectedEdges.contains(.right) {
@@ -126,7 +131,6 @@ final class ScreenAppearance {
     }
     
     init(random: GKRandom, design: DesignPrinciples, basicShape: BasicShape, cornerStyle: CornerStyle) {
-        minBrightness = CGFloat(random.nextDouble(in: 0...0.4))
         backgroundStyle = random.nextElement(in: [BackgroundStyle.gradientUp, .gradientDown, .color])!
         filter = random.nextElement(in: [ScreenFilter.hLines, .vLines, .none])!
         
@@ -152,8 +156,8 @@ final class ScreenAppearance {
             }
         }
         
-        seedTopMorseCodeSegments = random.nextBool(chance: 0.25) ? MorseCodeLine.generateMorseCodeSegments(width: 1920, cornerStyle: cornerStyle) : nil
-        seedBottomMorseCodeSegments = random.nextBool(chance: 0.25) ? MorseCodeLine.generateMorseCodeSegments(width: 1920, cornerStyle: cornerStyle) : nil
+        seedTopMorseCodeSegments = random.nextBool(chance: 0.25) ? MorseCodeLine.generateMorseCodeSegments(vid: 1, width: 1920, cornerStyle: cornerStyle) : nil
+        seedBottomMorseCodeSegments = random.nextBool(chance: 0.25) ? MorseCodeLine.generateMorseCodeSegments(vid: 2, width: 1920, cornerStyle: cornerStyle) : nil
         
         let allCutoutEdges: [WeightedElement<Set<CutoutEdge>>] = [
             .init(weight: 0.333, element: []),
@@ -214,7 +218,7 @@ final class ScreenAppearance {
                     return []
                 }
             case .trapezoid:
-                let screenTrapezoidHexagonCornerOffset = max(44, screenSize.width/8)
+                let screenTrapezoidHexagonCornerOffset = max(ScreenShape.hardwareCornerRadius, screenSize.width/8)
                 let cornerRadius = system.cornerRadius(forLength: min(screenSize.width, screenSize.height))
                 
                 if case .sharp = system.cornerStyle {
@@ -470,7 +474,7 @@ final class ScreenAppearance {
                 return max(40.0, (regularRadius - insetAmount) / 2.0)
             }
         }()
-        let screenTrapezoidHexagonCornerOffset = max(44, rect.width/8)
+        let screenTrapezoidHexagonCornerOffset = max(ScreenShape.hardwareCornerRadius, rect.width/8)
         let replacableWidth: CGFloat = {
             switch screenShapeType {
             case .croppedCircle:

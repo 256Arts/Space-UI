@@ -12,9 +12,9 @@ import GameplayKit
 struct OrbitsView: View {
     
     struct Orbit: Identifiable {
+        let id: Int
         let size: CGSize
         let currentAngle: CGFloat
-        let id = UUID()
     }
     
     let orbits: [Orbit]
@@ -44,7 +44,7 @@ struct OrbitsView: View {
                                     .stroke(Color(color: .primary, opacity: .max), style: StrokeStyle(lineWidth: 5, dash: [700, 500], dashPhase: self.phase))
                             }
                             .overlay {
-                                OrbitPlanetView()
+                                OrbitPlanetView(vid: Int(system.seed) + orbit.id)
                                     .offset(x: orbit.size.width/2 * geometry.size.width * cos(orbit.currentAngle), y: orbit.size.height/2 * geometry.size.height * sin(orbit.currentAngle))
                             }
                         Rectangle()
@@ -69,34 +69,39 @@ struct OrbitsView: View {
             return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
         }()
         orbits = [
-            Orbit(size: CGSize(width: 0.08, height: 0.10), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
-            Orbit(size: CGSize(width: 0.22, height: 0.22), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
-            Orbit(size: CGSize(width: 0.44, height: 0.31), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
-            Orbit(size: CGSize(width: 0.90, height: 0.48), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
-            Orbit(size: CGSize(width: 1.70, height: 0.85), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3)
+            Orbit(id: 0, size: CGSize(width: 0.08, height: 0.10), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
+            Orbit(id: 1, size: CGSize(width: 0.22, height: 0.22), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
+            Orbit(id: 2, size: CGSize(width: 0.44, height: 0.31), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
+            Orbit(id: 3, size: CGSize(width: 0.90, height: 0.48), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3),
+            Orbit(id: 4, size: CGSize(width: 1.70, height: 0.85), currentAngle: CGFloat(random.nextDouble(in: -.pi ... .pi))/3)
         ]
     }
     
 }
 
 struct OrbitPlanetView: View {
+    
+    let vid: Int
+    
     var body: some View {
         AutoShape(direction: .up)
             .frame(width: 30, height: 30)
             .foregroundColor(Color(color: .secondary, opacity: .max))
             .shadow(radius: 4)
             .overlay(alignment: .bottomLeading) {
-                Text(Lorem.word(vid: 1))
+                Text(Lorem.word(vid: vid).prefix(7))
+                    .lineLimit(1)
                     .fixedSize()
-                    .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
+                    .shadow(color: Color.screenBackground, radius: 8, x: 0, y: 0)
                     .rotationEffect(Angle(degrees: 90), anchor: .bottomLeading)
                     .offset(x: 6, y: 10)
             }
             .overlay(alignment: .topLeading) {
-                Text(Lorem.word(vid: 2))
+                Text(Lorem.word(vid: vid + 7).prefix(7))
+                    .lineLimit(1)
                     .foregroundColor(Color(color: .tertiary, opacity: .max))
                     .fixedSize()
-                    .shadow(color: Color(color: .primary, brightness: .min), radius: 8, x: 0, y: 0)
+                    .shadow(color: Color.screenBackground, radius: 8, x: 0, y: 0)
                     .offset(x: 35, y: 0)
             }
     }

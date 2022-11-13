@@ -63,7 +63,7 @@ struct BinaryView: View {
             ]
         case .limited:
             return [
-                (system.prefersBorders ? FillAndBorder(fill: .clear, border: Color(color: .primary, opacity: .max)) : FillAndBorder(fill: Color(color: .primary, opacity: .low))),
+                (system.prefersBorders ? FillAndBorder(fill: .clear, border: Color(color: .primary, opacity: .max)) : FillAndBorder(fill: Color(color: .primary, opacity: .min))),
                 FillAndBorder(fill: Color(color: .primary, opacity: .max)),
                 FillAndBorder(fill: Color(color: .secondary, opacity: .max))
             ]
@@ -92,13 +92,23 @@ struct BinaryView: View {
     
     // Styles
     var characterLength: CGFloat {
+        let base: CGFloat = {
+            switch elementSize {
+            case .small:
+                return 22
+            case .mini:
+                return 18
+            default:
+                return 26
+            }
+        }()
         switch system.basicShape {
         case .triangle, .diamond:
-            return 30
+            return round(base * 1.16)
         case .trapezoid:
-            return 28
+            return round(base * 1.08)
         default:
-            return 26
+            return base
         }
     }
     var spacing: CGFloat {

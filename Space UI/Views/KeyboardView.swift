@@ -10,6 +10,9 @@ import SwiftUI
 import GameplayKit
 
 struct KeyboardButtonShape: InsettableShape {
+    
+    @EnvironmentObject private var system: SystemAppearance
+    
     var insetAmount: CGFloat = 0.0
     
     func path(in rect: CGRect) -> Path {
@@ -29,6 +32,8 @@ struct KeyboardButtonShape: InsettableShape {
 }
 
 struct KeyboardButtonStyle: ButtonStyle {
+    
+    @EnvironmentObject private var system: SystemAppearance
     
     let keyHeight: CGFloat
     var special = false

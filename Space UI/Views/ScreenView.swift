@@ -34,17 +34,17 @@ struct ScreenView<Content: View>: View {
     
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var hSizeClass
-    var regularHSizeClass: Bool {
+    private var regularHSizeClass: Bool {
         hSizeClass == .regular
     }
     #else
-    let regularHSizeClass = true
+    private let regularHSizeClass = true
     #endif
     @Environment(\.accessibilityReduceMotion) private var reducedMotion
     
-    @State var maskOffset: CGSize = CGSize(width: 100.0 / 2.0, height: 100.0 / 2.0)
+    @State private var maskOffset: CGSize = CGSize(width: 100.0 / 2.0, height: 100.0 / 2.0)
     
-    var screenStrokeStyle: StrokeStyle? {
+    private var screenStrokeStyle: StrokeStyle? {
         system.prefersBorders ? StrokeStyle(lineWidth: system.thickLineWidth, lineCap: system.lineCap, dash: system.lineDash(lineWidth: system.thickLineWidth)) : nil
     }
     
@@ -81,14 +81,14 @@ struct ScreenView<Content: View>: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .background {
                     if system.screen.backgroundStyle == .color {
-                        Color(color: .primary, opacity: .min)
+                        Color.screenBackground
                     } else {
                         LinearGradient(gradient: Gradient(colors: (system.screen.backgroundStyle == .gradientDown ? [
-                            Color(color: .primary, opacity: system.screen.minBrightness+0.05),
-                            Color(color: .primary, opacity: max(0, system.screen.minBrightness-0.05))
+                            Color(color: .primary, brightnessMultiplier: 0.05),
+                            Color(color: .primary, brightnessMultiplier: -0.05)
                         ] : [
-                            Color(color: .primary, opacity: max(0, system.screen.minBrightness-0.05)),
-                            Color(color: .primary, opacity: system.screen.minBrightness+0.05)
+                            Color(color: .primary, brightnessMultiplier: -0.05),
+                            Color(color: .primary, brightnessMultiplier: 0.05)
                         ])), startPoint: .top, endPoint: .bottom)
                     }
                 }
@@ -96,8 +96,8 @@ struct ScreenView<Content: View>: View {
                 .overlay {
                     if let style = screenStrokeStyle {
                         ScreenShape(screenShapeType: system.screen.actualScreenShapeType(screenSize: geometry.size))
-                            .strokeBorder(Color(color: .primary, opacity: .max), style: style)
-                            .padding(system.borderInsetAmount)
+                            .inset(by: system.borderInsetAmount)
+                            .strokeBorder(Color(color: .primary, opacity: system.colors.useLightAppearance ? .medium : .max), style: style)
                     }
                 }
                 .mask {
@@ -110,6 +110,7 @@ struct ScreenView<Content: View>: View {
                         Color.black
                     }
                 }
+                .environment(\.colorScheme, system.colors.useLightAppearance ? .light : .dark)
                 .overlay(alignment: .top) {
                     if let cutoutFrame = system.screen.cutoutFrame(screenSize: geometry.size, forTop: true), regularHSizeClass {
                         DecorativeStatusView(data: ShipData.shared.topStatusState)

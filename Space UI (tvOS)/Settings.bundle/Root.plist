@@ -52,7 +52,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>External Screen Positions</string>
+			<string>External Display Positions</string>
 			<key>File</key>
 			<string>ExternalDisplayPositions</string>
 		</dict>

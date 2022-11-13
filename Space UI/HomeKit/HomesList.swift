@@ -13,6 +13,7 @@ struct HomesList: View {
     @AppStorage(UserDefaults.Key.syncHomeLights) private var syncHomeLights = false
     @AppStorage(UserDefaults.Key.turnOnHomeLights) private var turnOnHomeLights = false
     
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject private var homeStore = HomeStore.shared
     
     var body: some View {
@@ -34,6 +35,13 @@ struct HomesList: View {
             }
         }
         .navigationTitle("Homes")
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button("Done") {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PlanetDetailsView: View {
     
+    @EnvironmentObject private var system: SystemAppearance
+    
     let showPlanetImage: Bool
     
     @Binding var details: [String]

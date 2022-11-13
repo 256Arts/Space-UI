@@ -80,7 +80,7 @@ struct ShieldPage: View {
             }
                 .frame(width: 350)
         }
-        .onAppear() {
+        .onAppear {
             withAnimation(Animation.linear(duration: 20.0).repeatForever(autoreverses: false)) {
                 self.atomAngle = 360.0
             }

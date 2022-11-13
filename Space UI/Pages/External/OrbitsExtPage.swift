@@ -144,6 +144,7 @@ struct OrbitsExtPage: View {
                     }
                 }
                 .frame(maxHeight: 500)
+                .environment(\.elementSize, .regular)
             }
         }
         .animation(.linear(duration: 8), value: progressPublisher1.value)

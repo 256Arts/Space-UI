@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ComsMessageView: View {
     
-    @Environment(\.shapeDirection) var shapeDirection: ShapeDirection
+    @EnvironmentObject private var system: SystemAppearance
+    @Environment(\.shapeDirection) private var shapeDirection: ShapeDirection
     
     let messageContent: MessageContent
     
-    @State var opacity: Double = 1.0
+    @State private var opacity: Double = 1.0
     
     var body: some View {
         Text(self.messageContent.body)
@@ -26,10 +27,10 @@ struct ComsMessageView: View {
                 case .tertiaryColor:
                     return Color(color: .tertiary, opacity: .max)
                 case .filledBackground:
-                    return Color(color: .primary, brightness: .min)
+                    return Color.screenBackground
                 case .filledBackgroundWithSecondaryTextColor:
                     if system.colors.paletteStyle == .monochrome {
-                        return Color(color: .primary, brightness: .min)
+                        return Color.screenBackground
                     } else {
                         return Color(color: .secondary, opacity: .max)
                     }

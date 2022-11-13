@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         builder.remove(menu: .help)
         
         let viewSeedCommand = UIKeyCommand(input: "S", modifierFlags: [], action: #selector(viewSeed))
-        viewSeedCommand.title = "View Seed"
-        builder.insertChild(UIMenu(title: "View Seed", image: nil, identifier: .init(rawValue: "viewSeed"), options: .displayInline, children: [viewSeedCommand]), atEndOfMenu: .view)
+        viewSeedCommand.title = "Show Settings"
+        builder.insertChild(UIMenu(title: "Show Settings", image: nil, identifier: .init(rawValue: "settings"), options: .displayInline, children: [viewSeedCommand]), atEndOfMenu: .view)
         
         #if DEBUG
         let showDebugMenuCommand = UIKeyCommand(input: "D", modifierFlags: [], action: #selector(showHideDebugMenu))
@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func viewSeed() {
-        visiblePage = .seed
+        visiblePage = .settings
         NotificationCenter.default.post(name: NSNotification.Name("navigate"), object: nil)
     }
     

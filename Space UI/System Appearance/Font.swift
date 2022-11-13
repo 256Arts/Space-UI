@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Font {
     
-    enum Name: String {
+    enum Name: String, CaseIterable {
         case abEquinox = "ABEquinoxBasic"
         case almostThere = "AlmostThere-Numeric"
         case auraboo = "Auraboo-Regular"

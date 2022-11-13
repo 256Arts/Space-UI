@@ -1,5 +1,5 @@
 //
-//  LargePowerProgressView.swift
+//  StaircaseProgressView.swift
 //  Space UI
 //
 //  Created by Jayden Irwin on 2019-12-19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LargePowerProgressView: View {
+struct StaircaseProgressView: View {
     var body: some View {
         GeometryReader { geometry in
             Path { path in
@@ -38,8 +38,8 @@ struct LargePowerProgressView: View {
     }
 }
 
-struct LargePowerProgressView_Previews: PreviewProvider {
+struct StaircaseProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        LargePowerProgressView()
+        StaircaseProgressView()
     }
 }

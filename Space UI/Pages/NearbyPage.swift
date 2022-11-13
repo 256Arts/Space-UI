@@ -58,7 +58,7 @@ struct NearbyPage: View {
     }
 }
 
-struct NearbyView_Previews: PreviewProvider {
+struct NearbyPage_Previews: PreviewProvider {
     static var previews: some View {
         NearbyPage()
     }

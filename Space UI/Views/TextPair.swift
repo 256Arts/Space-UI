@@ -11,10 +11,10 @@ import SwiftUI
 struct TextPair: View {
     
     var did: Int = Int.random(in: 0..<Int.max)
-    var prefersMonochrome: Bool {
+    private var prefersMonochrome: Bool {
         (Int(system.seed) + did) % 2 == 0
     }
-    var monochrome: Bool {
+    private var monochrome: Bool {
         prefersMonochrome || system.colors.paletteStyle == .monochrome
     }
     var label: String
@@ -36,9 +36,11 @@ struct TextPair: View {
     var body: some View {
         VStack(alignment: stackAlignment) {
             Text(label)
+                .lineLimit(1)
                 .font(Font.spaceFont(size: largerFontSize * 0.8))
                 .foregroundColor(monochrome ? Color(color: .primary, opacity: .medium) : Color(color: .primary, opacity: .max))
             Text(value)
+                .lineLimit(1)
                 .font(Font.spaceFont(size: largerFontSize))
                 .foregroundColor(monochrome ? Color(color: .primary, opacity: .max) : Color(color: .secondary, opacity: .max))
         }

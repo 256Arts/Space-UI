@@ -12,6 +12,8 @@ struct Section<Content: View>: View {
     
     let content: Content
     
+    @EnvironmentObject private var system: SystemAppearance
+    
     var body: some View {
         VStack {
             content
@@ -19,12 +21,12 @@ struct Section<Content: View>: View {
         .frame(idealWidth: .infinity, maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: system.cornerStyle == .sharp ? 0 : 24)
-                .foregroundColor(Color(color: .primary, brightness: system.prefersButtonBorders ? .low : .medium))
+                .foregroundColor(Color(color: .primary, brightness: .min))
         }
         .overlay {
             if system.prefersBorders {
                 RoundedRectangle(cornerRadius: system.cornerStyle == .sharp ? 0 : 24)
-                    .strokeBorder(Color(color: .primary, opacity: .high), style: system.strokeStyle(.medium, dashed: true))
+                    .strokeBorder(Color(color: .primary, brightness: .medium), style: system.strokeStyle(.medium, dashed: true))
             }
         }
     }

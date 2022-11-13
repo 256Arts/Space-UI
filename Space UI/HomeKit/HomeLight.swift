@@ -11,7 +11,8 @@ import HomeKit
 struct HomeLight: Identifiable {
     
     enum Mode: String, Identifiable, CaseIterable {
-        case syncColor = "Sync"
+        case syncPrimaryColor = "Sync Primary Color"
+        case syncSecondaryColor = "Sync Secondary Color"
         case syncEmergency = "Emergency Only"
         case off = "Off"
         
@@ -45,10 +46,18 @@ struct HomeLight: Identifiable {
         
         let hue: CGFloat
         let sat: CGFloat
-        if syncMode == .syncEmergency, !ShipData.shared.isInEmergency {
-            hue = 0
-            sat = 0
-        } else {
+        switch syncMode {
+        case .syncSecondaryColor:
+            hue = system.colors.secondaryHue
+            sat = system.colors.secondarySaturation
+        case .syncEmergency:
+            if ShipData.shared.isInEmergency {
+                fallthrough
+            } else {
+                hue = 0
+                sat = 0
+            }
+        default:
             hue = system.colors.primaryHue * 360
             sat = system.colors.primarySaturation * 100
         }

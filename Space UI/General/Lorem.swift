@@ -13,7 +13,7 @@ public final class Lorem {
     
     /// Generates a single word.
     public static func word(vid: Int) -> String {
-        return allWords[(vid) % allWords.count]
+        return allWords[abs(vid) % allWords.count]
     }
     
     public static func word(random: GKRandom) -> String {

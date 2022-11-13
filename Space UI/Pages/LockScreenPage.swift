@@ -15,21 +15,30 @@ struct LockScreenPage: View {
         case topCorner, centerRing
     }
     
-    let random: GKRandom = {
-        let source = GKMersenneTwisterRandomSource(seed: system.seed)
-        return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
-    }()
     let hasRingViews: Bool
     let hasTopBottomRings: Bool
     let hasCircularSegmentedView: Bool
     let brandNamePosition: BrandNamePosition
+    let extraBottomCircleIcon: Bool
     let shipName = "S-Wing"
     let shipManufacturer = "Space Corp."
     
+    @Environment(\.elementSize) private var elementSize
     @Environment(\.safeCornerOffsets) private var safeCornerOffsets
     
     @State var topBottomRingsAngle = Angle.zero
     @State var tutorialIsShown = !UserDefaults.standard.bool(forKey: UserDefaults.Key.tutorialShown)
+    
+    var bottomCircleIconCount: Int {
+        switch elementSize {
+        case .small:
+            return 2 + (extraBottomCircleIcon ? 1 : 0)
+        case .mini:
+            return 1 + (extraBottomCircleIcon ? 1 : 0)
+        default:
+            return 3 + (extraBottomCircleIcon ? 1 : 0)
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -64,7 +73,7 @@ struct LockScreenPage: View {
                 }
                 Spacer()
                 HStack {
-                    ForEach(0..<self.random.nextInt(in: 3...5)) { index in
+                    ForEach(0..<bottomCircleIconCount) { index in
                         CircleIcon.image(vid: index)
                             .foregroundColor(Color(color: .primary, opacity: .high))
                     }
@@ -101,14 +110,20 @@ struct LockScreenPage: View {
     }
     
     init() {
+        let random: GKRandom = {
+            let source = GKMersenneTwisterRandomSource(seed: system.seed)
+            return GKRandomDistribution(randomSource: source, lowestValue: 0, highestValue: Int.max)
+        }()
+        
         hasRingViews = random.nextBool(chance: 0.666)
         hasTopBottomRings = random.nextBool()
         hasCircularSegmentedView = random.nextBool()
         brandNamePosition = random.nextBool() ? .topCorner : .centerRing
+        extraBottomCircleIcon = random.nextBool()
     }
 }
 
-struct LockScreenView_Previews: PreviewProvider {
+struct LockScreenPage_Previews: PreviewProvider {
     static var previews: some View {
         LockScreenPage()
     }

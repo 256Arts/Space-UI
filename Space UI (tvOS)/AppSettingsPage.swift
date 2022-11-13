@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SeedPage: View {
+struct AppSettingsPage: View {
     
     var screenShapeOverride: ScreenShapeType? {
         ScreenShapeType(rawValue: screenShapeOverrideValue)
@@ -93,6 +93,13 @@ struct SeedPage: View {
                     Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
                         Label("Open Settings", systemImage: "gear")
                     }
+                    #if DEBUG
+                    NavigationLink {
+                        FontTestView()
+                    } label: {
+                        Label("Test Fonts", systemImage: "f.square")
+                    }
+                    #endif
                 }
             }
             .navigationTitle("Quick Settings")
@@ -128,6 +135,6 @@ struct SeedPage: View {
 
 struct SeedView_Previews: PreviewProvider {
     static var previews: some View {
-        SeedPage()
+        AppSettingsPage()
     }
 }

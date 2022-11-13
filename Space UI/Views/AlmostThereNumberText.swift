@@ -19,7 +19,7 @@ struct AlmostThereNumberText: View {
             Text(String(repeating: "0", count: digitCount))
                 .font(Font.custom(Font.Name.almostThere.rawValue, size: fontSize))
                 .foregroundColor(Color(color: .primary, opacity: .low))
-            Text(String(number))
+            Text(String(number).prefix(digitCount))
                 .font(Font.custom(Font.Name.almostThere.rawValue, size: fontSize))
                 .foregroundColor(Color(color: .secondary, opacity: .max))
         }

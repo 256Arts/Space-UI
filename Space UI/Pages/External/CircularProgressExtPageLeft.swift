@@ -34,11 +34,14 @@ struct CircularProgressExtPageLeft: View {
                     HStack {
                         CircularProgressView(did: 1, value: $progressPublisher2.value, lineWidth: 10) {
                             CircularProgressView(did: 1, value: .constant(1)) {
-                                Circle()
-                                    .strokeBorder(style: system.strokeStyle(.medium))
+                                Hexagon()
+                                    .stroke(style: system.strokeStyle(.medium))
                                     .padding(20)
                             }
                             .padding(20)
+                            #if os(tvOS)
+                            .environment(\.elementSize, .regular)
+                            #endif
                         }
                         .overlay(alignment: .topLeading) {
                             Text(Lorem.word(vid: vid + 3))
@@ -47,11 +50,14 @@ struct CircularProgressExtPageLeft: View {
                         }
                         CircularProgressView(did: 1, value: $progressPublisher3.value, lineWidth: 10) {
                             CircularProgressView(did: 1, value: .constant(1)) {
-                                Circle()
-                                    .strokeBorder(style: system.strokeStyle(.medium))
+                                Hexagon()
+                                    .stroke(style: system.strokeStyle(.medium))
                                     .padding(20)
                             }
                             .padding(20)
+                            #if os(tvOS)
+                            .environment(\.elementSize, .regular)
+                            #endif
                         }
                         .overlay(alignment: .topLeading) {
                             Text(Lorem.word(vid: vid + 4))
@@ -92,7 +98,7 @@ struct CircularProgressExtPageLeft: View {
                 
                 RoundedRectangle(cornerRadius: system.cornerRadius(forLength: system.thinLineWidth))
                     .frame(height: system.thinLineWidth)
-                    .foregroundColor(Color(color: .primary, opacity: .low))
+                    .foregroundColor(Color(color: .primary, opacity: .min))
                 
                 CircularProgressRow(vid: 2)
                     .padding(circularProgressRowPadding)
@@ -103,13 +109,13 @@ struct CircularProgressExtPageLeft: View {
                     DecorativeRaysView(cycleCount: 100)
                         .frame(width: geometry.size.height * 0.9, height: geometry.size.height * 0.9)
                     Hexagon()
-                        .foregroundColor(Color(color: .primary, brightness: .min))
+                        .foregroundColor(Color.screenBackground)
                         .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
                     GridShape(rows: 10, columns: 10)
                         .stroke(style: system.strokeStyle(.thin))
-                        .foregroundColor(Color(color: .primary, opacity: .low))
+                        .foregroundColor(Color(color: .primary, opacity: .min))
                     AsteriskShape(ticks: 64, innerRadiusFraction: 0.94)
-                        .stroke(Color(color: .primary, opacity: .max), style: system.strokeStyle(.thick))
+                        .stroke(Color(color: .primary, brightness: .max), style: system.strokeStyle(.thick))
                     Hexagon()
                         .stroke(style: system.strokeStyle(.medium))
                         .frame(width: geometry.size.height * 0.75, height: geometry.size.height * 0.75)

@@ -18,27 +18,41 @@ struct CircularProgressView<Inner: View>: View {
     let design: Design
     let inner: Inner
     
+    @Environment(\.elementSize) private var elementSize
+    
     @Binding var value: Double
     @State var lineWidth: CGFloat?
+    
+    var tickCount: Int {
+        switch elementSize {
+        case .large:
+            return 96
+        case .regular:
+            return 64
+        case .small:
+            return 48
+        case .mini:
+            return 32
+        }
+    }
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 if design == .asteresk {
-                    AsteriskShape(ticks: 64, innerRadiusFraction: 0.75)
-                        .stroke(Color(color: .primary, opacity: .low), style: strokeStyle(size: geometry.size))
-                        .rotationEffect(Angle(degrees: -90)) // Needed to match the ticks
-                    AsteriskShape(ticks: 64, innerRadiusFraction: 0.75)
+                    AsteriskShape(ticks: tickCount, innerRadiusFraction: 0.75)
+                        .stroke(Color(color: .primary, brightness: .min), style: strokeStyle(size: geometry.size))
+                    AsteriskShape(ticks: tickCount, innerRadiusFraction: 0.75)
                         .trim(from: 0, to: self.value)
-                        .stroke(Color(color: .primary, opacity: .max), style: strokeStyle(size: geometry.size))
+                        .stroke(Color(color: .primary, brightness: .max), style: strokeStyle(size: geometry.size))
                         .rotationEffect(Angle(degrees: -90))
                 } else {
                     Circle()
-                        .stroke(Color(color: .primary, opacity: .low), style: strokeStyle(size: geometry.size))
+                        .stroke(Color(color: .primary, brightness: .min), style: strokeStyle(size: geometry.size))
                         .rotationEffect(Angle(degrees: -90)) // Needed to match the dashes
                     Circle()
                         .trim(from: 0, to: self.value)
-                        .stroke(Color(color: .primary, opacity: .max), style: strokeStyle(size: geometry.size))
+                        .stroke(Color(color: .primary, brightness: .max), style: strokeStyle(size: geometry.size))
                         .rotationEffect(Angle(degrees: -90))
                 }
                 self.inner
@@ -73,7 +87,7 @@ struct CircularProgressView<Inner: View>: View {
         let lineWidth = actualLineWidth(size: size)
         switch design {
         case .dashed:
-            return StrokeStyle(lineWidth: lineWidth, lineCap: system.lineCap, dash: [lineWidth/3, lineWidth/3])
+            return StrokeStyle(lineWidth: lineWidth, dash: [lineWidth/3, lineWidth/3])
         case .continuous:
             return StrokeStyle(lineWidth: lineWidth, lineCap: system.lineCap)
         case .asteresk:

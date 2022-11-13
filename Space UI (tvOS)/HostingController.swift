@@ -19,7 +19,7 @@ class HostingController: UIHostingController<RootView> {
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         super.pressesEnded(presses, with: event)
         
-        guard presses.contains(where: { $0.type != .playPause }) else { return }
+        guard presses.contains(where: { $0.type == .select }) else { return }
         
         NotificationCenter.default.post(name: NSNotification.Name("showSeedView"), object: nil)
     }

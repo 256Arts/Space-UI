@@ -11,7 +11,7 @@ import SwiftUI
 var visiblePage = system.screen.externalDisplayPage
 
 enum Page {
-    case lockScreen, seed, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, music
+    case lockScreen, settings, powerManagement, targeting, coms, nearby, planet, galaxy, ticTacToe, shield, music
     case extOrbits, extCircularProgressLeft, extCircularProgressRight
 }
 
@@ -37,9 +37,17 @@ struct RootView: View {
         DisplayOrientation(rawValue: displayOrientationRawValue) ?? .default
     }
     
+    private var elementSize: ElementSize {
+        if system.screen.screenShapeType != .circle && system.screen.screenShapeType != .triangle {
+            return .large
+        } else {
+            return .regular
+        }
+    }
+    
     @State var currentPage: Page
-    @State var showSeedView = false
-    @ObservedObject var systemAppearance: SystemAppearance
+    @State var showSettingsView = false
+    @ObservedObject private var systemAppearance: SystemAppearance = system
     
     var body: some View {
         ScreenView {
@@ -54,23 +62,24 @@ struct RootView: View {
             }
             
         }
-        .sheet(isPresented: self.$showSeedView) {
-            SeedPage()
+        .sheet(isPresented: self.$showSettingsView) {
+            AppSettingsPage()
         }
         .ignoresSafeArea()
         .frame(width: displayOrientation == .default ? 1920 : 1080, height: displayOrientation == .default ? 1080 : 1920)
         .rotationEffect(displayOrientation.angle)
         .font(Font.spaceFont(size: system.defaultFontSize))
         .foregroundColor(Color(color: .secondary, opacity: .max))
-        .environmentObject(system)
+        .environmentObject(systemAppearance)
+        .environment(\.elementSize, elementSize)
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("showSeedView"))) { _ in
-            self.showSeedView = true
+            self.showSettingsView = true
         }
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(currentPage: system.screen.externalDisplayPage, systemAppearance: system)
+        RootView(currentPage: system.screen.externalDisplayPage)
     }
 }

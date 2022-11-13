@@ -1,5 +1,5 @@
 //
-//  SeedPage.swift
+//  AppSettingsPage.swift
 //  Space UI
 //
 //  Created by Jayden Irwin on 2020-01-10.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SeedPage: View {
+struct AppSettingsPage: View {
     
     @AppStorage(UserDefaults.Key.screenShapeOverride) private var screenShapeOverrideValue = ""
     @AppStorage(UserDefaults.Key.externalDisplayOnTop) private var externalDisplayOnTop = false
@@ -45,6 +45,9 @@ struct SeedPage: View {
     @State private var showingDesignPrinciples = false
     @State private var showingScreenShapePicker = false
     @State private var showingHomeKit = false
+    #if DEBUG
+    @State private var showingFontTest = false
+    #endif
     @FocusState var seedIsFocused: Bool
     
     @ObservedObject var peerSessionController = PeerSessionController.shared
@@ -218,7 +221,7 @@ struct SeedPage: View {
                 }
                 
                 Section {
-                    Text("Links")
+                    Label("Links", systemImage: "link")
                     AutoStack {
                         Link(destination: URL(string: "https://www.jaydenirwin.com/")!) {
                             Label("Developer Website", systemImage: "safari")
@@ -235,6 +238,17 @@ struct SeedPage: View {
                     }
                     .padding(8)
                 }
+                
+                #if DEBUG
+                Section {
+                    Label("Test Fonts", systemImage: "f.square")
+                    Button("Test") {
+                        showingFontTest = true
+                    }
+                    .buttonStyle(FlexButtonStyle())
+                    .padding(8)
+                }
+                #endif
             }
         }
         .frame(idealWidth: .infinity, maxWidth: .infinity, idealHeight: .infinity, maxHeight: .infinity)
@@ -268,6 +282,14 @@ struct SeedPage: View {
             }
             .foregroundColor(.primary)
         }
+        #if DEBUG
+        .sheet(isPresented: $showingFontTest) {
+            NavigationStack {
+                FontTestView()
+            }
+            .foregroundColor(.primary)
+        }
+        #endif
         .font(Font.system(size: 18, weight: .semibold, design: .rounded))
         .onChange(of: screenShapeOverrideValue) { _ in
             ScreenShape.pathCache.removeAll()
@@ -306,8 +328,8 @@ struct SeedPage: View {
     }
 }
 
-struct SeedView_Previews: PreviewProvider {
+struct AppSettingsPage_Previews: PreviewProvider {
     static var previews: some View {
-        SeedPage()
+        AppSettingsPage()
     }
 }

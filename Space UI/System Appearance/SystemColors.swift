@@ -11,6 +11,9 @@ import GameplayKit
 enum SystemColor {
     case primary, secondary, tertiary, danger
 }
+enum Brightness {
+    case min, low, medium, high, max
+}
 enum Opacity {
     case min, low, medium, high, max
 }
@@ -21,7 +24,9 @@ enum PaletteStyle {
 final class SystemColors {
     
     let paletteStyle: PaletteStyle
+    let useLightAppearance: Bool
     
+    let backgroundBrightness: CGFloat
     let dangerHue: CGFloat = 0.0
     let dangerSaturation: CGFloat = 1.0
     let primaryHueNormal: CGFloat
@@ -38,21 +43,39 @@ final class SystemColors {
     var tertiarySaturation: CGFloat = 1.0
     
     init(random: GKRandom) {
+        let allAppearances: [WeightedElement<Bool>] = [
+            .init(weight: 0.01, element: true),
+            .init(weight: 0.99, element: false)
+        ]
+        useLightAppearance = random.nextWeightedElement(in: allAppearances)!
+        
         let allPaletteStyles: [WeightedElement<PaletteStyle>] = [
-            .init(weight: 1, element: .monochrome),
+            .init(weight: 1 + (useLightAppearance ? 10 : 0), element: .monochrome),
             .init(weight: 1, element: .colorful),
             .init(weight: 4, element: .limited)
         ]
         paletteStyle = random.nextWeightedElement(in: allPaletteStyles)!
+        
+        backgroundBrightness = CGFloat(random.nextDouble(in: useLightAppearance ? 0.7...1.0 : 0...0.3))
         primaryHueNormal = CGFloat(random.nextFraction())
         if paletteStyle == .monochrome {
-            primarySaturationNormal = CGFloat(random.nextFraction())
+            let allPrimarySats: [WeightedElement<CGFloat>] = [
+                .init(weight: 1, element: CGFloat(random.nextFraction())),
+                .init(weight: useLightAppearance ? 5 : 0, element: 0)
+            ]
+            primarySaturationNormal = random.nextWeightedElement(in: allPrimarySats)!
+            
             secondaryHue = primaryHueNormal
             secondarySaturation = primarySaturationNormal
             tertiaryHue = primaryHueNormal
             tertiarySaturation = primarySaturation
         } else {
-            primarySaturationNormal = 1
+            let allPrimarySats: [WeightedElement<CGFloat>] = [
+                .init(weight: 1, element: 1),
+                .init(weight: 0.1, element: CGFloat(random.nextFraction()))
+            ]
+            primarySaturationNormal = random.nextWeightedElement(in: allPrimarySats)!
+            
             if random.nextBool(chance: 0.2) {
                 let secondaryHueOffset = 0.08 + CGFloat(random.nextDouble(in: 0...0.3))
                 secondaryHue = primaryHueNormal + secondaryHueOffset

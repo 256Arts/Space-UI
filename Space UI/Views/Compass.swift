@@ -10,6 +10,8 @@ import SwiftUI
 
 struct Compass: View {
     
+    @EnvironmentObject private var system: SystemAppearance
+    
     @StateObject private var anglePublisher = DoubleGenerator(range: -20...20)
     
     var body: some View {

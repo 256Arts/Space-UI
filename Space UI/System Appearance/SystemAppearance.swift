@@ -86,17 +86,36 @@ final class SystemAppearance: ObservableObject {
     var preferedButtonSizingMode: ButtonSizingMode
     var circularSegmentedViewCurvedOuterEdge: Bool
     var prefersBorders: Bool
+    var prefersProminentButtons: Bool
     var prefersButtonBorders: Bool
     var prefersDashedLines: Bool
     var prefersRandomLineDashing: Bool
     var basicShapeHStackSpacing: CGFloat
     var borderInsetAmount: CGFloat
+    var mediumLineWidthBase: CGFloat
     var thinLineWidth: CGFloat {
         mediumLineWidth / 2
     }
-    var mediumLineWidth: CGFloat
+    var mediumLineWidth: CGFloat {
+        #if os(tvOS)
+        round(mediumLineWidthBase * 1.5)
+        #elseif targetEnvironment(macCatalyst)
+        round(mediumLineWidthBase * 1.2)
+        #else
+        round(mediumLineWidthBase)
+        #endif
+    }
     var thickLineWidth: CGFloat {
         mediumLineWidth * 2
+    }
+    
+    // Colors
+    var buttonTextColor: Color {
+        if prefersProminentButtons {
+            return Color.screenBackground
+        } else {
+            return Color(color: .secondary, opacity: .max)
+        }
     }
     
     // Fonts
@@ -204,6 +223,7 @@ final class SystemAppearance: ObservableObject {
         default:
             circularSegmentedViewCurvedOuterEdge = random.nextBool()
         }
+        prefersProminentButtons = random.nextBool(chance: 0.25)
         let prefersBorders = random.nextBool(chance: 0.666)
         self.prefersBorders = prefersBorders
         prefersButtonBorders = random.nextBool(chance: 0.333) ? false : prefersBorders
@@ -225,7 +245,7 @@ final class SystemAppearance: ObservableObject {
         }
         borderInsetAmount = random.nextBool(chance: 0.1) ? CGFloat(random.nextInt(upperBound: 7))*2.0 : 0.0
         prefersRandomLineDashing = random.nextBool(chance: 0.2) ? prefersDashedLines : false
-        mediumLineWidth = 2.0 + CGFloat(design.boldness * 4.0)
+        mediumLineWidthBase = 2.0 + CGFloat(design.boldness * 4.0)
         
         let allFonts: [WeightedDesignElement<Font.Name>] = [
             .init(baseWeight: 1, design: .init(sharpness: 0.5, boldness: 1.0), element: .abEquinox),
@@ -296,6 +316,22 @@ final class SystemAppearance: ObservableObject {
             }
         }
         return dash
+    }
+    
+    func buttonBackgroundColor(isDisabled: Bool, isSelected: Bool) -> Color {
+        if prefersProminentButtons {
+            if isDisabled {
+                return .clear
+            } else {
+                return isSelected ? Color(color: .tertiary, brightness: .max) : Color(color: .primary, brightness: .max)
+            }
+        } else {
+            if isDisabled {
+                return .clear
+            } else {
+                return isSelected ? Color(color: .tertiary, brightness: .medium) : Color(color: .primary, brightness: .low)
+            }
+        }
     }
     
     func reloadRootView() {

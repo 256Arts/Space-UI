@@ -10,19 +10,14 @@ import UIKit
 import SwiftUI
 
 var iwindow: UIWindow?
-var externalWindow: UIWindow?
 var rootHostingController: HostingController?
 var nextEmergencyTimer: Timer?
 
 func replaceRootView() {
-    rootHostingController = HostingController(rootView: RootView(currentPage: system.screen.externalDisplayPage, systemAppearance: system))
+    rootHostingController = HostingController(rootView: RootView(currentPage: system.screen.externalDisplayPage))
     iwindow?.rootViewController = rootHostingController
     let tintColor = UIColor(Color(color: .primary, brightness: .max))
     iwindow?.tintColor = tintColor
-    if let exWindow = externalWindow {
-        exWindow.rootViewController = HostingController(rootView: RootView(currentPage: system.screen.externalDisplayPage, systemAppearance: system))
-        exWindow.tintColor = tintColor
-    }
 }
 
 @UIApplicationMain
@@ -32,12 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register()
 
         // Create the SwiftUI view that provides the window contents.
-        let rootView = RootView(currentPage: system.screen.externalDisplayPage, systemAppearance: system)
+        let rootView = RootView(currentPage: system.screen.externalDisplayPage)
 
         // Use a UIHostingController as window root view controller.
         let window = UIWindow(frame: UIScreen.main.bounds)
         rootHostingController = HostingController(rootView: rootView)
-        rootHostingController?.view.backgroundColor = .black
         window.rootViewController = rootHostingController
         window.tintColor = UIColor(Color(color: .primary, brightness: .max))
         iwindow = window

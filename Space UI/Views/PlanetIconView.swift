@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PlanetIconView: View {
     
+    @EnvironmentObject private var system: SystemAppearance
     @Environment(\.shapeDirection) var shapeDirection: ShapeDirection
     
     let planet: GalaxyPage.Planet
