@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Acknowledgements</string>
+	<key>StringsFilename</key>
+	<string>Acknowledgements</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Key</key>
+			<string>a</string>
+			<key>DefaultValue</key>
+			<string>Freepik from www.flaticon.com</string>
+			<key>Title</key>
+			<string>Icons</string>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>https://www.zapsplat.com/</string>
+			<key>Title</key>
+			<string>Sound Effects</string>
+			<key>Key</key>
+			<string>b</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>mik300z</string>
+			<key>Title</key>
+			<string>Sound Effects</string>
+			<key>Key</key>
+			<string>c</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>Eric Matyas - www.soundimage.org</string>
+			<key>Title</key>
+			<string>Sound Effects</string>
+			<key>Key</key>
+			<string>d</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Black Hole (Icon)</string>
+			<key>DefaultValue</key>
+			<string>David Lamm from the Noun Project</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Aurek-Besh Font</string>
+			<key>DefaultValue</key>
+			<string>Boba Fonts</string>
+			<key>Key</key>
+			<string>d</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Baybayin Font</string>
+			<key>DefaultValue</key>
+			<string>Alvin Funelas</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>David Knapp</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>Germes</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>hogok</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>King Chen</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>Ryan Love</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Helmet Art</string>
+			<key>DefaultValue</key>
+			<string>slavograd</string>
+			<key>Key</key>
+			<string>e</string>
+		</dict>
+	</array>
+</dict>
+</plist>

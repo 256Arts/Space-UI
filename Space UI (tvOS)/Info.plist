@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This allows the app to sync with certain songs.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_hws-kb._udp</string>
+		<string>_hws-kb._tcp</string>
+	</array>
+	<key>NSHomeKitUsageDescription</key>
+	<string>This allows you to sync colors with home lights.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This allows you to sync UI with nearby devices.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ABEquinox.otf</string>
+		<string>AlmostThere-Numeric.otf</string>
+		<string>Auraboo.otf</string>
+		<string>AurekBesh.ttf</string>
+		<string>AurebeshBloopsAF.otf</string>
+		<string>AurebeshDroid.ttf</string>
+		<string>AurebeshRacerAF-Fast.otf</string>
+		<string>BaybayinRounded.ttf</string>
+		<string>ClyneseBend.ttf</string>
+		<string>FresianAF.otf</string>
+		<string>Galactico.ttf</string>
+		<string>GeonosianPM.ttf</string>
+		<string>KyberCrystalDisplay.ttf</string>
+		<string>MandoAF-Regular.otf</string>
+		<string>OuterRimAF.ttf</string>
+		<string>SFoil.otf</string>
+		<string>SGA2.ttf</string>
+		<string>TheCalling.ttf</string>
+		<string>TradeFederation.ttf</string>
+		<string>UmbaranST.otf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
+</dict>
+</plist>
