@@ -89,6 +89,8 @@ Multiplatform from one codebase. **`Space UI`** is the App Store app (iOS/iPadOS
 
 TestFlight builds come from Xcode Cloud, triggered by pushing a `tf/<version>` tag. Xcode Cloud stamps its own per-product counter as the build number when it prepares the upload, so `CURRENT_PROJECT_VERSION` in the project has no effect on a cloud build and no CI script can override it. That counter started at 1, below the manual builds already uploaded (up to 47), which macOS rejects because it requires build numbers to increase across the whole app. The counter's starting value is set in App Store Connect → the app → Xcode Cloud → Settings → Build Number → Next Build Number.
 
+The private `TestFlight (Show)` workflow runs only on `show-tf/<version>` tags. It archives the shared `Space UI (Show)` scheme for iOS/iPadOS, Mac Catalyst, and visionOS as TestFlight Internal Only. Push the tag on a commit whose `Show/` submodule revision is already pushed to its private remote. The regular `tf/` and App Store workflows never archive the Show scheme.
+
 ## App Store screenshots
 
 `Scripts/screenshots.sh [iphone|ipad|mac|vision]` — a wrapper onto the runner shared by every app (`Repos/Scripts/screenshots` in iCloud), which boots simulators, freezes the status bar, and composites the Mac window onto a wallpaper. This repo owns only `.screenshots.conf`, `ScreenshotMode.swift`, and `Space UI UITests/ScreenshotTests.swift` (the `Screenshots` scheme's only test target). Shots land in `Raw Assets/Screenshots/` as `Phone 6.9 1.png`, `Pad 13 1.png`, `Mac 1.png`, `Vision 1.png` — a symlink out to iCloud, so nothing lands in the repo, next to the `Old (Manual)/` archive of the hand-made ones. `--upload` sends the results to the App Store version being prepared.
