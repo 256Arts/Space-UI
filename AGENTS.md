@@ -89,7 +89,7 @@ Multiplatform from one codebase. **`Space UI`** is the App Store app (iOS/iPadOS
 
 TestFlight builds come from Xcode Cloud, triggered by pushing a `tf/<version>` tag. Xcode Cloud stamps its own per-product counter as the build number when it prepares the upload, so `CURRENT_PROJECT_VERSION` in the project has no effect on a cloud build and no CI script can override it. That counter started at 1, below the manual builds already uploaded (up to 47), which macOS rejects because it requires build numbers to increase across the whole app. The counter's starting value is set in App Store Connect → the app → Xcode Cloud → Settings → Build Number → Next Build Number.
 
-The private `TestFlight (Show)` workflow runs only on `show-tf/<version>` tags. It archives the shared `Space UI (Show)` scheme for iOS/iPadOS, Mac Catalyst, and visionOS as TestFlight Internal Only. Push the tag on a commit whose `Show/` submodule revision is already pushed to its private remote. The regular `tf/` and App Store workflows never archive the Show scheme.
+The private `TestFlight (Show)` workflow runs only on `show-tf/<version>` tags. It archives the shared `Space UI (Show)` scheme for iOS/iPadOS, Mac Catalyst, and visionOS as TestFlight Internal Only. Use Conductor’s `testflight-show-build` action (`ship-build testflight-show`) to push the tag; the pinned `Show/` revision must already be on the private remote’s `main`. The regular `tf/` and App Store workflows never archive the Show scheme.
 
 ## App Store screenshots
 
