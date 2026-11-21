@@ -1,0 +1,15 @@
+{
+  "originHash" : "44a452168e5e2b92a7c74548e9d9a377cc91475948cb6452296548d701e1f69e",
+  "pins" : [
+    {
+      "identity" : "alienfontkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/256Arts/AlienFontKit",
+      "state" : {
+        "revision" : "ec46b51b5e1b8ab2a1d0e81c572c6f2cbb9c1fb3",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

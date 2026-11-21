@@ -1,0 +1,11 @@
+.DS_Store
+xcuserdata/
+
+# Screenshot runs stage here (the shots themselves go to Raw Assets, outside the repo)
+build/
+
+.conductor/settings.local.toml
+
+# Xcode state, build products, agent scratchpad, macOS
+DerivedData/
+.context/

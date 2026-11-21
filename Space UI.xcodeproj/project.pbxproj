@@ -1,0 +1,1030 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 90;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFC000000000000000000011 /* AlienFontKit in Frameworks */ = {isa = PBXBuildFile; productRef = AFC000000000000000000021 /* AlienFontKit */; };
+		AFC000000000000000000012 /* AlienFontKit in Frameworks */ = {isa = PBXBuildFile; productRef = AFC000000000000000000022 /* AlienFontKit */; };
+		AFC000000000000000000013 /* AlienFontKit in Frameworks */ = {isa = PBXBuildFile; productRef = AFC000000000000000000023 /* AlienFontKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CE5701A0000000000000008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BE24F1C2347DAE7008859FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7A00012E9A000000000001;
+			remoteInfo = "Space UI (Show)";
+		};
+		2CE5701B0000000000000008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BE24F1C2347DAE7008859FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BE24F232347DAE7008859FE;
+			remoteInfo = "Space UI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B43933923B6F48000660F96 /* Space UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE24F242347DAE7008859FE /* Space UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE5701A0000000000000001 /* Space UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Space UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7A00012E9A000000000002 /* Space UI Show.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space UI Show.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE5701B0000000000000001 /* Space UI UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Space UI UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1B189F572E3866CB002F7248 /* Exceptions for "Space UI (tvOS)" folder in "Space UI (tvOS)" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1B43933823B6F48000660F96 /* Space UI (tvOS) */;
+		};
+		1B18A1D22E3866EE002F7248 /* Exceptions for "Space UI" folder in "Space UI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				Shaders/Wireframe.metal = (ios, maccatalyst, );
+			};
+			target = 1BE24F232347DAE7008859FE /* Space UI */;
+		};
+		1B7A00012E9A000000000004 /* Exceptions for "Space UI" folder in "Space UI (Show)" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				Shaders/Wireframe.metal = (ios, maccatalyst, );
+			};
+			target = 1B7A00012E9A000000000001 /* Space UI (Show) */;
+		};
+		1B18A1D32E3866EE002F7248 /* Exceptions for "Space UI" folder in "Space UI (tvOS)" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"3D Models/Planets/mars.usdz",
+				"3D Models/Planets/moon.usdz",
+				"3D Models/Planets/saturn.usdz",
+				"3D Models/Planets/venus.usdz",
+				"3D Models/ShipMesh1.usdz",
+				"3D Models/ShipMesh11.usdz",
+				"3D Models/ShipMesh12.usdz",
+				"3D Models/ShipMesh13.usdz",
+				"3D Models/ShipMesh14.usdz",
+				"3D Models/ShipMesh2.usdz",
+				"3D Models/ShipMesh3.usdz",
+				"3D Models/ShipMesh5.usdz",
+				"3D Models/ShipMesh6.usdz",
+				"3D Models/ShipMesh9.usdz",
+				"3D Models/starShuttle.usdz",
+				"3D Models/tesser.usdz",
+				App.icon,
+				"Fonts/Aurebesh-English.ttf",
+				General/GridCoord.swift,
+				Info.plist,
+				NearbyInteractionSessionController.swift,
+				Settings.bundle,
+				Sounds/action.wav,
+				Sounds/button.wav,
+				Sounds/button2.wav,
+				Sounds/button3.wav,
+				Sounds/fighterEngineLoop.mp3,
+				Sounds/jumpExternal.m4a,
+				Sounds/jumpInternal.m4a,
+				Sounds/notAllowed.wav,
+				"Space Window/SpaceMetalView.swift",
+				"Space Window/SpaceSceneController+Enemies.swift",
+				"Space Window/SpaceSceneController+Planets.swift",
+				"Space Window/SpaceSceneController.swift",
+				"Space Window/SpaceWindowCameraManager.swift",
+				"Space Window/SpaceWindowView.swift",
+				SpaceUIApp.swift,
+				Textures/hyperspace.mp4,
+				Textures/stars.png,
+				Views/Components/DebugControls.swift,
+				Views/Components/GalaxyView.swift,
+				Views/Components/KeyboardKeyView.swift,
+				Views/Components/KeyboardView.swift,
+				Views/Components/PlanetDetailsView.swift,
+				Views/Components/PlanetIconView.swift,
+				Views/Components/QuickStartView.swift,
+				Views/Components/ShipOnPlanetView.swift,
+				Views/Components/UIRootView.swift,
+				Views/Pages/AppSettingsPage.swift,
+				Views/Pages/ComsPage.swift,
+				Views/Pages/CustomTextPage.swift,
+				Views/Pages/DotsAndBoxesPage.swift,
+				Views/Pages/GalaxyPage.swift,
+				Views/Pages/HomeKitPage.swift,
+				Views/Pages/LightsOutPage.swift,
+				Views/Pages/LockScreenPage.swift,
+				Views/Pages/MusicPage.swift,
+				Views/Pages/NearbyPage.swift,
+				Views/Pages/PlanetPage.swift,
+				Views/Pages/PowerManagementPage.swift,
+				Views/Pages/PuzzleGridView.swift,
+				Views/Pages/ShieldPage.swift,
+				Views/Pages/SquadPage.swift,
+				Views/Pages/SudokuPage.swift,
+				Views/Pages/TargetingPage.swift,
+				Views/Pages/TicTacToePage.swift,
+				Views/Pages/UnlabeledKeypadPage.swift,
+						);
+			target = 1B43933823B6F48000660F96 /* Space UI (tvOS) */;
+		};
+		2CE5701B000000000000000C /* Exceptions for "Space UI UITests" folder in "Space UI UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UITests.entitlements,
+			);
+			target = 2CE5701B0000000000000003 /* Space UI UITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1B189F4D2E3866CB002F7248 /* Space UI (tvOS) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1B189F572E3866CB002F7248 /* Exceptions for "Space UI (tvOS)" folder in "Space UI (tvOS)" target */,
+			);
+			path = "Space UI (tvOS)";
+			sourceTree = "<group>";
+		};
+		1B7A00012E9A000000000003 /* Space UI (Show) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Space UI (Show)";
+			sourceTree = "<group>";
+		};
+		1B18A0372E3866EE002F7248 /* Space UI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1B18A1D22E3866EE002F7248 /* Exceptions for "Space UI" folder in "Space UI" target */,
+				1B7A00012E9A000000000004 /* Exceptions for "Space UI" folder in "Space UI (Show)" target */,
+				1B18A1D32E3866EE002F7248 /* Exceptions for "Space UI" folder in "Space UI (tvOS)" target */,
+			);
+			path = "Space UI";
+			sourceTree = "<group>";
+		};
+		2CE5701A00000000000000F2 /* Space UI Tests (Show) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Space UI Tests (Show)";
+			sourceTree = "<group>";
+		};
+		2CE5701A0000000000000002 /* Space UI Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Space UI Tests";
+			sourceTree = "<group>";
+		};
+		2CE5701B0000000000000002 /* Space UI UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2CE5701B000000000000000C /* Exceptions for "Space UI UITests" folder in "Space UI UITests" target */,
+			);
+			path = "Space UI UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B43933623B6F48000660F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				AFC000000000000000000013 /* AlienFontKit in Frameworks */,
+			);
+		};
+		1BE24F212347DAE7008859FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				AFC000000000000000000011 /* AlienFontKit in Frameworks */,
+			);
+		};
+		2CE5701A0000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		1B7A00012E9A000000000006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				AFC000000000000000000012 /* AlienFontKit in Frameworks */,
+			);
+		};
+		2CE5701B0000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B06387626376CBD00E858B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CE5701A00000000000000F1 /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				1B7A00012E9A000000000003 /* Space UI (Show) */,
+				2CE5701A00000000000000F2 /* Space UI Tests (Show) */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		1BE24F1B2347DAE7008859FE = {
+			isa = PBXGroup;
+			children = (
+				1B18A0372E3866EE002F7248 /* Space UI */,
+				1B189F4D2E3866CB002F7248 /* Space UI (tvOS) */,
+				2CE5701A0000000000000002 /* Space UI Tests */,
+				2CE5701B0000000000000002 /* Space UI UITests */,
+				2CE5701A00000000000000F1 /* Show */,
+				1BE24F252347DAE7008859FE /* Products */,
+				1B06387626376CBD00E858B2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1BE24F252347DAE7008859FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1BE24F242347DAE7008859FE /* Space UI.app */,
+				1B43933923B6F48000660F96 /* Space UI.app */,
+				2CE5701A0000000000000001 /* Space UI Tests.xctest */,
+				1B7A00012E9A000000000002 /* Space UI Show.app */,
+				2CE5701B0000000000000001 /* Space UI UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B43933823B6F48000660F96 /* Space UI (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B43934823B6F48700660F96 /* Build configuration list for PBXNativeTarget "Space UI (tvOS)" */;
+			buildPhases = (
+				1B43933523B6F48000660F96 /* Sources */,
+				1B43933623B6F48000660F96 /* Frameworks */,
+				1B43933723B6F48000660F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				1B189F4D2E3866CB002F7248 /* Space UI (tvOS) */,
+				1B18A0372E3866EE002F7248 /* Space UI */,
+			);
+			name = "Space UI (tvOS)";
+			packageProductDependencies = (
+				AFC000000000000000000023 /* AlienFontKit */,
+			);
+			productName = "Space UI (tvOS)";
+			productReference = 1B43933923B6F48000660F96 /* Space UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1BE24F232347DAE7008859FE /* Space UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BE24F382347DAEB008859FE /* Build configuration list for PBXNativeTarget "Space UI" */;
+			buildPhases = (
+				1BE24F202347DAE7008859FE /* Sources */,
+				1BE24F212347DAE7008859FE /* Frameworks */,
+				1BE24F222347DAE7008859FE /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				1B18A0372E3866EE002F7248 /* Space UI */,
+			);
+			name = "Space UI";
+			packageProductDependencies = (
+				AFC000000000000000000021 /* AlienFontKit */,
+			);
+			productName = "Space UI";
+			productReference = 1BE24F242347DAE7008859FE /* Space UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1B7A00012E9A000000000001 /* Space UI (Show) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7A00012E9A000000000008 /* Build configuration list for PBXNativeTarget "Space UI (Show)" */;
+			buildPhases = (
+				1B7A00012E9A000000000005 /* Sources */,
+				1B7A00012E9A000000000006 /* Frameworks */,
+				1B7A00012E9A000000000007 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				1B18A0372E3866EE002F7248 /* Space UI */,
+				1B7A00012E9A000000000003 /* Space UI (Show) */,
+			);
+			name = "Space UI (Show)";
+			packageProductDependencies = (
+				AFC000000000000000000022 /* AlienFontKit */,
+			);
+			productName = "Space UI (Show)";
+			productReference = 1B7A00012E9A000000000002 /* Space UI Show.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2CE5701A0000000000000003 /* Space UI Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE5701A000000000000000B /* Build configuration list for PBXNativeTarget "Space UI Tests" */;
+			buildPhases = (
+				2CE5701A0000000000000004 /* Sources */,
+				2CE5701A0000000000000005 /* Frameworks */,
+				2CE5701A0000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CE5701A0000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2CE5701A0000000000000002 /* Space UI Tests */,
+				2CE5701A00000000000000F2 /* Space UI Tests (Show) */,
+			);
+			name = "Space UI Tests";
+			productName = "Space UI Tests";
+			productReference = 2CE5701A0000000000000001 /* Space UI Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2CE5701B0000000000000003 /* Space UI UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE5701B000000000000000B /* Build configuration list for PBXNativeTarget "Space UI UITests" */;
+			buildPhases = (
+				2CE5701B0000000000000004 /* Sources */,
+				2CE5701B0000000000000005 /* Frameworks */,
+				2CE5701B0000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CE5701B0000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2CE5701B0000000000000002 /* Space UI UITests */,
+			);
+			name = "Space UI UITests";
+			productName = "Space UI UITests";
+			productReference = 2CE5701B0000000000000001 /* Space UI UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1BE24F1C2347DAE7008859FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 2700;
+				ORGANIZATIONNAME = "256 Arts";
+				TargetAttributes = {
+					1B43933823B6F48000660F96 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					1BE24F232347DAE7008859FE = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					1B7A00012E9A000000000001 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					2CE5701A0000000000000003 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 1B7A00012E9A000000000001;
+					};
+					2CE5701B0000000000000003 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 1BE24F232347DAE7008859FE;
+					};
+				};
+			};
+			buildConfigurationList = 1BE24F1F2347DAE7008859FE /* Build configuration list for PBXProject "Space UI" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+				ja,
+				de,
+				fr,
+				es,
+			);
+			mainGroup = 1BE24F1B2347DAE7008859FE;
+			packageReferences = (
+				AFC000000000000000000001 /* XCRemoteSwiftPackageReference "AlienFontKit" */,
+			);
+			preferredProjectObjectVersion = 90;
+			productRefGroup = 1BE24F252347DAE7008859FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1BE24F232347DAE7008859FE /* Space UI */,
+				1B7A00012E9A000000000001 /* Space UI (Show) */,
+				1B43933823B6F48000660F96 /* Space UI (tvOS) */,
+				2CE5701A0000000000000003 /* Space UI Tests */,
+				2CE5701B0000000000000003 /* Space UI UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B43933723B6F48000660F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		1BE24F222347DAE7008859FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		2CE5701A0000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		1B7A00012E9A000000000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		2CE5701B0000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B43933523B6F48000660F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		1BE24F202347DAE7008859FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		2CE5701A0000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		1B7A00012E9A000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		2CE5701B0000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CE5701A0000000000000007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7A00012E9A000000000001 /* Space UI (Show) */;
+			targetProxy = 2CE5701A0000000000000008 /* PBXContainerItemProxy */;
+		};
+		2CE5701B0000000000000007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BE24F232347DAE7008859FE /* Space UI */;
+			targetProxy = 2CE5701B0000000000000008 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1B43934923B6F48700660F96 /* Debug configuration for PBXNativeTarget "Space UI (tvOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Space UI (tvOS)/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_NAME = "Space UI";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		1B43934A23B6F48700660F96 /* Release configuration for PBXNativeTarget "Space UI (tvOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Space UI (tvOS)/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_NAME = "Space UI";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		1BE24F362347DAEB008859FE /* Debug configuration for PBXProject "Space UI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Debug;
+		};
+		1BE24F372347DAEB008859FE /* Release configuration for PBXProject "Space UI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1BE24F392347DAEB008859FE /* Debug configuration for PBXNativeTarget "Space UI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = App;
+				CODE_SIGN_ENTITLEMENTS = "Space UI/Space UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "Space UI/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		1BE24F3A2347DAEB008859FE /* Release configuration for PBXNativeTarget "Space UI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = App;
+				CODE_SIGN_ENTITLEMENTS = "Space UI/Space UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "Space UI/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		2CE5701A0000000000000009 /* Debug configuration for PBXNativeTarget "Space UI Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space UI Show.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Space UI Show";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		2CE5701A000000000000000A /* Release configuration for PBXNativeTarget "Space UI Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space UI Show.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Space UI Show";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		1B7A00012E9A000000000009 /* Debug configuration for PBXNativeTarget "Space UI (Show)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = App;
+				CODE_SIGN_ENTITLEMENTS = "Space UI/Space UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "Space UI/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_MODULE_NAME = Space_UI;
+				PRODUCT_NAME = "Space UI Show";
+				REGISTER_APP_GROUPS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) STORY";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		1B7A00012E9A00000000000A /* Release configuration for PBXNativeTarget "Space UI (Show)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = App;
+				CODE_SIGN_ENTITLEMENTS = "Space UI/Space UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 48;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "Space UI/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui;
+				PRODUCT_MODULE_NAME = Space_UI;
+				PRODUCT_NAME = "Space UI Show";
+				REGISTER_APP_GROUPS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) STORY";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		2CE5701B0000000000000009 /* Debug configuration for PBXNativeTarget "Space UI UITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Space UI UITests/UITests.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				TEST_TARGET_NAME = "Space UI";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		2CE5701B000000000000000A /* Release configuration for PBXNativeTarget "Space UI UITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Space UI UITests/UITests.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VA3SY54YU8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaydenirwin.spaceui.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
+				TEST_TARGET_NAME = "Space UI";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B43934823B6F48700660F96 /* Build configuration list for PBXNativeTarget "Space UI (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B43934923B6F48700660F96 /* Debug configuration for PBXNativeTarget "Space UI (tvOS)" */,
+				1B43934A23B6F48700660F96 /* Release configuration for PBXNativeTarget "Space UI (tvOS)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		1BE24F1F2347DAE7008859FE /* Build configuration list for PBXProject "Space UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BE24F362347DAEB008859FE /* Debug configuration for PBXProject "Space UI" */,
+				1BE24F372347DAEB008859FE /* Release configuration for PBXProject "Space UI" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		1BE24F382347DAEB008859FE /* Build configuration list for PBXNativeTarget "Space UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BE24F392347DAEB008859FE /* Debug configuration for PBXNativeTarget "Space UI" */,
+				1BE24F3A2347DAEB008859FE /* Release configuration for PBXNativeTarget "Space UI" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		2CE5701A000000000000000B /* Build configuration list for PBXNativeTarget "Space UI Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE5701A0000000000000009 /* Debug configuration for PBXNativeTarget "Space UI Tests" */,
+				2CE5701A000000000000000A /* Release configuration for PBXNativeTarget "Space UI Tests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		1B7A00012E9A000000000008 /* Build configuration list for PBXNativeTarget "Space UI (Show)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7A00012E9A000000000009 /* Debug configuration for PBXNativeTarget "Space UI (Show)" */,
+				1B7A00012E9A00000000000A /* Release configuration for PBXNativeTarget "Space UI (Show)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		2CE5701B000000000000000B /* Build configuration list for PBXNativeTarget "Space UI UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE5701B0000000000000009 /* Debug configuration for PBXNativeTarget "Space UI UITests" */,
+				2CE5701B000000000000000A /* Release configuration for PBXNativeTarget "Space UI UITests" */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AFC000000000000000000001 /* XCRemoteSwiftPackageReference "AlienFontKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/256Arts/AlienFontKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AFC000000000000000000021 /* AlienFontKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AFC000000000000000000001 /* XCRemoteSwiftPackageReference "AlienFontKit" */;
+			productName = AlienFontKit;
+		};
+		AFC000000000000000000022 /* AlienFontKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AFC000000000000000000001 /* XCRemoteSwiftPackageReference "AlienFontKit" */;
+			productName = AlienFontKit;
+		};
+		AFC000000000000000000023 /* AlienFontKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AFC000000000000000000001 /* XCRemoteSwiftPackageReference "AlienFontKit" */;
+			productName = AlienFontKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1BE24F1C2347DAE7008859FE /* Project object */;
+}
